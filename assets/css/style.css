@@ -461,6 +461,7 @@ input, select, textarea {
   object-position: center;
   z-index: 0;
   pointer-events: none;
+  filter: brightness(0.78) saturate(0.82);
 }
 
 .hero-video-overlay {
@@ -468,9 +469,9 @@ input, select, textarea {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(0, 38, 31, 0.48) 0%,
-    rgba(0, 45, 37, 0.30) 55%,
-    rgba(0, 38, 31, 0.38) 100%
+    rgba(0, 32, 27, 0.58) 0%,
+    rgba(0, 45, 38, 0.48) 50%,
+    rgba(0, 32, 27, 0.55) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -503,7 +504,7 @@ input, select, textarea {
   letter-spacing: 0.12em;
   color: #E2EDE8;
   text-transform: uppercase;
-  margin-bottom: clamp(0.8rem, 1.6vh, 1.3rem);
+  margin-bottom: 0.75rem;
   display: inline-flex;
   align-items: center;
 }
@@ -568,61 +569,36 @@ input, select, textarea {
 
 .hero-collage-container {
   /* ==========================================================================
-     COLLAGE CUSTOM PROPERTIES — REFINED ASYMMETRICAL AWARDS COMPOSITION
-     - Main Portrait: Center-right focal point (~58% width, z-index 4)
-     - Tall Right Image: Vertically oriented behind & right (~36% width, z-index 2)
-     - Small Detail Image: Lower overlapping detail (~42% width, z-index 5)
-     - Circular Graphic: Upper-left accent behind main portrait (z-index 3)
+     COLLAGE CUSTOM PROPERTIES — REFINED LUXURY EDITORIAL COMPOSITION
      ========================================================================== */
   --collage-max-w: 780px;
-  --collage-h: clamp(480px, 62vh, 580px);
+  --collage-h: clamp(480px, 60vh, 580px);
 
-  /* LAYER 1: Abstract Technology (Deep Background Depth Layer) */
-  --abstract-w: 26%;
-  --abstract-top: 10%;
-  --abstract-left: 28%;
-  --abstract-rotate: 0deg;
-  --abstract-z: 1;
-
-  /* LAYER 2: Tall Right Image (Healthcare Innovation / Skyscraper, Vertically Oriented Behind Main Portrait) */
-  --innovation-w: 36%;
-  --innovation-top: 0%;
+  /* LAYER 2: Tall Right Image (Vertical Background Supporting Panel) */
+  --innovation-w: 30%;
+  --innovation-top: 2%;
   --innovation-right: 0%;
   --innovation-rotate: 0deg;
   --innovation-z: 2;
 
-  /* LAYER 3: Architecture (Complementary Structure Behind) */
-  --arch-w: 28%;
-  --arch-bottom: 2%;
-  --arch-right: 0%;
-  --arch-rotate: 0deg;
-  --arch-z: 2;
-
-  /* LAYER 4: Main Woman Portrait (Primary Focal Anchor, Clean Near-Square Editorial Crop) */
-  --portrait-w: 58%;
+  /* LAYER 4: Main Woman Portrait (Primary Hero Focal Point) */
+  --portrait-w: 62%;
   --portrait-top: 18%;
-  --portrait-left: 12%;
+  --portrait-left: 8%;
   --portrait-rotate: 0deg;
   --portrait-z: 4;
 
-  /* LAYER 5: Medical Technology (Foreground 3D Diagnostic Orb Accent) */
-  --medtech-w: 24%;
-  --medtech-bottom: 5%;
-  --medtech-left: 2%;
-  --medtech-rotate: -1deg;
-  --medtech-z: 6;
-
-  /* LAYER 6: Small Bottom Detail Image (Wellness Detail Crop Overlapping Below & Left) */
-  --wellness-w: 42%;
-  --wellness-bottom: 0%;
-  --wellness-left: 26%;
+  /* LAYER 6: Small Bottom Detail Image (Wellness, Lower-Right Offset) */
+  --wellness-w: 36%;
+  --wellness-bottom: 2%;
+  --wellness-left: 48%;
   --wellness-rotate: 0deg;
   --wellness-z: 5;
 
-  /* LAYER 7: Circular Graphic Callout (Upper Left Accent Behind Main Portrait) */
-  --supporting-w: 22%;
+  /* LAYER 7: Circular Graphic Accent (Behind Main Portrait) */
+  --supporting-w: 17%;
   --supporting-top: 6%;
-  --supporting-left: 2%;
+  --supporting-left: 4%;
   --supporting-rotate: 0deg;
   --supporting-z: 3;
 
@@ -638,29 +614,13 @@ input, select, textarea {
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Subtle Geometric Decorative Shapes Behind Layers */
-.collage-geo-frame {
-  position: absolute;
-  top: 4%;
-  right: 1%;
-  width: 54%;
-  height: 86%;
-  border: 1px dashed rgba(198, 242, 77, 0.16);
-  z-index: 3;
-  pointer-events: none;
-  border-radius: 4px;
-}
-
+/* Hide excess clutter layers for clean 3-part editorial hierarchy */
+.collage-layer-abstract,
+.collage-layer-architecture,
+.collage-layer-medtech,
+.collage-geo-frame,
 .collage-depth-glow {
-  position: absolute;
-  top: 15%;
-  left: 20%;
-  width: 65%;
-  height: 65%;
-  background: radial-gradient(circle, rgba(198, 242, 77, 0.05) 0%, rgba(2, 46, 59, 0.25) 55%, transparent 75%);
-  filter: blur(45px);
-  z-index: 3;
-  pointer-events: none;
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -732,11 +692,11 @@ input, select, textarea {
   pointer-events: none;
 }
 
-/* LAYER 2: Tall Right Image (Healthcare Innovation / Skyscraper, z-index 2) */
+/* LAYER 2: Tall Right Supporting Panel (Healthcare Innovation / Skyscraper, z-index 2) */
 .collage-layer-innovation {
   width: var(--innovation-w);
-  height: 92%;
-  aspect-ratio: 9 / 15;
+  height: 94%;
+  aspect-ratio: 9 / 16;
   top: var(--innovation-top);
   right: var(--innovation-right);
   z-index: var(--innovation-z);
@@ -745,7 +705,7 @@ input, select, textarea {
 
 .collage-layer-innovation:not(:has(img[src$=".png"])):not(.is-transparent) {
   border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
   overflow: hidden;
 }
 
@@ -754,33 +714,10 @@ input, select, textarea {
   filter: contrast(1.05) grayscale(0.1);
 }
 
-/* LAYER 3: Modern Healthcare Architecture (Lower Right Angular Cut / Depth, z-index 2) */
-.collage-layer-architecture {
-  width: var(--arch-w);
-  height: auto;
-  aspect-ratio: 4 / 5;
-  bottom: var(--arch-bottom);
-  right: var(--arch-right);
-  z-index: var(--arch-z);
-  transform: rotate(var(--arch-rotate));
-}
-
-.collage-layer-architecture:not(:has(img[src$=".png"])):not(.is-transparent) {
-  clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%);
-  border-left: 1px solid rgba(197, 160, 89, 0.35);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.42);
-  overflow: hidden;
-}
-
-.collage-layer-architecture .collage-img {
-  object-position: center bottom;
-  filter: contrast(1.08);
-}
-
-/* LAYER 4: Main Woman Portrait (Primary Focal Anchor, Near-Square Crop, z-index 4) */
+/* LAYER 4: Main Woman Innovator Portrait (Primary Hero Focal Point, z-index 4) */
 .collage-layer-portrait {
   width: var(--portrait-w);
-  height: 68%;
+  height: 72%;
   aspect-ratio: 4 / 3.4;
   top: var(--portrait-top);
   left: var(--portrait-left);
@@ -790,7 +727,7 @@ input, select, textarea {
 
 .collage-layer-portrait:not(:has(img[src$=".png"])):not(.is-transparent) {
   border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.54);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.52);
   overflow: hidden;
 }
 
@@ -799,26 +736,10 @@ input, select, textarea {
   filter: contrast(1.04);
 }
 
-/* LAYER 5: Futuristic Medical Technology (3D Diagnostic Sphere / Cutout, z-index 6) */
-.collage-layer-medtech {
-  width: var(--medtech-w);
-  height: auto;
-  aspect-ratio: 1 / 1;
-  bottom: var(--medtech-bottom);
-  left: var(--medtech-left);
-  z-index: var(--medtech-z);
-  transform: rotate(var(--medtech-rotate));
-}
-
-.collage-layer-medtech .collage-img {
-  object-position: center;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.58));
-}
-
 /* LAYER 6: Small Bottom Detail Image (Wellness Detail Crop, z-index 5) */
 .collage-layer-wellness {
   width: var(--wellness-w);
-  height: auto;
+  height: 26%;
   aspect-ratio: 2.1 / 1;
   bottom: var(--wellness-bottom);
   left: var(--wellness-left);
@@ -828,7 +749,7 @@ input, select, textarea {
 
 .collage-layer-wellness:not(:has(img[src$=".png"])):not(.is-transparent) {
   border: 1px solid rgba(198, 242, 77, 0.32);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
   overflow: hidden;
 }
 
@@ -837,7 +758,7 @@ input, select, textarea {
   filter: contrast(1.08) saturate(1.08);
 }
 
-/* LAYER 7: Circular Graphic Callout (Upper Left Accent Behind Main Portrait, z-index 3) */
+/* LAYER 7: Circular Graphic Accent (Behind Main Portrait, z-index 3) */
 .collage-layer-supporting {
   width: var(--supporting-w);
   height: auto;
@@ -850,32 +771,25 @@ input, select, textarea {
 
 .collage-layer-supporting .collage-img {
   object-position: center;
-  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
+  opacity: 0.88;
 }
 
 /* Multi-Layer Editorial Hover Responses */
 .hero-collage-container:hover .collage-layer-portrait {
-  transform: translate3d(0, -6px, 12px) rotate(var(--portrait-rotate));
-}
-
-.hero-collage-container:hover .collage-layer-medtech {
-  transform: translate3d(-6px, 4px, 18px) rotate(calc(var(--medtech-rotate) - 2deg));
+  transform: translate3d(0, -4px, 10px) rotate(var(--portrait-rotate));
 }
 
 .hero-collage-container:hover .collage-layer-innovation {
-  transform: translate3d(5px, -4px, 8px) rotate(var(--innovation-rotate));
-}
-
-.hero-collage-container:hover .collage-layer-architecture {
-  transform: translate3d(4px, 5px, 10px) rotate(var(--arch-rotate));
+  transform: translate3d(3px, -2px, 6px) rotate(var(--innovation-rotate));
 }
 
 .hero-collage-container:hover .collage-layer-wellness {
-  transform: translate3d(0, 4px, 14px) rotate(var(--wellness-rotate));
+  transform: translate3d(0, 3px, 12px) rotate(var(--wellness-rotate));
 }
 
 .hero-collage-container:hover .collage-layer-supporting {
-  transform: translate3d(-3px, -4px, 20px) rotate(calc(var(--supporting-rotate) + 4deg));
+  transform: translate3d(-2px, -3px, 16px) rotate(calc(var(--supporting-rotate) + 2deg));
 }
 
 /* Backward compatibility for previous single wrapper if needed */
@@ -883,27 +797,26 @@ input, select, textarea {
   display: none;
 }
 
-/* Floating Draggable Translucent Countdown (Compact & Elegant Gala Plaque) */
+/* Integrated Gala Countdown Plaque (Aligned to Left Content Grid) */
 .hero-countdown-floating {
-  position: absolute;
-  top: 1.25rem;
-  right: 2rem;
-  z-index: 30;
+  position: static;
   display: inline-flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: rgba(2, 28, 22, 0.88);
+  background: rgba(0, 32, 27, 0.72);
   border: 1px solid rgba(197, 160, 89, 0.35);
-  border-radius: 8px;
-  padding: 0.38rem 0.85rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
-  cursor: grab;
-  touch-action: none;
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  width: fit-content;
+  margin-bottom: clamp(1rem, 2vh, 1.4rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: default;
   user-select: none;
   -webkit-user-select: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 2;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-countdown-floating * {
