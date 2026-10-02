@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
-      
+
       tabButtons.forEach(b => b.classList.remove('active'));
       tabPanes.forEach(p => p.classList.remove('active'));
 
@@ -166,65 +166,81 @@ document.addEventListener('DOMContentLoaded', () => {
   const categorySelect = document.getElementById('nominationCategory');
 
   const individualCategories = [
-    { group: "STAY WELL", items: [
-      "INTECARE Preventive Health Leadership Award 2026",
-      "INTECARE Community Health Leadership Award 2026",
-      "INTECARE Wellness & Lifestyle Medicine Leadership Award 2026",
-      "INTECARE Mental Wellbeing Advocacy Award 2026",
-      "INTECARE Health Promotion Innovation Award 2026"
-    ]},
-    { group: "GET WELL", items: [
-      "INTECARE Integrative Healthcare Professional Leadership Award 2026",
-      "INTECARE Patient-Centred Care Leadership Award 2026",
-      "INTECARE Evidence-Based Medicine Leadership Award 2026",
-      "INTECARE Healthcare Innovation in Care Delivery Award 2026",
-      "INTECARE Clinical Excellence Leadership Award 2026"
-    ]},
-    { group: "RECOVER WELL", items: [
-      "INTECARE Rehabilitation Leadership Award 2026",
-      "INTECARE Recovery & Functional Healthcare Leadership Award 2026",
-      "INTECARE Integrated Recovery Care Leadership Award 2026",
-      "INTECARE Mental Health Recovery Leadership Award 2026",
-      "INTECARE Independent Living & Social Care Leadership Award 2026"
-    ]},
-    { group: "AGE WELL", items: [
-      "INTECARE Healthy Ageing Advocacy Award 2026",
-      "INTECARE Active Ageing Leadership Award 2026",
-      "INTECARE Longevity & Lifestyle Innovation Award 2026",
-      "INTECARE Age-Friendly Healthcare Leadership Award 2026",
-      "INTECARE Excellence in Ageing & Quality of Life Leadership Award 2026"
-    ]}
+    {
+      group: "STAY WELL", items: [
+        "INTECARE Preventive Health Leadership Award 2026",
+        "INTECARE Community Health Leadership Award 2026",
+        "INTECARE Wellness & Lifestyle Medicine Leadership Award 2026",
+        "INTECARE Mental Wellbeing Advocacy Award 2026",
+        "INTECARE Health Promotion Innovation Award 2026"
+      ]
+    },
+    {
+      group: "GET WELL", items: [
+        "INTECARE Integrative Healthcare Professional Leadership Award 2026",
+        "INTECARE Patient-Centred Care Leadership Award 2026",
+        "INTECARE Evidence-Based Medicine Leadership Award 2026",
+        "INTECARE Healthcare Innovation in Care Delivery Award 2026",
+        "INTECARE Clinical Excellence Leadership Award 2026"
+      ]
+    },
+    {
+      group: "RECOVER WELL", items: [
+        "INTECARE Rehabilitation Leadership Award 2026",
+        "INTECARE Recovery & Functional Healthcare Leadership Award 2026",
+        "INTECARE Integrated Recovery Care Leadership Award 2026",
+        "INTECARE Mental Health Recovery Leadership Award 2026",
+        "INTECARE Independent Living & Social Care Leadership Award 2026"
+      ]
+    },
+    {
+      group: "AGE WELL", items: [
+        "INTECARE Healthy Ageing Advocacy Award 2026",
+        "INTECARE Active Ageing Leadership Award 2026",
+        "INTECARE Longevity & Lifestyle Innovation Award 2026",
+        "INTECARE Age-Friendly Healthcare Leadership Award 2026",
+        "INTECARE Excellence in Ageing & Quality of Life Leadership Award 2026"
+      ]
+    }
   ];
 
   const corporateCategories = [
-    { group: "ORGANISATIONAL EXCELLENCE", items: [
-      "INTECARE Healthcare Organisation Excellence Award 2026",
-      "INTECARE Wellness Organisation Excellence Award 2026",
-      "INTECARE Healthcare Brand Excellence Award 2026",
-      "INTECARE Emerging Healthcare Enterprise Excellence Award 2026",
-      "INTECARE Excellence in Healthcare Impact Award 2026"
-    ]},
-    { group: "INNOVATION & TRANSFORMATION", items: [
-      "INTECARE Healthcare Innovation Excellence Award 2026",
-      "INTECARE Digital Health Transformation Excellence Award 2026",
-      "INTECARE Health Technology Excellence Award 2026",
-      "INTECARE Integrative Healthcare Innovation Excellence Award 2026",
-      "INTECARE Future of Healthcare Excellence Award 2026"
-    ]},
-    { group: "PEOPLE, WORKPLACE & COMMUNITY", items: [
-      "INTECARE Employer of Choice – Healthcare & Wellness Excellence Award 2026",
-      "INTECARE Healthcare Workforce Development Excellence Award 2026",
-      "INTECARE Excellence in Employee Wellbeing Award 2026",
-      "INTECARE Community Partnership Excellence Award 2026",
-      "INTECARE Social Impact & Community Development Excellence Award 2026"
-    ]},
-    { group: "INDUSTRY, SUSTAINABILITY & ECOSYSTEM", items: [
-      "INTECARE Sustainable Healthcare Excellence Award 2026",
-      "INTECARE Healthcare Ecosystem Partnership Excellence Award 2026",
-      "INTECARE Excellence in Healthcare Enterprise Development Award 2026",
-      "INTECARE Healthcare Investment & Growth Excellence Award 2026",
-      "INTECARE Outstanding Contribution to the Healthcare & Wellness Economy Award 2026"
-    ]}
+    {
+      group: "ORGANISATIONAL EXCELLENCE", items: [
+        "INTECARE Healthcare Organisation Excellence Award 2026",
+        "INTECARE Wellness Organisation Excellence Award 2026",
+        "INTECARE Healthcare Brand Excellence Award 2026",
+        "INTECARE Emerging Healthcare Enterprise Excellence Award 2026",
+        "INTECARE Excellence in Healthcare Impact Award 2026"
+      ]
+    },
+    {
+      group: "INNOVATION & TRANSFORMATION", items: [
+        "INTECARE Healthcare Innovation Excellence Award 2026",
+        "INTECARE Digital Health Transformation Excellence Award 2026",
+        "INTECARE Health Technology Excellence Award 2026",
+        "INTECARE Integrative Healthcare Innovation Excellence Award 2026",
+        "INTECARE Future of Healthcare Excellence Award 2026"
+      ]
+    },
+    {
+      group: "PEOPLE, WORKPLACE & COMMUNITY", items: [
+        "INTECARE Employer of Choice – Healthcare & Wellness Excellence Award 2026",
+        "INTECARE Healthcare Workforce Development Excellence Award 2026",
+        "INTECARE Excellence in Employee Wellbeing Award 2026",
+        "INTECARE Community Partnership Excellence Award 2026",
+        "INTECARE Social Impact & Community Development Excellence Award 2026"
+      ]
+    },
+    {
+      group: "INDUSTRY, SUSTAINABILITY & ECOSYSTEM", items: [
+        "INTECARE Sustainable Healthcare Excellence Award 2026",
+        "INTECARE Healthcare Ecosystem Partnership Excellence Award 2026",
+        "INTECARE Excellence in Healthcare Enterprise Development Award 2026",
+        "INTECARE Healthcare Investment & Growth Excellence Award 2026",
+        "INTECARE Outstanding Contribution to the Healthcare & Wellness Economy Award 2026"
+      ]
+    }
   ];
 
   const populateCategories = (type) => {
@@ -304,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = rationaleTextarea.value.trim();
     const words = text ? text.split(/\s+/).length : 0;
     wordCountBadge.textContent = `${words} / 300 words`;
-    
+
     if (words > 300) {
       wordCountBadge.classList.add('limit-exceeded');
       wordCountBadge.classList.remove('limit-warning');
@@ -657,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Build the complete visual status result HTML (stepper, status pill, details card, next steps)
   const renderTrackingResultHtml = (data, isModal = true) => {
     const statusKey = (data.status_key || 'pending').toLowerCase().replace(/\s+/g, '_');
-    
+
     // Status Badge Text Mapping
     const statusBadgeLabels = {
       shortlisted: 'OFFICIALLY SHORTLISTED',
@@ -1070,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
           countdownEl.style.right = 'auto';
           countdownEl.style.bottom = 'auto';
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     const startDrag = (e) => {
@@ -1083,7 +1099,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         countdownEl.setPointerCapture(e.pointerId);
-      } catch (err) {}
+      } catch (err) { }
 
       const parentRect = heroContainer.getBoundingClientRect();
       const elRect = countdownEl.getBoundingClientRect();
@@ -1139,7 +1155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         countdownEl.releasePointerCapture(e.pointerId);
-      } catch (err) {}
+      } catch (err) { }
 
       // Save position to session
       const parentRect = heroContainer.getBoundingClientRect();
@@ -1149,7 +1165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         sessionStorage.setItem('intecare_hero_cd_pos', JSON.stringify({ left: currentLeft, top: currentTop }));
-      } catch (err) {}
+      } catch (err) { }
     };
 
     countdownEl.addEventListener('pointerdown', startDrag);
@@ -1165,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       countdownEl.style.bottom = '';
       try {
         sessionStorage.removeItem('intecare_hero_cd_pos');
-      } catch (e) {}
+      } catch (e) { }
     });
 
     // Reset when resizing across mobile / desktop breakpoints
@@ -1543,7 +1559,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const journeyParam = urlParams.get('journey');
     const hash = (window.location.hash || '').replace('#', '').toLowerCase();
-    
+
     if (journeyParam && journeyData[journeyParam]) {
       openJourneyDrawer(journeyParam);
     } else if (hash && journeyData[hash]) {
@@ -1561,7 +1577,7 @@ document.addEventListener('DOMContentLoaded', () => {
   corpStreamTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const streamKey = tab.getAttribute('data-corp-stream');
-      
+
       corpStreamTabs.forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
@@ -2053,7 +2069,7 @@ document.addEventListener('DOMContentLoaded', () => {
    - Intercepts internal navigation links
    - Seamlessly animates flat ivory paper sheet with curved leading fold
    - Moving soft translucent shadow tracks with the leading edge
-   - Triggers clean multi-page PHP navigation at ~440ms
+   - Triggers clean multi-page PHP navigation at ~400ms
    - Subtle destination settle on page load
    ========================================================================== */
 (function initEditorialPaperReveal() {
@@ -2073,7 +2089,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         document.body.classList.remove('is-page-settling');
-      }, 280);
+      }, 250);
     } else {
       sessionStorage.removeItem('intecare_editorial_transition');
       transitionOverlay.classList.remove('is-active');
@@ -2160,13 +2176,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set transition flag for destination page
       sessionStorage.setItem('intecare_editorial_transition', 'active');
 
-      // Trigger Right-to-Left Paper Sweep
+      // Trigger Right-to-Left Continuous Paper Sweep
       transitionOverlay.classList.add('is-active');
 
-      // Navigate once paper sheet has covered the viewport (~440ms)
+      // Navigate once paper sheet has swept across (~400ms)
       setTimeout(() => {
         window.location.href = targetUrl.href;
-      }, 440);
+      }, 400);
 
       // Safety fallback: Reset if navigation is cancelled or delayed
       setTimeout(() => {
