@@ -476,7 +476,7 @@ input, select, textarea {
   max-width: 1680px;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
   gap: clamp(1.5rem, 2.5vw, 3.5rem);
   align-items: center;
   position: relative;
@@ -563,59 +563,59 @@ input, select, textarea {
 
 .hero-collage-container {
   /* ==========================================================================
-     COLLAGE CUSTOM PROPERTIES — POSITION, SIZE, ROTATION & STACKING ORDER
-     All 7 layers are independently configurable here:
+     COLLAGE CUSTOM PROPERTIES — REFINED AWARDS SCALE & VISUAL HIERARCHY
+     Scaled down by ~22% for spacious luxury awards editorial aesthetics
      ========================================================================== */
-  --collage-max-w: 960px;
-  --collage-h: clamp(520px, 74vh, 720px);
+  --collage-max-w: 740px;
+  --collage-h: clamp(430px, 56vh, 550px);
 
   /* LAYER 1: Abstract Technology (Deep Background Depth Layer) */
-  --abstract-w: 34%;
+  --abstract-w: 28%;
   --abstract-top: 8%;
-  --abstract-left: 35%;
+  --abstract-left: 36%;
   --abstract-rotate: 0deg;
   --abstract-z: 1;
 
-  /* LAYER 2: Healthcare Innovation (Upper Right Lab Research Panel) */
-  --innovation-w: 38%;
-  --innovation-top: 2%;
-  --innovation-right: 2%;
+  /* LAYER 2: Healthcare Innovation / Secondary (Upper Right Supporting Layer) */
+  --innovation-w: 35%;
+  --innovation-top: 0%;
+  --innovation-right: 0%;
   --innovation-rotate: 0deg;
   --innovation-z: 2;
 
-  /* LAYER 3: Architecture (Lower Right Angular Hospital/Skyscraper) */
-  --arch-w: 36%;
+  /* LAYER 3: Architecture / Tertiary (Lower Right Skyscraper / Pavilion) */
+  --arch-w: 33%;
   --arch-bottom: 2%;
-  --arch-right: 2%;
+  --arch-right: 0%;
   --arch-rotate: 0deg;
   --arch-z: 3;
 
-  /* LAYER 4: Main Portrait (Central Anchor, occupies ~55% visual area) */
-  --portrait-w: 52%;
-  --portrait-top: 4%;
-  --portrait-left: 17%;
+  /* LAYER 4: Main Portrait (Primary Anchor, Dominant Centerpiece) */
+  --portrait-w: 50%;
+  --portrait-top: 5%;
+  --portrait-left: 19%;
   --portrait-rotate: 0deg;
   --portrait-z: 4;
 
-  /* LAYER 5: Medical Technology (Transparent PNG / Cutout Bio-Diagnostic Orb) */
-  --medtech-w: 35%;
-  --medtech-bottom: 6%;
-  --medtech-left: 2%;
-  --medtech-rotate: -2deg;
-  --medtech-z: 5;
+  /* LAYER 5: Medical Technology (Foreground 3D Diagnostic Orb Cutout) */
+  --medtech-w: 28%;
+  --medtech-bottom: 5%;
+  --medtech-left: 4%;
+  --medtech-rotate: -1deg;
+  --medtech-z: 6;
 
-  /* LAYER 6: Wellness (Lower Overlapping Vitality / Preventive Health Band) */
-  --wellness-w: 42%;
-  --wellness-bottom: 1%;
-  --wellness-left: 30%;
+  /* LAYER 6: Wellness (Lower Middle Supporting Vitality Band) */
+  --wellness-w: 36%;
+  --wellness-bottom: 0%;
+  --wellness-left: 31%;
   --wellness-rotate: 0deg;
-  --wellness-z: 6;
+  --wellness-z: 5;
 
-  /* LAYER 7: Supporting Visual (Transparent PNG / Editorial Accent Badge) */
-  --supporting-w: 22%;
-  --supporting-top: 4%;
-  --supporting-left: 2%;
-  --supporting-rotate: 3deg;
+  /* LAYER 7: Supporting Visual (Upper Left Editorial Accent Badge) */
+  --supporting-w: 18%;
+  --supporting-top: 5%;
+  --supporting-left: 4%;
+  --supporting-rotate: 2deg;
   --supporting-z: 7;
 
   position: relative;
@@ -635,9 +635,9 @@ input, select, textarea {
   position: absolute;
   top: 4%;
   right: 1%;
-  width: 58%;
-  height: 88%;
-  border: 1px dashed rgba(198, 242, 77, 0.22);
+  width: 54%;
+  height: 86%;
+  border: 1px dashed rgba(198, 242, 77, 0.16);
   z-index: 0;
   pointer-events: none;
   border-radius: 4px;
@@ -649,7 +649,7 @@ input, select, textarea {
   left: 20%;
   width: 65%;
   height: 65%;
-  background: radial-gradient(circle, rgba(198, 242, 77, 0.08) 0%, rgba(2, 46, 59, 0.35) 55%, transparent 75%);
+  background: radial-gradient(circle, rgba(198, 242, 77, 0.05) 0%, rgba(2, 46, 59, 0.25) 55%, transparent 75%);
   filter: blur(45px);
   z-index: 0;
   pointer-events: none;
@@ -736,14 +736,14 @@ input, select, textarea {
 }
 
 .collage-layer-innovation:not(:has(img[src$=".png"])):not(.is-transparent) {
-  border: 1px solid rgba(198, 242, 77, 0.25);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38);
   overflow: hidden;
 }
 
 .collage-layer-innovation .collage-img {
   object-position: center 30%;
-  filter: contrast(1.08) grayscale(0.15);
+  filter: contrast(1.05) grayscale(0.12);
 }
 
 /* LAYER 3: Modern Healthcare Architecture (Lower Right Angular Cut, z-index 3) */
@@ -758,21 +758,21 @@ input, select, textarea {
 }
 
 .collage-layer-architecture:not(:has(img[src$=".png"])):not(.is-transparent) {
-  clip-path: polygon(0% 12%, 100% 0%, 100% 100%, 0% 100%);
-  border-left: 1.5px solid rgba(198, 242, 77, 0.35);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+  clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%);
+  border-left: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.42);
   overflow: hidden;
 }
 
 .collage-layer-architecture .collage-img {
   object-position: center bottom;
-  filter: contrast(1.1);
+  filter: contrast(1.08);
 }
 
-/* LAYER 4: Main Healthcare Innovator Portrait (Central Anchor, z-index 4, ~55% Visual Area) */
+/* LAYER 4: Main Healthcare Innovator Portrait (Central Anchor, Primary Centerpiece) */
 .collage-layer-portrait {
   width: var(--portrait-w);
-  height: 90%;
+  height: 86%;
   top: var(--portrait-top);
   left: var(--portrait-left);
   z-index: var(--portrait-z);
@@ -780,17 +780,17 @@ input, select, textarea {
 }
 
 .collage-layer-portrait:not(:has(img[src$=".png"])):not(.is-transparent) {
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.68), 0 0 45px rgba(0, 30, 40, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.52);
   overflow: hidden;
 }
 
 .collage-layer-portrait .collage-img {
   object-position: center 15%;
-  filter: contrast(1.05);
+  filter: contrast(1.04);
 }
 
-/* LAYER 5: Futuristic Medical Technology (3D Diagnostic Sphere / Cutout, z-index 5) */
+/* LAYER 5: Futuristic Medical Technology (3D Diagnostic Sphere / Cutout, z-index 6) */
 .collage-layer-medtech {
   width: var(--medtech-w);
   height: auto;
@@ -803,10 +803,10 @@ input, select, textarea {
 
 .collage-layer-medtech .collage-img {
   object-position: center;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 25px rgba(198, 242, 77, 0.25));
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.58));
 }
 
-/* LAYER 6: Preventive Health & Wellness Accent (Lower Edge Band, z-index 6) */
+/* LAYER 6: Preventive Health & Wellness Accent (Lower Middle Supporting Band, z-index 5) */
 .collage-layer-wellness {
   width: var(--wellness-w);
   height: auto;
@@ -818,14 +818,14 @@ input, select, textarea {
 }
 
 .collage-layer-wellness:not(:has(img[src$=".png"])):not(.is-transparent) {
-  border: 1px solid rgba(198, 242, 77, 0.4);
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(198, 242, 77, 0.3);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
 .collage-layer-wellness .collage-img {
   object-position: center;
-  filter: contrast(1.1) saturate(1.1);
+  filter: contrast(1.08) saturate(1.08);
 }
 
 /* LAYER 7: Editorial Supporting Visual Badge (Upper Left Accent, z-index 7) */
@@ -841,7 +841,7 @@ input, select, textarea {
 
 .collage-layer-supporting .collage-img {
   object-position: center;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 16px rgba(197, 160, 89, 0.3));
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
 }
 
 /* Multi-Layer Editorial Hover Responses */
@@ -3912,8 +3912,8 @@ footer,
     justify-content: center;
   }
   .hero-collage-container {
-    max-width: 720px;
-    height: clamp(420px, 58vh, 520px);
+    max-width: 580px;
+    height: clamp(380px, 50vh, 460px);
     margin-inline: auto;
   }
   .awards-hero-grid {
@@ -3997,39 +3997,39 @@ footer,
     width: 100%;
   }
   .hero-collage-container {
-    max-width: 520px;
-    height: clamp(350px, 62vw, 440px);
+    max-width: 440px;
+    height: clamp(300px, 54vw, 380px);
     margin-inline: auto;
     margin-top: 1.5rem;
 
-    /* Intelligent layer scaling & repositioning on mobile */
-    --portrait-w: 60%;
-    --portrait-top: 2%;
-    --portrait-left: 18%;
+    /* Refined layer scaling & proportional positioning on mobile */
+    --portrait-w: 56%;
+    --portrait-top: 3%;
+    --portrait-left: 19%;
 
-    --medtech-w: 38%;
-    --medtech-bottom: 4%;
-    --medtech-left: 0%;
+    --medtech-w: 32%;
+    --medtech-bottom: 3%;
+    --medtech-left: 2%;
 
-    --supporting-w: 26%;
-    --supporting-top: 2%;
-    --supporting-left: 0%;
+    --supporting-w: 22%;
+    --supporting-top: 3%;
+    --supporting-left: 2%;
 
-    --innovation-w: 40%;
-    --innovation-top: 2%;
-    --innovation-right: 0%;
+    --innovation-w: 36%;
+    --innovation-top: 1%;
+    --innovation-right: 1%;
 
-    --arch-w: 38%;
+    --arch-w: 34%;
     --arch-bottom: 2%;
-    --arch-right: 0%;
+    --arch-right: 1%;
 
-    --wellness-w: 50%;
+    --wellness-w: 42%;
     --wellness-bottom: 0%;
-    --wellness-left: 24%;
+    --wellness-left: 26%;
 
-    --abstract-w: 34%;
-    --abstract-top: 6%;
-    --abstract-left: 33%;
+    --abstract-w: 30%;
+    --abstract-top: 5%;
+    --abstract-left: 32%;
   }
   .hero-countdown-floating {
     position: static;
@@ -4051,32 +4051,32 @@ footer,
 @media (max-width: 600px) {
   .hero-collage-container {
     max-width: 100%;
-    height: clamp(290px, 75vw, 360px);
+    height: clamp(260px, 68vw, 320px);
     margin-top: 1rem;
 
-    --portrait-w: 64%;
-    --portrait-top: 0%;
-    --portrait-left: 17%;
+    --portrait-w: 58%;
+    --portrait-top: 1%;
+    --portrait-left: 18%;
 
-    --medtech-w: 42%;
+    --medtech-w: 34%;
     --medtech-bottom: 2%;
-    --medtech-left: -2%;
+    --medtech-left: 0%;
 
-    --supporting-w: 28%;
+    --supporting-w: 24%;
     --supporting-top: 2%;
-    --supporting-left: -2%;
+    --supporting-left: 0%;
 
-    --innovation-w: 42%;
+    --innovation-w: 38%;
     --innovation-top: 0%;
-    --innovation-right: -2%;
+    --innovation-right: 0%;
 
-    --arch-w: 40%;
+    --arch-w: 36%;
     --arch-bottom: 2%;
-    --arch-right: -2%;
+    --arch-right: 0%;
 
-    --wellness-w: 54%;
+    --wellness-w: 46%;
     --wellness-bottom: 0%;
-    --wellness-left: 22%;
+    --wellness-left: 24%;
   }
   .category-columns-quad {
     grid-template-columns: 1fr;
