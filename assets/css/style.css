@@ -9757,12 +9757,12 @@ html, body {
 }
 
 /* ==========================================================================
-   GLOBAL EDITORIAL PAGE TRANSITION
-   Prestigious awards-event transition: Gold sweep line + Deep teal curtain +
-   INTECARE 2026 brand watermark + Smooth destination page reveal
+   EDITORIAL BOOK PAGE-TURN TRANSITION
+   Luxury Editorial Magazine & Awards Publication Page Turn
+   Realistic bending paper physics, dynamic cast shadow, ivory sheen & reveal
    ========================================================================== */
 
-#page-transition {
+.book-transition-stage {
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -9772,143 +9772,243 @@ html, body {
   pointer-events: none;
   visibility: hidden;
   overflow: hidden;
+  perspective: 2200px;
+  perspective-origin: 20% 50%;
+  transform-style: preserve-3d;
   isolation: isolate;
 }
 
-/* Phase 1: Thin Gold Sweep Line */
-.page-transition-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #997B2C 0%, #F5D77F 45%, #D4AF37 80%, #E5C378 100%);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7), 0 0 24px rgba(212, 175, 55, 0.35);
-  transform: scaleX(0);
-  transform-origin: left center;
-  z-index: 4;
-  will-change: transform;
-}
-
-/* Phase 2: Deep Teal Full-Screen Curtain */
-.page-transition-panel {
+/* Ambient shadow cast on the underlying page as the sheet lifts */
+.book-shadow-cast {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 45%, #00362D 0%, #002B24 45%, #001A15 100%);
-  transform: translateX(-101%);
-  z-index: 2;
-  will-change: transform;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.6);
-}
-
-/* Phase 3: INTECARE 2026 Centered Brand Mark */
-.page-transition-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 0.35rem;
+  background: radial-gradient(ellipse at 85% 60%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.22) 40%, transparent 75%);
   opacity: 0;
-  transform: translateY(12px) scale(0.96);
-  will-change: opacity, transform;
-  z-index: 3;
-  user-select: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
   pointer-events: none;
 }
 
-.pt-brand-name {
-  font-family: var(--font-heading, 'Barlow Condensed', sans-serif);
-  font-size: clamp(2.2rem, 5.2vw, 3.6rem);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-}
-
-.pt-brand-divider {
-  width: 42px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-  margin: 0.25rem 0;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
-}
-
-.pt-brand-year {
-  font-family: var(--font-heading, 'Barlow Condensed', sans-serif);
-  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.28em;
-  color: #D4AF37;
-  text-shadow: 0 2px 14px rgba(212, 175, 55, 0.4);
-}
-
-/* ==========================================================================
-   STATE: OUTGOING TRANSITION (.is-leaving / Page Exit)
-   ========================================================================== */
-#page-transition.is-leaving {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-#page-transition.is-leaving .page-transition-line {
+/* The Turning Sheet - Pinned at left spine */
+.book-sheet-turning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   transform-origin: left center;
-  transform: scaleX(1);
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+  transform: rotateY(0deg) rotateZ(0deg);
+  will-change: transform;
+  z-index: 2;
 }
 
-#page-transition.is-leaving .page-transition-panel {
-  transform: translateX(0);
-  transition: transform 0.36s cubic-bezier(0.76, 0, 0.24, 1) 0.08s;
+/* Front face of turning page (ivory paper tone with reflective highlight) */
+.book-page-front {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #F5F2EA;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 242, 234, 0.95) 35%,
+    rgba(235, 230, 218, 0.9) 70%,
+    rgba(215, 208, 192, 0.82) 100%
+  );
+  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.22), -30px 10px 70px rgba(0, 0, 0, 0.15);
+  transform-style: preserve-3d;
+  overflow: hidden;
 }
 
-#page-transition.is-leaving .page-transition-brand {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
-              transform 0.22s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
-}
-
-/* ==========================================================================
-   STATE: INCOMING TRANSITION (.is-revealing / Destination Page Reveal)
-   ========================================================================== */
-#page-transition.is-revealing {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-#page-transition.is-revealing .page-transition-panel {
-  transform: translateX(101%);
-  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-#page-transition.is-revealing .page-transition-line {
-  transform-origin: right center;
-  transform: scaleX(0);
-  transition: transform 0.34s cubic-bezier(0.76, 0, 0.24, 1) 0.04s;
-}
-
-#page-transition.is-revealing .page-transition-brand {
+/* Paper sheen: Simulates curved paper catching light as it flexes */
+.book-paper-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.65) 40%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.2) 60%,
+    transparent 100%
+  );
   opacity: 0;
-  transform: translateY(-8px) scale(0.98);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transform: translateX(30%);
+  will-change: opacity, transform;
+}
+
+/* Diagonal Curl Gradient (Lifting right & bottom-right corner) */
+.book-curl-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    rgba(210, 202, 185, 0.35) 70%,
+    rgba(160, 150, 130, 0.45) 88%,
+    rgba(110, 100, 85, 0.55) 100%
+  );
+  opacity: 0;
+  mix-blend-mode: multiply;
+  will-change: opacity;
+}
+
+/* Subtle physical fold crease along the vertical spine */
+.book-fold-crease {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.04) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Back of the turning page (reveals underside as it completes turn) */
+.book-page-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background-color: #EFECE3;
+  background: linear-gradient(
+    270deg,
+    rgba(240, 237, 228, 0.98) 0%,
+    rgba(228, 222, 210, 0.95) 50%,
+    rgba(205, 198, 182, 0.9) 100%
+  );
+  box-shadow: inset -20px 0 50px rgba(0, 0, 0, 0.12);
+}
+
+.book-back-shading {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.15) 0%, transparent 40%);
 }
 
 /* ==========================================================================
-   DESTINATION PAGE CONTENT REVEAL
+   PAGE-TURN ANIMATION SEQUENCE (Keyframes: Natural Bending Paper Motion)
    ========================================================================== */
-@keyframes ptPageContentReveal {
+
+@keyframes bookPageTurnMotion {
+  0% {
+    transform: rotateY(0deg) rotateZ(0deg) skewY(0deg);
+    filter: drop-shadow(-5px 5px 12px rgba(0, 0, 0, 0.08));
+  }
+  20% {
+    /* Right edge begins lifting and curling diagonally */
+    transform: rotateY(-22deg) rotateZ(-3deg) skewY(2.2deg);
+    filter: drop-shadow(-20px 10px 30px rgba(0, 0, 0, 0.22));
+  }
+  50% {
+    /* Main curl movement across the viewport */
+    transform: rotateY(-62deg) rotateZ(-5.5deg) skewY(3.5deg);
+    filter: drop-shadow(-35px 15px 55px rgba(0, 0, 0, 0.32));
+  }
+  80% {
+    /* Page flattens against left spine */
+    transform: rotateY(-105deg) rotateZ(-2.5deg) skewY(1deg);
+    filter: drop-shadow(-20px 8px 30px rgba(0, 0, 0, 0.18));
+  }
+  100% {
+    /* Completes the turn cleanly off-screen */
+    transform: rotateY(-130deg) rotateZ(0deg) skewY(0deg);
+    filter: drop-shadow(0 0 0 transparent);
+    opacity: 0.95;
+  }
+}
+
+@keyframes bookShadowCastMotion {
   0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: scaleX(0.2);
+    transform-origin: right center;
+  }
+  30% {
+    opacity: 0.85;
+    transform: scaleX(0.7);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1.1);
+  }
+}
+
+@keyframes bookPaperSheenMotion {
+  0% {
+    opacity: 0;
+    transform: translateX(40%);
+  }
+  25% {
+    opacity: 0.9;
+    transform: translateX(10%);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateX(-25%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60%);
+  }
+}
+
+@keyframes bookCurlGradMotion {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  65% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* ACTIVE TURN STATE */
+.book-transition-stage.is-turning {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.book-transition-stage.is-turning .book-shadow-cast {
+  animation: bookShadowCastMotion 0.62s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+}
+
+.book-transition-stage.is-turning .book-sheet-turning {
+  animation: bookPageTurnMotion 0.62s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+}
+
+.book-transition-stage.is-turning .book-paper-sheen {
+  animation: bookPaperSheenMotion 0.62s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+}
+
+.book-transition-stage.is-turning .book-curl-gradient {
+  animation: bookCurlGradMotion 0.62s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+}
+
+/* DESTINATION PAGE CONTENT SETTLE */
+@keyframes bookDestinationSettle {
+  0% {
+    opacity: 0.88;
+    transform: translateY(8px);
   }
   100% {
     opacity: 1;
@@ -9916,20 +10016,45 @@ html, body {
   }
 }
 
-body.is-page-revealing main {
-  animation: ptPageContentReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+body.is-page-settling main {
+  animation: bookDestinationSettle 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ==========================================================================
-   ACCESSIBILITY: PREFERS REDUCED MOTION
-   ========================================================================== */
+/* MOBILE ADAPTATION */
+@media (max-width: 768px) {
+  .book-transition-stage {
+    perspective: 1400px;
+    perspective-origin: 10% 50%;
+  }
+
+  .book-page-front {
+    box-shadow: -10px 0 25px rgba(0, 0, 0, 0.18);
+  }
+
+  @keyframes bookPageTurnMotion {
+    0% {
+      transform: rotateY(0deg) rotateZ(0deg);
+    }
+    30% {
+      transform: rotateY(-30deg) rotateZ(-2deg);
+    }
+    65% {
+      transform: rotateY(-75deg) rotateZ(-3deg);
+    }
+    100% {
+      transform: rotateY(-125deg) rotateZ(0deg);
+    }
+  }
+}
+
+/* ACCESSIBILITY: PREFERS REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
-  #page-transition {
+  .book-transition-stage {
     display: none !important;
     visibility: hidden !important;
   }
 
-  body.is-page-revealing main,
+  body.is-page-settling main,
   main {
     animation: none !important;
     transform: none !important;

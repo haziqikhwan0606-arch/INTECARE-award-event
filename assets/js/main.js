@@ -2047,45 +2047,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   GLOBAL EDITORIAL PAGE TRANSITION CONTROLLER
-   Cinematic multi-page navigation for INTECARE 2026:
-   Phase 1 (0–180ms): Gold sweep line expands
-   Phase 2 (150–450ms): Deep teal curtain covers viewport
-   Phase 3 (250–500ms): Centered INTECARE 2026 watermark displays
-   Phase 4 (440ms): Destination navigation occurs
-   Phase 5 (Destination): Teal curtain slides away + page content reveals
+   EDITORIAL BOOK PAGE-TURN TRANSITION CONTROLLER
+   Luxury Editorial Magazine / Awards Publication Page Turn:
+   - Intercepts internal navigation links
+   - Initiates physical right-to-left 3D page bending & light sheen
+   - Dynamic cast shadow sweeps underneath
+   - Navigates at ~520ms when page curls past screen
+   - Smoothly reveals destination page without flash
    ========================================================================== */
-(function initGlobalPageTransition() {
+(function initBookPageTurnTransition() {
   const setupTransition = () => {
-    const transitionOverlay = document.getElementById('page-transition');
-    if (!transitionOverlay) return;
+    const turnStage = document.getElementById('page-turn-stage');
+    if (!turnStage) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let isNavigating = false;
 
-    // 1. Check for incoming page reveal
-    const hasPendingReveal = sessionStorage.getItem('intecare_page_transition') === 'active';
-    if (hasPendingReveal && !prefersReducedMotion) {
-      sessionStorage.removeItem('intecare_page_transition');
-      document.body.classList.add('is-page-revealing');
-      transitionOverlay.classList.remove('is-leaving');
-      transitionOverlay.classList.add('is-revealing');
+    // 1. Check for incoming page settlement
+    const hasPendingTurn = sessionStorage.getItem('intecare_page_turn') === 'active';
+    if (hasPendingTurn && !prefersReducedMotion) {
+      sessionStorage.removeItem('intecare_page_turn');
+      document.body.classList.add('is-page-settling');
+      turnStage.classList.remove('is-turning');
 
       setTimeout(() => {
-        transitionOverlay.classList.remove('is-revealing');
-        document.body.classList.remove('is-page-revealing');
-      }, 480);
+        document.body.classList.remove('is-page-settling');
+      }, 400);
     } else {
-      sessionStorage.removeItem('intecare_page_transition');
-      transitionOverlay.classList.remove('is-leaving', 'is-revealing');
+      sessionStorage.removeItem('intecare_page_turn');
+      turnStage.classList.remove('is-turning');
     }
 
     // 2. Browser Back/Forward & BFCache restoration
     window.addEventListener('pageshow', (event) => {
       isNavigating = false;
-      sessionStorage.removeItem('intecare_page_transition');
-      transitionOverlay.classList.remove('is-leaving', 'is-revealing');
-      document.body.classList.remove('is-page-revealing');
+      sessionStorage.removeItem('intecare_page_turn');
+      turnStage.classList.remove('is-turning');
+      document.body.classList.remove('is-page-settling');
     });
 
     // 3. Intercept internal navigation clicks
@@ -2153,28 +2151,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Prevent default jump and initiate cinematic transition
+      // Prevent default jump and initiate book page-turn
       event.preventDefault();
       if (isNavigating) return;
       isNavigating = true;
 
       // Set transition flag for destination page
-      sessionStorage.setItem('intecare_page_transition', 'active');
+      sessionStorage.setItem('intecare_page_turn', 'active');
 
-      // Trigger Phase 1 (Gold sweep) & Phase 2 (Teal curtain) & Phase 3 (Brand mark)
-      transitionOverlay.classList.remove('is-revealing');
-      transitionOverlay.classList.add('is-leaving');
+      // Trigger 3D Page Turn Animation
+      turnStage.classList.add('is-turning');
 
-      // Phase 4: Navigate once viewport is covered (~440ms)
+      // Navigate once page has curled past the screen (~520ms)
       setTimeout(() => {
         window.location.href = targetUrl.href;
-      }, 440);
+      }, 520);
 
       // Safety fallback: Reset if navigation is cancelled
       setTimeout(() => {
         if (isNavigating) {
           isNavigating = false;
-          transitionOverlay.classList.remove('is-leaving');
+          turnStage.classList.remove('is-turning');
         }
       }, 2500);
     });
