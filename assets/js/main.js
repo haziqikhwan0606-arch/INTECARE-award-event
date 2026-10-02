@@ -2047,42 +2047,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   EDITORIAL BOOK PAGE-TURN TRANSITION CONTROLLER
-   Luxury Editorial Magazine / Awards Publication Page Turn:
+   LUXURY EDITORIAL MAGAZINE / ART BOOK PAGE REVEAL CONTROLLER
+   A physical sheet of warm ivory paper sweeps right-to-left across the screen,
+   revealing the destination page underneath:
    - Intercepts internal navigation links
-   - Initiates physical right-to-left 3D page bending & light sheen
-   - Dynamic cast shadow sweeps underneath
-   - Navigates at ~520ms when page curls past screen
-   - Smoothly reveals destination page without flash
+   - Seamlessly animates flat ivory paper sheet with curved leading fold
+   - Moving soft translucent shadow tracks with the leading edge
+   - Triggers clean multi-page PHP navigation at ~440ms
+   - Subtle destination settle on page load
    ========================================================================== */
-(function initBookPageTurnTransition() {
+(function initEditorialPaperReveal() {
   const setupTransition = () => {
-    const turnStage = document.getElementById('page-turn-stage');
-    if (!turnStage) return;
+    const transitionOverlay = document.getElementById('intecarePageTransition');
+    if (!transitionOverlay) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let isNavigating = false;
 
     // 1. Check for incoming page settlement
-    const hasPendingTurn = sessionStorage.getItem('intecare_page_turn') === 'active';
-    if (hasPendingTurn && !prefersReducedMotion) {
-      sessionStorage.removeItem('intecare_page_turn');
+    const hasPendingTransition = sessionStorage.getItem('intecare_editorial_transition') === 'active';
+    if (hasPendingTransition && !prefersReducedMotion) {
+      sessionStorage.removeItem('intecare_editorial_transition');
       document.body.classList.add('is-page-settling');
-      turnStage.classList.remove('is-turning');
+      transitionOverlay.classList.remove('is-active');
 
       setTimeout(() => {
         document.body.classList.remove('is-page-settling');
-      }, 400);
+      }, 280);
     } else {
-      sessionStorage.removeItem('intecare_page_turn');
-      turnStage.classList.remove('is-turning');
+      sessionStorage.removeItem('intecare_editorial_transition');
+      transitionOverlay.classList.remove('is-active');
     }
 
     // 2. Browser Back/Forward & BFCache restoration
     window.addEventListener('pageshow', (event) => {
       isNavigating = false;
-      sessionStorage.removeItem('intecare_page_turn');
-      turnStage.classList.remove('is-turning');
+      sessionStorage.removeItem('intecare_editorial_transition');
+      transitionOverlay.classList.remove('is-active');
       document.body.classList.remove('is-page-settling');
     });
 
@@ -2151,27 +2152,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Prevent default jump and initiate book page-turn
+      // Prevent default jump and initiate paper reveal sweep
       event.preventDefault();
       if (isNavigating) return;
       isNavigating = true;
 
       // Set transition flag for destination page
-      sessionStorage.setItem('intecare_page_turn', 'active');
+      sessionStorage.setItem('intecare_editorial_transition', 'active');
 
-      // Trigger 3D Page Turn Animation
-      turnStage.classList.add('is-turning');
+      // Trigger Right-to-Left Paper Sweep
+      transitionOverlay.classList.add('is-active');
 
-      // Navigate once page has curled past the screen (~520ms)
+      // Navigate once paper sheet has covered the viewport (~440ms)
       setTimeout(() => {
         window.location.href = targetUrl.href;
-      }, 520);
+      }, 440);
 
-      // Safety fallback: Reset if navigation is cancelled
+      // Safety fallback: Reset if navigation is cancelled or delayed
       setTimeout(() => {
         if (isNavigating) {
           isNavigating = false;
-          turnStage.classList.remove('is-turning');
+          transitionOverlay.classList.remove('is-active');
         }
       }, 2500);
     });

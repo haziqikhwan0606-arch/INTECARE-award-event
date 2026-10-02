@@ -23,20 +23,27 @@
 <body>
 
   <!-- ==========================================================================
-       EDITORIAL BOOK PAGE-TURN TRANSITION
-       Realistic, luxury publication page-turning effect: lifting right edge,
-       paper flex & light sheen, cast shadow, and smooth destination reveal.
+       LUXURY EDITORIAL MAGAZINE / ART BOOK PAGE REVEAL
+       A flat sheet of warm ivory paper sweeps right-to-left across the screen
+       with a subtle curved leading edge, soft moving cast shadow & fold gradient.
        ========================================================================== -->
-  <div id="page-turn-stage" class="book-transition-stage" aria-hidden="true">
-    <div class="book-shadow-cast"></div>
-    <div class="book-sheet-turning">
-      <div class="book-page-front">
-        <div class="book-paper-sheen"></div>
-        <div class="book-curl-gradient"></div>
-        <div class="book-fold-crease"></div>
+  <div class="intecare-page-transition" id="intecarePageTransition" aria-hidden="true">
+    <div class="intecare-page-transition__sheet">
+      <!-- Soft moving shadow projecting to the left of the curved leading edge -->
+      <div class="intecare-page-transition__shadow"></div>
+      
+      <!-- Leading Curved Fold Element with subtle organic curve -->
+      <div class="intecare-page-transition__fold">
+        <svg class="intecare-page-transition__curve-svg" viewBox="0 0 120 1000" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M120,0 C30,320 30,680 120,1000 L120,0 Z" fill="#F5F2EA"></path>
+          <path d="M120,0 C30,320 30,680 120,1000" fill="none" stroke="rgba(255, 255, 255, 0.65)" stroke-width="2.5"></path>
+          <path d="M120,0 C35,320 35,680 120,1000" fill="none" stroke="rgba(215, 207, 192, 0.35)" stroke-width="4"></path>
+        </svg>
       </div>
-      <div class="book-page-back">
-        <div class="book-back-shading"></div>
+
+      <!-- Main Flat Warm Ivory Paper Surface -->
+      <div class="intecare-page-transition__paper">
+        <div class="intecare-page-transition__sheen"></div>
       </div>
     </div>
   </div>
