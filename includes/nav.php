@@ -54,6 +54,21 @@ if (!isset($basePath)) {
 <body>
 
   <!-- ==========================================================================
+       GLOBAL EDITORIAL PAGE TRANSITION
+       Cinematic gold sweep line + deep teal curtain + brand mark reveal
+       ========================================================================== -->
+  <div id="page-transition" class="page-transition-overlay" aria-hidden="true">
+    <div class="page-transition-line"></div>
+    <div class="page-transition-panel">
+      <div class="page-transition-brand">
+        <span class="pt-brand-name">INTECARE</span>
+        <span class="pt-brand-divider"></span>
+        <strong class="pt-brand-year">2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        GLOBAL SITE HEADER (6 Dedicated Pages + Submit Nomination CTA)
        ========================================================================== -->
   <header class="site-header" id="siteHeader">

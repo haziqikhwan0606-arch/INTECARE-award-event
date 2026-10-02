@@ -2046,4 +2046,145 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/* ==========================================================================
+   GLOBAL EDITORIAL PAGE TRANSITION CONTROLLER
+   Cinematic multi-page navigation for INTECARE 2026:
+   Phase 1 (0–180ms): Gold sweep line expands
+   Phase 2 (150–450ms): Deep teal curtain covers viewport
+   Phase 3 (250–500ms): Centered INTECARE 2026 watermark displays
+   Phase 4 (440ms): Destination navigation occurs
+   Phase 5 (Destination): Teal curtain slides away + page content reveals
+   ========================================================================== */
+(function initGlobalPageTransition() {
+  const setupTransition = () => {
+    const transitionOverlay = document.getElementById('page-transition');
+    if (!transitionOverlay) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let isNavigating = false;
+
+    // 1. Check for incoming page reveal
+    const hasPendingReveal = sessionStorage.getItem('intecare_page_transition') === 'active';
+    if (hasPendingReveal && !prefersReducedMotion) {
+      sessionStorage.removeItem('intecare_page_transition');
+      document.body.classList.add('is-page-revealing');
+      transitionOverlay.classList.remove('is-leaving');
+      transitionOverlay.classList.add('is-revealing');
+
+      setTimeout(() => {
+        transitionOverlay.classList.remove('is-revealing');
+        document.body.classList.remove('is-page-revealing');
+      }, 480);
+    } else {
+      sessionStorage.removeItem('intecare_page_transition');
+      transitionOverlay.classList.remove('is-leaving', 'is-revealing');
+    }
+
+    // 2. Browser Back/Forward & BFCache restoration
+    window.addEventListener('pageshow', (event) => {
+      isNavigating = false;
+      sessionStorage.removeItem('intecare_page_transition');
+      transitionOverlay.classList.remove('is-leaving', 'is-revealing');
+      document.body.classList.remove('is-page-revealing');
+    });
+
+    // 3. Intercept internal navigation clicks
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (!link) return;
+
+      // Skip modifier keys or non-primary clicks
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+        return;
+      }
+
+      // Skip explicit download or new tab links
+      if (link.hasAttribute('download') || (link.target && link.target !== '_self')) {
+        return;
+      }
+
+      // Skip modal buttons & AI assistant widgets
+      if (link.classList.contains('open-nomination-btn') || 
+          link.classList.contains('open-tracking-btn') || 
+          link.classList.contains('no-transition') ||
+          link.closest('.assistant-concierge-panel') ||
+          link.closest('.assistant-widget')) {
+        return;
+      }
+
+      const hrefAttr = link.getAttribute('href');
+      if (!hrefAttr) return;
+
+      // Skip anchors, javascript, mailto, tel
+      if (hrefAttr.startsWith('#') || 
+          hrefAttr.startsWith('javascript:') || 
+          hrefAttr.startsWith('mailto:') || 
+          hrefAttr.startsWith('tel:')) {
+        return;
+      }
+
+      // Parse destination URL
+      let targetUrl;
+      try {
+        targetUrl = new URL(link.href, window.location.href);
+      } catch (e) {
+        return;
+      }
+
+      // Must be same origin (internal page)
+      if (targetUrl.origin !== window.location.origin) {
+        return;
+      }
+
+      // If destination is on same path and only hash differs, allow smooth scroll
+      const isSamePath = (targetUrl.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '')) &&
+                         (targetUrl.search === window.location.search);
+      if (isSamePath && targetUrl.hash) {
+        return;
+      }
+
+      // If exact same URL, do nothing
+      if (targetUrl.href === window.location.href) {
+        return;
+      }
+
+      // If reduced motion is preferred, let browser handle navigation instantly
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      // Prevent default jump and initiate cinematic transition
+      event.preventDefault();
+      if (isNavigating) return;
+      isNavigating = true;
+
+      // Set transition flag for destination page
+      sessionStorage.setItem('intecare_page_transition', 'active');
+
+      // Trigger Phase 1 (Gold sweep) & Phase 2 (Teal curtain) & Phase 3 (Brand mark)
+      transitionOverlay.classList.remove('is-revealing');
+      transitionOverlay.classList.add('is-leaving');
+
+      // Phase 4: Navigate once viewport is covered (~440ms)
+      setTimeout(() => {
+        window.location.href = targetUrl.href;
+      }, 440);
+
+      // Safety fallback: Reset if navigation is cancelled
+      setTimeout(() => {
+        if (isNavigating) {
+          isNavigating = false;
+          transitionOverlay.classList.remove('is-leaving');
+        }
+      }, 2500);
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTransition);
+  } else {
+    setupTransition();
+  }
+})();
+
 

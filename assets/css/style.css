@@ -9756,5 +9756,186 @@ html, body {
   }
 }
 
+/* ==========================================================================
+   GLOBAL EDITORIAL PAGE TRANSITION
+   Prestigious awards-event transition: Gold sweep line + Deep teal curtain +
+   INTECARE 2026 brand watermark + Smooth destination page reveal
+   ========================================================================== */
+
+#page-transition {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999999;
+  pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Phase 1: Thin Gold Sweep Line */
+.page-transition-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #997B2C 0%, #F5D77F 45%, #D4AF37 80%, #E5C378 100%);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7), 0 0 24px rgba(212, 175, 55, 0.35);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 4;
+  will-change: transform;
+}
+
+/* Phase 2: Deep Teal Full-Screen Curtain */
+.page-transition-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 45%, #00362D 0%, #002B24 45%, #001A15 100%);
+  transform: translateX(-101%);
+  z-index: 2;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Phase 3: INTECARE 2026 Centered Brand Mark */
+.page-transition-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35rem;
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  will-change: opacity, transform;
+  z-index: 3;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pt-brand-name {
+  font-family: var(--font-heading, 'Barlow Condensed', sans-serif);
+  font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.pt-brand-divider {
+  width: 42px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  margin: 0.25rem 0;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.pt-brand-year {
+  font-family: var(--font-heading, 'Barlow Condensed', sans-serif);
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.28em;
+  color: #D4AF37;
+  text-shadow: 0 2px 14px rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================================================
+   STATE: OUTGOING TRANSITION (.is-leaving / Page Exit)
+   ========================================================================== */
+#page-transition.is-leaving {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#page-transition.is-leaving .page-transition-line {
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#page-transition.is-leaving .page-transition-panel {
+  transform: translateX(0);
+  transition: transform 0.36s cubic-bezier(0.76, 0, 0.24, 1) 0.08s;
+}
+
+#page-transition.is-leaving .page-transition-brand {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
+              transform 0.22s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
+}
+
+/* ==========================================================================
+   STATE: INCOMING TRANSITION (.is-revealing / Destination Page Reveal)
+   ========================================================================== */
+#page-transition.is-revealing {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#page-transition.is-revealing .page-transition-panel {
+  transform: translateX(101%);
+  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+#page-transition.is-revealing .page-transition-line {
+  transform-origin: right center;
+  transform: scaleX(0);
+  transition: transform 0.34s cubic-bezier(0.76, 0, 0.24, 1) 0.04s;
+}
+
+#page-transition.is-revealing .page-transition-brand {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+/* ==========================================================================
+   DESTINATION PAGE CONTENT REVEAL
+   ========================================================================== */
+@keyframes ptPageContentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.is-page-revealing main {
+  animation: ptPageContentReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #page-transition {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  body.is-page-revealing main,
+  main {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 
 
