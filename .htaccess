@@ -1,0 +1,18 @@
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent looping if file exists
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Clean URL rewrites for dedicated pages
+    RewriteRule ^about/?$ about.php [L,QSA]
+    RewriteRule ^awards/?$ awards.php [L,QSA]
+    RewriteRule ^hwed-ecosystem/?$ hwed-ecosystem.php [L,QSA]
+    RewriteRule ^organisers/?$ organisers.php [L,QSA]
+    RewriteRule ^event-details/?$ event-details.php [L,QSA]
+    RewriteRule ^track-status/?$ track-status.php [L,QSA]
+</IfModule>
