@@ -2063,10 +2063,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   LUXURY EDITORIAL MAGAZINE / ART BOOK PAGE REVEAL CONTROLLER
-   A physical sheet of warm ivory paper sweeps right-to-left across the screen,
-   revealing the destination page underneath:
+   EDITORIAL BOOK PAGE-TURN TRANSITION CONTROLLER
+   Luxury Editorial Magazine / Awards Publication Page Turn:
    - Intercepts internal navigation links
+   - Initiates physical right-to-left 3D page bending & light sheen
+/* ==========================================================================
+   LUXURY EDITORIAL MAGAZINE / ART BOOK PAGE REVEAL CONTROLLER
    - Seamlessly animates flat ivory paper sheet with curved leading fold
    - Moving soft translucent shadow tracks with the leading edge
    - Triggers clean multi-page PHP navigation at ~400ms

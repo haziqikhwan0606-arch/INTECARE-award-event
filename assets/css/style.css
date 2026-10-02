@@ -10210,7 +10210,7 @@ body {
   height: 100%;
   display: flex;
   align-items: stretch;
-  transform: translate3d(100vw, 0, 0);
+  transform: translate3d(calc(100vw + 260px), 0, 0);
   will-change: transform;
 }
 
@@ -10283,23 +10283,15 @@ body {
 
 /* ==========================================================================
    PAGE REVEAL ANIMATION (Smooth Right-to-Left Continuous Paper Sweep)
-   Timing: 600ms | Custom Tuned Easing: cubic-bezier(0.65, 0, 0.35, 1)
+   Timing: 620ms | Custom Tuned Easing: cubic-bezier(0.76, 0, 0.24, 1)
    ========================================================================== */
 
 @keyframes intecarePaperRevealSweep {
   0% {
-    transform: translate3d(100vw, 0, 0);
-    opacity: 0.95;
-  }
-  12% {
-    opacity: 1;
-  }
-  88% {
-    opacity: 1;
+    transform: translate3d(calc(100vw + 260px), 0, 0);
   }
   100% {
-    transform: translate3d(-140vw, 0, 0);
-    opacity: 0.95;
+    transform: translate3d(calc(-140vw - 120px), 0, 0);
   }
 }
 
@@ -10309,7 +10301,7 @@ body {
 }
 
 .intecare-page-transition.is-active .intecare-page-transition__sheet {
-  animation: intecarePaperRevealSweep 0.60s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: intecarePaperRevealSweep 0.62s cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
 
 /* ==========================================================================
@@ -10318,8 +10310,8 @@ body {
 
 @keyframes intecareDestinationSettle {
   0% {
-    opacity: 0;
-    transform: translateY(4px);
+    opacity: 0.5;
+    transform: translateY(3px);
   }
   100% {
     opacity: 1;
@@ -10350,7 +10342,7 @@ body.is-page-settling main {
   }
 
   .intecare-page-transition.is-active .intecare-page-transition__sheet {
-    animation-duration: 0.54s;
+    animation-duration: 0.56s;
   }
 }
 
