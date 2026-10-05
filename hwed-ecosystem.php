@@ -7,212 +7,97 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: PRESTIGIOUS SOVEREIGN ARCHITECTURE (Classy Gala Award Aesthetic)
-         Architecture: Left Stately Manifesto & Metrics + Right 3D Frosted Crystal Plaque Stack
+         HERO: EDITORIAL AWARDS GALA ECOSYSTEM PRESENTATION
+         Grand Emerald & Gold Editorial Hero matching Gala Prestige standards
+         Left: Stately National Accord Manifesto & 3-Pillar Folio
+         Right: Framed Luxury Editorial Visual Showcase with Gilded Accord Plaque
          ========================================================================== -->
-    <section class="page-editorial-hero hero-prestige-spread" aria-label="HWED Sovereign Architecture & Strategic Accord">
-      <!-- Ambient Royal Silk Glows -->
-      <div class="prestige-ambient-glow glow-gold" aria-hidden="true"></div>
-      <div class="prestige-ambient-glow glow-emerald" aria-hidden="true"></div>
-      <div class="prestige-filigree-overlay" aria-hidden="true"></div>
-
-      <div class="hero-prestige-container">
+    <section class="page-editorial-hero hero-event-spread" aria-label="HWED National Ecosystem Accord">
+      <div class="hero-event-container">
         
-        <!-- Left: Stately Manifesto & Sovereign Metrics -->
-        <div class="hero-prestige-content">
-          <div class="prestige-badge-pill">
-            <span class="gold-crest-icon" aria-hidden="true">✦</span>
-            <span class="prestige-badge-text">NATIONAL STRATEGIC ACCORD • HWED FRAMEWORK 2026–2030</span>
+        <!-- Left: Stately National Accord Manifesto -->
+        <div class="hero-event-poster-col">
+          <div class="about-hero-eyebrow" style="color: var(--color-gold-bright, #D4AF37); margin-bottom: 1.25rem;">
+            <span class="eyebrow-accent-bar" style="background: var(--color-gold-bright, #D4AF37);"></span>
+            <span>INTECARE EXCELLENCE AWARDS 2026 • NATIONAL STRATEGIC FRAMEWORK</span>
           </div>
 
-          <h1 class="hero-prestige-title">
-            A SOVEREIGN ARCHITECTURE.<br>
-            <span class="text-gold-leaf">THREE STRATEGIC TIERS.</span><br>
-            <span class="text-champagne-shimmer">ONE NATIONAL HORIZON.</span>
-          </h1>
+          <div class="hero-event-title">
+            <span class="title-sub" style="letter-spacing: 0.16em; color: #D4AF37;">THE SOVEREIGN ARCHITECTURE</span>
+            <h1 class="title-main text-gold-glow" style="font-size: clamp(2.4rem, 4.2vw, 4.4rem); line-height: 1.05; margin-bottom: 1.5rem;">
+              HEALTHCARE &amp; WELLNESS ECONOMY DEVELOPMENT
+            </h1>
+          </div>
 
-          <p class="hero-prestige-lead">
-            The Healthcare &amp; Wellness Economy Development (HWED) framework unifies foundational capital, clinical science, and enterprise innovation into measurable national longevity and economic vitality across the complete human lifecycle.
+          <p class="hero-event-lead" style="color: rgba(255, 255, 255, 0.88); font-size: clamp(1.02rem, 1.15vw, 1.18rem); line-height: 1.85; max-width: 640px; margin-bottom: 2rem;">
+            Under the patronage of the INTECARE Excellence Framework, HWED establishes Malaysia's sovereign multi-sector platform unifying foundational research, institutional capital, transformative enterprise, and healthcare excellence across the complete human lifecycle.
           </p>
 
-          <!-- 3 Stately Metric Dossier Cards -->
-          <div class="prestige-metrics-grid">
-            <div class="prestige-metric-card" tabindex="0">
-              <span class="metric-roman">III</span>
-              <div class="metric-meta">
-                <strong>Strategic Tiers</strong>
-                <span>Foundations • Engine • Outcomes</span>
-              </div>
+          <!-- 3 Stately Tier Dossier Bar -->
+          <div class="gala-tier-dossier-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.25rem;">
+            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER I</span>
+              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Capital &amp; Policy</strong>
+              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Foundational science, investment facilities &amp; PPP accords</span>
             </div>
 
-            <div class="prestige-metric-card" tabindex="0">
-              <span class="metric-roman">VI</span>
-              <div class="metric-meta">
-                <strong>Connected Domains</strong>
-                <span>Science, Capital, Enterprise &amp; Policy</span>
-              </div>
+            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER II</span>
+              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Innovation Engine</strong>
+              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Clinical AI, MedTech translation &amp; enterprise scaling</span>
             </div>
 
-            <div class="prestige-metric-card" tabindex="0">
-              <span class="metric-roman">IV</span>
-              <div class="metric-meta">
-                <strong>Lifecycle Pathways</strong>
-                <span>Stay, Get, Recover &amp; Age Well</span>
-              </div>
+            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER III</span>
+              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Lifecycle Delivery</strong>
+              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Stay, Get, Recover &amp; Age Well frontline outcomes</span>
             </div>
           </div>
 
-          <!-- Stately Pillar Quick Focus Selector -->
-          <div class="prestige-tier-nav-bar" aria-label="Select Architecture Pillar">
-            <span class="tier-nav-label">Select Pillar:</span>
-            <button type="button" class="btn-tier-focus active" data-target-tier="tier-3">
-              <span class="tier-num-tag">TIER III</span> Delivery &amp; Outcomes
-            </button>
-            <button type="button" class="btn-tier-focus" data-target-tier="tier-2">
-              <span class="tier-num-tag">TIER II</span> Innovation Engine
-            </button>
-            <button type="button" class="btn-tier-focus" data-target-tier="tier-1">
-              <span class="tier-num-tag">TIER I</span> Sovereign Foundations
-            </button>
+          <!-- Actions -->
+          <div class="hero-event-action-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <a href="#architecture" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
+              <span>EXPLORE 6 CONNECTED DOMAINS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+            <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
+              <span>VIEW 40 EXCELLENCE AWARDS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
           </div>
         </div>
 
-        <!-- Right: 3D Frosted Crystal Plaque Stack -->
-        <div class="hero-prestige-stage-wrap" aria-label="Sovereign Architecture 3D Platform">
-          <div class="prestige-stage-viewport" id="blueprintViewport">
-            
-            <!-- Isometric Layer Stack Container (with 3D Parallax Transform) -->
-            <div class="prestige-isometric-stack" id="blueprintStack">
+        <!-- Right: Stately Framed Editorial Visual Showcase -->
+        <div class="hero-event-visual-col">
+          <div class="hero-event-img-composition" style="border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.65), 0 0 40px rgba(212, 175, 55, 0.15);">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/medical-innovation.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
+                alt="INTECARE HWED Sovereign Ecosystem"
+                class="hero-event-main-img"
+                width="720"
+                height="540"
+                loading="eager"
+                style="object-fit: cover; filter: brightness(0.92) contrast(1.08);">
+            </picture>
+            <div class="hero-event-img-overlay" style="background: linear-gradient(180deg, rgba(2, 24, 19, 0.2) 0%, rgba(2, 24, 19, 0.85) 100%);"></div>
 
-              <!-- Delicate Gold Coordinate Filament Lines -->
-              <svg class="prestige-gold-conduits" viewBox="0 0 540 600" aria-hidden="true">
-                <line x1="120" y1="110" x2="120" y2="490" stroke="rgba(212, 175, 55, 0.28)" stroke-width="1.2" stroke-dasharray="4 6" />
-                <line x1="420" y1="110" x2="420" y2="490" stroke="rgba(212, 175, 55, 0.28)" stroke-width="1.2" stroke-dasharray="4 6" />
-                <line x1="270" y1="80" x2="270" y2="520" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" />
-                
-                <!-- Gold Node Points -->
-                <circle cx="270" cy="115" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
-                <circle cx="270" cy="300" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
-                <circle cx="270" cy="485" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
-              </svg>
-
-              <!-- ==========================================
-                   TIER III: TOP CRYSTAL PLAQUE — OUTCOMES & DELIVERY
-                   ========================================== -->
-              <div class="prestige-plate plate-tier-3 is-active" id="tierPlate3" data-tier="tier-3" tabindex="0" role="region" aria-label="Tier III: Clinical Delivery & Lifecycle Outcomes">
-                <div class="plate-crystal-surface">
-                  <div class="plate-gold-bevel"></div>
-                  
-                  <div class="plate-header-row">
-                    <div class="plate-tier-badge">
-                      <span class="tier-seal">✦</span>
-                      <span>TIER III • CLINICAL DELIVERY &amp; OUTCOMES</span>
-                    </div>
-                    <span class="plate-status-tag">NATIONAL HEALTH IMPACT</span>
-                  </div>
-
-                  <h3 class="plate-title">LIFECYCLE HEALTHCARE DELIVERY</h3>
-                  <p class="plate-desc">
-                    Frontline medical excellence, precision diagnostics, active rehabilitation, and longevity support delivering measurable quality of life.
-                  </p>
-
-                  <!-- 4 Pathways Chips Row -->
-                  <div class="plate-chips-deck">
-                    <span class="prestige-chip chip-gold">
-                      <span class="chip-num">I</span> STAY WELL • Prevention
-                    </span>
-                    <span class="prestige-chip chip-gold">
-                      <span class="chip-num">II</span> GET WELL • Diagnosis
-                    </span>
-                    <span class="prestige-chip chip-gold">
-                      <span class="chip-num">III</span> RECOVER WELL • Rehab
-                    </span>
-                    <span class="prestige-chip chip-gold">
-                      <span class="chip-num">IV</span> AGE WELL • Longevity
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ==========================================
-                   TIER II: MIDDLE CRYSTAL PLAQUE — INNOVATION & ENTERPRISE
-                   ========================================== -->
-              <div class="prestige-plate plate-tier-2" id="tierPlate2" data-tier="tier-2" tabindex="0" role="region" aria-label="Tier II: Innovation & Enterprise Engine">
-                <div class="plate-crystal-surface">
-                  <div class="plate-gold-bevel"></div>
-                  
-                  <div class="plate-header-row">
-                    <div class="plate-tier-badge">
-                      <span class="tier-seal">✦</span>
-                      <span>TIER II • TRANSFORMATION &amp; ENTERPRISE</span>
-                    </div>
-                    <span class="plate-status-tag">TECHNOLOGY &amp; SMES</span>
-                  </div>
-
-                  <h3 class="plate-title">MEDTECH, CLINICAL AI &amp; COMMERCIALISATION</h3>
-                  <p class="plate-desc">
-                    Digital health architectures, clinical AI translation, IP commercialisation pipelines, and SME enterprise scaling viable solutions.
-                  </p>
-
-                  <!-- Focus Domain Chips -->
-                  <div class="plate-chips-deck">
-                    <span class="prestige-chip">MedTech Innovation</span>
-                    <span class="prestige-chip">Clinical AI &amp; IoT</span>
-                    <span class="prestige-chip">SME Acceleration</span>
-                    <span class="prestige-chip">Specialist Workforce</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ==========================================
-                   TIER I: BASE CRYSTAL PLAQUE — SOVEREIGN FOUNDATIONS
-                   ========================================== -->
-              <div class="prestige-plate plate-tier-1" id="tierPlate1" data-tier="tier-1" tabindex="0" role="region" aria-label="Tier I: Strategic Infrastructure & Policy">
-                <div class="plate-crystal-surface">
-                  <div class="plate-gold-bevel"></div>
-                  
-                  <div class="plate-header-row">
-                    <div class="plate-tier-badge">
-                      <span class="tier-seal">✦</span>
-                      <span>TIER I • SOVEREIGN FOUNDATIONS</span>
-                    </div>
-                    <span class="plate-status-tag">CAPITAL, RESEARCH &amp; POLICY</span>
-                  </div>
-
-                  <h3 class="plate-title">INSTITUTIONAL CAPITAL &amp; STRATEGIC ALLIANCES</h3>
-                  <p class="plate-desc">
-                    Translational biomedical research, dedicated health investment facilities, public-private accords (PPP), and ESG health governance.
-                  </p>
-
-                  <!-- Strategic Chips -->
-                  <div class="plate-chips-deck">
-                    <span class="prestige-chip">Translational Science</span>
-                    <span class="prestige-chip">Growth Capital &amp; VC</span>
-                    <span class="prestige-chip">Public-Private Accords</span>
-                    <span class="prestige-chip">ESG Standards</span>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Stately Plaque Active Inspector Bar -->
-            <div class="prestige-inspector-bar" id="blueprintInspectorBar" aria-live="polite">
-              <span class="inspector-crest" aria-hidden="true">✦</span>
-              <div class="inspector-text-group">
-                <span class="inspector-tier-label" id="inspectorTierLabel">TIER III: CLINICAL DELIVERY &amp; OUTCOMES</span>
-                <span class="inspector-tier-summary" id="inspectorTierSummary">Frontline medical excellence, precision diagnostics, rehabilitation, and longevity support.</span>
+            <!-- Gilded Accord Plaque -->
+            <div class="hero-event-location-plaque" style="background: rgba(2, 24, 19, 0.94); border: 1px solid rgba(212, 175, 55, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.65);">
+              <span class="plaque-pin" aria-hidden="true" style="color: #D4AF37; font-size: 1.1rem;">✦</span>
+              <div>
+                <strong style="font-family: var(--font-heading); font-size: 0.86rem; letter-spacing: 0.1em; color: #D4AF37; text-transform: uppercase;">THE NATIONAL ACCORD</strong>
+                <span style="font-size: 0.74rem; color: #E2ECE8; display: block; margin-top: 0.15rem;">6 Connected Domains • 4 Lifecycle Pathways</span>
               </div>
             </div>
-
           </div>
         </div>
 
       </div>
 
       <!-- Minimal Subtle Scroll Indicator -->
-      <div class="hero-scroll-prompt text-light-prompt" aria-hidden="true">
-        <span>EXPLORE FRAMEWORK</span>
+      <div class="hero-scroll-prompt" aria-hidden="true">
+        <span>SCROLL</span>
         <span class="prompt-arrow">↓</span>
       </div>
     </section>
