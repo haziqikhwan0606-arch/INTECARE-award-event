@@ -17,11 +17,6 @@ require_once __DIR__ . '/includes/nav.php';
         
         <!-- Left: Stately National Accord Manifesto -->
         <div class="hero-event-poster-col">
-          <div class="about-hero-eyebrow" style="color: var(--color-gold-bright, #D4AF37); margin-bottom: 1.25rem;">
-            <span class="eyebrow-accent-bar" style="background: var(--color-gold-bright, #D4AF37);"></span>
-            <span>INTECARE EXCELLENCE AWARDS 2026 • NATIONAL STRATEGIC FRAMEWORK</span>
-          </div>
-
           <div class="hero-event-title">
             <span class="title-sub" style="letter-spacing: 0.16em; color: #D4AF37;">THE SOVEREIGN ARCHITECTURE</span>
             <h1 class="title-main text-gold-glow" style="font-size: clamp(2.4rem, 4.2vw, 4.4rem); line-height: 1.05; margin-bottom: 1.5rem;">
@@ -56,11 +51,7 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Actions -->
           <div class="hero-event-action-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-            <a href="#architecture" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
-              <span>EXPLORE 6 CONNECTED DOMAINS</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-            </a>
-            <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
+            <a href="<?= $basePath ?>/awards.php" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
               <span>VIEW 40 EXCELLENCE AWARDS</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
