@@ -2498,32 +2498,32 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // ==========================================================================
-// HWED ECOSYSTEM: 3D LAYERED BLUEPRINT HERO CONTROLLER (CADANGAN C)
-// Handles interactive tier activation, HUD inspector updates, and 3D parallax
+// HWED ECOSYSTEM: PRESTIGIOUS SOVEREIGN ARCHITECTURE CONTROLLER (CLASSY GALA)
+// Handles stately tier activation, HUD inspector updates, and smooth 3D parallax
 // ==========================================================================
 (() => {
   const tierData = {
     'tier-3': {
-      label: 'TIER 03: CLINICAL DELIVERY & OUTCOMES',
-      summary: 'Frontline medical excellence, prevention programs, functional rehabilitation, and longevity support delivering measurable quality of life.'
+      label: 'TIER III • CLINICAL DELIVERY & OUTCOMES',
+      summary: 'Frontline medical excellence, precision diagnostics, active rehabilitation, and longevity support delivering measurable quality of life.'
     },
     'tier-2': {
-      label: 'TIER 02: MEDTECH, AI & TRANSFORMATION ENGINE',
-      summary: 'Digital health systems, clinical AI diagnostics, IP pipelines, and SME incubation scaling viable commercial solutions.'
+      label: 'TIER II • TRANSFORMATION & ENTERPRISE ENGINE',
+      summary: 'Digital health architectures, clinical AI translation, IP commercialisation pipelines, and SME enterprise scaling viable solutions.'
     },
     'tier-1': {
-      label: 'TIER 01: INSTITUTIONAL CAPITAL & POLICY FOUNDATIONS',
-      summary: 'Translational biomedical research, venture capital facilities, public-private alliances (PPP), and ESG health governance.'
+      label: 'TIER I • SOVEREIGN CAPITAL & STRATEGIC ACCORDS',
+      summary: 'Translational biomedical research, dedicated health investment facilities, public-private accords (PPP), and ESG health governance.'
     }
   };
 
-  const initBlueprintHero = () => {
+  const initPrestigeHero = () => {
     const viewport = document.getElementById('blueprintViewport');
     const stack = document.getElementById('blueprintStack');
     const inspectorLabel = document.getElementById('inspectorTierLabel');
     const inspectorSummary = document.getElementById('inspectorTierSummary');
     const tierButtons = document.querySelectorAll('.btn-tier-focus');
-    const tierPlates = document.querySelectorAll('.blueprint-plate');
+    const tierPlates = document.querySelectorAll('.prestige-plate, .blueprint-plate');
 
     if (!viewport || !stack) return;
 
@@ -2531,7 +2531,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activateTier = (tierId) => {
       if (!tierId || !tierData[tierId]) return;
 
-      // Update Plates
+      // Update Plaques
       tierPlates.forEach(plate => {
         if (plate.dataset.tier === tierId) {
           plate.classList.add('is-active');
@@ -2549,7 +2549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Update Floating HUD Inspector
+      // Update Stately Floating HUD Inspector
       if (inspectorLabel && inspectorSummary) {
         inspectorLabel.textContent = tierData[tierId].label;
         inspectorSummary.textContent = tierData[tierId].summary;
@@ -2564,13 +2564,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const plate = e.target.closest('.blueprint-plate');
+      const plate = e.target.closest('.prestige-plate, .blueprint-plate');
       if (plate && plate.dataset.tier) {
         activateTier(plate.dataset.tier);
       }
     });
 
-    // Keyboard support for plates
+    // Keyboard support for plaques
     tierPlates.forEach(plate => {
       plate.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -2580,32 +2580,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // 3D Mouse Parallax Tilt (Desktop only)
+    // 3D Smooth Mouse Parallax Tilt (Desktop only)
     let isMouseOver = false;
-    let targetRotateX = 20;
-    let targetRotateY = -16;
-    let targetRotateZ = 3;
-    let currentRotateX = 20;
-    let currentRotateY = -16;
-    let currentRotateZ = 3;
+    let targetRotateX = 18;
+    let targetRotateY = -14;
+    let targetRotateZ = 2;
+    let currentRotateX = 18;
+    let currentRotateY = -14;
+    let currentRotateZ = 2;
     let animFrame = null;
 
-    const baseRotateX = 20;
-    const baseRotateY = -16;
-    const baseRotateZ = 3;
+    const baseRotateX = 18;
+    const baseRotateY = -14;
+    const baseRotateZ = 2;
 
     const lerp = (start, end, factor) => start + (end - start) * factor;
 
     const updateParallax = () => {
-      currentRotateX = lerp(currentRotateX, targetRotateX, 0.1);
-      currentRotateY = lerp(currentRotateY, targetRotateY, 0.1);
-      currentRotateZ = lerp(currentRotateZ, targetRotateZ, 0.1);
+      currentRotateX = lerp(currentRotateX, targetRotateX, 0.08);
+      currentRotateY = lerp(currentRotateY, targetRotateY, 0.08);
+      currentRotateZ = lerp(currentRotateZ, targetRotateZ, 0.08);
 
       if (stack && window.innerWidth >= 992) {
         stack.style.transform = `rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) rotateZ(${currentRotateZ.toFixed(2)}deg)`;
       }
 
-      if (isMouseOver || Math.abs(currentRotateX - baseRotateX) > 0.05 || Math.abs(currentRotateY - baseRotateY) > 0.05) {
+      if (isMouseOver || Math.abs(currentRotateX - baseRotateX) > 0.04 || Math.abs(currentRotateY - baseRotateY) > 0.04) {
         animFrame = requestAnimationFrame(updateParallax);
       } else {
         if (stack && window.innerWidth >= 992) {
@@ -2621,9 +2621,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = (e.clientX - rect.left) / rect.width - 0.5; // -0.5 to 0.5
       const y = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
 
-      targetRotateX = baseRotateX - y * 14;
-      targetRotateY = baseRotateY + x * 16;
-      targetRotateZ = baseRotateZ + x * 2;
+      targetRotateX = baseRotateX - y * 12;
+      targetRotateY = baseRotateY + x * 14;
+      targetRotateZ = baseRotateZ + x * 1.5;
 
       if (!isMouseOver) {
         isMouseOver = true;
@@ -2641,8 +2641,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlueprintHero);
+    document.addEventListener('DOMContentLoaded', initPrestigeHero);
   } else {
-    initBlueprintHero();
+    initPrestigeHero();
   }
 })();
+

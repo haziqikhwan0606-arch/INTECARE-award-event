@@ -7,54 +7,54 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: INSTITUTIONAL 3D LAYERED BLUEPRINT STAGE (100svh Luxury Blueprint)
-         Architecture: Left Manifesto & Live Metrics + Right 3D Isometric Glass Plate Stack
+         HERO: PRESTIGIOUS SOVEREIGN ARCHITECTURE (Classy Gala Award Aesthetic)
+         Architecture: Left Stately Manifesto & Metrics + Right 3D Frosted Crystal Plaque Stack
          ========================================================================== -->
-    <section class="page-editorial-hero hero-blueprint-spread" aria-label="HWED Institutional Blueprint Architecture">
-      <!-- Architectural Grid Backdrop Overlay -->
-      <div class="blueprint-grid-backdrop" aria-hidden="true"></div>
-      <div class="blueprint-ambient-orb orb-1" aria-hidden="true"></div>
-      <div class="blueprint-ambient-orb orb-2" aria-hidden="true"></div>
+    <section class="page-editorial-hero hero-prestige-spread" aria-label="HWED Sovereign Architecture & Strategic Accord">
+      <!-- Ambient Royal Silk Glows -->
+      <div class="prestige-ambient-glow glow-gold" aria-hidden="true"></div>
+      <div class="prestige-ambient-glow glow-emerald" aria-hidden="true"></div>
+      <div class="prestige-filigree-overlay" aria-hidden="true"></div>
 
-      <div class="hero-blueprint-container">
+      <div class="hero-prestige-container">
         
-        <!-- Left: Ecosystem Institutional Manifesto -->
-        <div class="hero-blueprint-content">
-          <div class="blueprint-badge-pill">
-            <span class="blueprint-pulse-dot" aria-hidden="true"></span>
-            <span class="blueprint-badge-text">STRATEGIC BLUEPRINT • ARCHITECTURAL PLATFORM 2026–2030</span>
+        <!-- Left: Stately Manifesto & Sovereign Metrics -->
+        <div class="hero-prestige-content">
+          <div class="prestige-badge-pill">
+            <span class="gold-crest-icon" aria-hidden="true">✦</span>
+            <span class="prestige-badge-text">NATIONAL STRATEGIC ACCORD • HWED FRAMEWORK 2026–2030</span>
           </div>
 
-          <h1 class="hero-blueprint-title">
-            ONE ARCHITECTURE.<br>
-            <span class="text-blueprint-tier">THREE STRATEGIC TIERS.</span><br>
-            <span class="text-blueprint-glow">ONE UNIFIED ECOSYSTEM.</span>
+          <h1 class="hero-prestige-title">
+            A SOVEREIGN ARCHITECTURE.<br>
+            <span class="text-gold-leaf">THREE STRATEGIC TIERS.</span><br>
+            <span class="text-champagne-shimmer">ONE NATIONAL HORIZON.</span>
           </h1>
 
-          <p class="hero-blueprint-lead">
-            Healthcare &amp; Wellness Economy Development (HWED) establishes an integrated national framework connecting foundational policy and capital, transformative technology and enterprise, into measurable clinical and societal outcomes across the complete human lifecycle.
+          <p class="hero-prestige-lead">
+            The Healthcare &amp; Wellness Economy Development (HWED) framework unifies foundational capital, clinical science, and enterprise innovation into measurable national longevity and economic vitality across the complete human lifecycle.
           </p>
 
-          <!-- 3 Institutional Key Blueprint Metrics -->
-          <div class="blueprint-metrics-grid">
-            <div class="blueprint-metric-card" tabindex="0">
-              <span class="metric-number">03</span>
+          <!-- 3 Stately Metric Dossier Cards -->
+          <div class="prestige-metrics-grid">
+            <div class="prestige-metric-card" tabindex="0">
+              <span class="metric-roman">III</span>
               <div class="metric-meta">
                 <strong>Strategic Tiers</strong>
                 <span>Foundations • Engine • Outcomes</span>
               </div>
             </div>
 
-            <div class="blueprint-metric-card" tabindex="0">
-              <span class="metric-number">06</span>
+            <div class="prestige-metric-card" tabindex="0">
+              <span class="metric-roman">VI</span>
               <div class="metric-meta">
                 <strong>Connected Domains</strong>
-                <span>Science, Tech, Enterprise &amp; Policy</span>
+                <span>Science, Capital, Enterprise &amp; Policy</span>
               </div>
             </div>
 
-            <div class="blueprint-metric-card" tabindex="0">
-              <span class="metric-number">04</span>
+            <div class="prestige-metric-card" tabindex="0">
+              <span class="metric-roman">IV</span>
               <div class="metric-meta">
                 <strong>Lifecycle Pathways</strong>
                 <span>Stay, Get, Recover &amp; Age Well</span>
@@ -62,147 +62,146 @@ require_once __DIR__ . '/includes/nav.php';
             </div>
           </div>
 
-          <!-- Quick Tier Interactive Focus Navigation -->
-          <div class="blueprint-tier-nav-bar" aria-label="Quick Tier Focus">
-            <span class="tier-nav-label">Focus Tier:</span>
+          <!-- Stately Pillar Quick Focus Selector -->
+          <div class="prestige-tier-nav-bar" aria-label="Select Architecture Pillar">
+            <span class="tier-nav-label">Select Pillar:</span>
             <button type="button" class="btn-tier-focus active" data-target-tier="tier-3">
-              <span class="tier-num-tag">T3</span> Outcomes
+              <span class="tier-num-tag">TIER III</span> Delivery &amp; Outcomes
             </button>
             <button type="button" class="btn-tier-focus" data-target-tier="tier-2">
-              <span class="tier-num-tag">T2</span> Transformation
+              <span class="tier-num-tag">TIER II</span> Innovation Engine
             </button>
             <button type="button" class="btn-tier-focus" data-target-tier="tier-1">
-              <span class="tier-num-tag">T1</span> Foundations
+              <span class="tier-num-tag">TIER I</span> Sovereign Foundations
             </button>
           </div>
         </div>
 
-        <!-- Right: 3D Isometric Layered Glass Blueprint Stage -->
-        <div class="hero-blueprint-stage-wrap" aria-label="3D Isometric Blueprint Platform">
-          <div class="blueprint-stage-viewport" id="blueprintViewport">
+        <!-- Right: 3D Frosted Crystal Plaque Stack -->
+        <div class="hero-prestige-stage-wrap" aria-label="Sovereign Architecture 3D Platform">
+          <div class="prestige-stage-viewport" id="blueprintViewport">
             
             <!-- Isometric Layer Stack Container (with 3D Parallax Transform) -->
-            <div class="blueprint-isometric-stack" id="blueprintStack">
+            <div class="prestige-isometric-stack" id="blueprintStack">
 
-              <!-- SVG Vertical Laser Data Energy Conduits -->
-              <svg class="blueprint-laser-conduits" viewBox="0 0 540 600" aria-hidden="true">
-                <!-- Vertical Conduits Connecting Tiers -->
-                <line x1="120" y1="110" x2="120" y2="490" stroke="rgba(119, 217, 200, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
-                <line x1="420" y1="110" x2="420" y2="490" stroke="rgba(198, 242, 77, 0.35)" stroke-width="1.5" stroke-dasharray="4 4" />
-                <line x1="270" y1="80" x2="270" y2="520" stroke="rgba(212, 175, 55, 0.4)" stroke-width="2" stroke-dasharray="6 3" />
+              <!-- Delicate Gold Coordinate Filament Lines -->
+              <svg class="prestige-gold-conduits" viewBox="0 0 540 600" aria-hidden="true">
+                <line x1="120" y1="110" x2="120" y2="490" stroke="rgba(212, 175, 55, 0.28)" stroke-width="1.2" stroke-dasharray="4 6" />
+                <line x1="420" y1="110" x2="420" y2="490" stroke="rgba(212, 175, 55, 0.28)" stroke-width="1.2" stroke-dasharray="4 6" />
+                <line x1="270" y1="80" x2="270" y2="520" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.5" />
                 
-                <!-- Center Core Node Connection Points -->
-                <circle cx="270" cy="115" r="5" fill="#D4AF37" filter="drop-shadow(0 0 8px #D4AF37)" />
-                <circle cx="270" cy="300" r="5" fill="#77D9C8" filter="drop-shadow(0 0 8px #77D9C8)" />
-                <circle cx="270" cy="485" r="5" fill="#C6F24D" filter="drop-shadow(0 0 8px #C6F24D)" />
+                <!-- Gold Node Points -->
+                <circle cx="270" cy="115" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
+                <circle cx="270" cy="300" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
+                <circle cx="270" cy="485" r="4.5" fill="#D4AF37" filter="drop-shadow(0 0 6px rgba(212, 175, 55, 0.8))" />
               </svg>
 
               <!-- ==========================================
-                   TIER 03: TOP PLATE — OUTCOMES & DELIVERY
+                   TIER III: TOP CRYSTAL PLAQUE — OUTCOMES & DELIVERY
                    ========================================== -->
-              <div class="blueprint-plate plate-tier-3 is-active" id="tierPlate3" data-tier="tier-3" tabindex="0" role="region" aria-label="Tier 03: Clinical Delivery & Lifecycle Outcomes">
-                <div class="plate-glass-surface">
-                  <div class="plate-glow-edge"></div>
+              <div class="prestige-plate plate-tier-3 is-active" id="tierPlate3" data-tier="tier-3" tabindex="0" role="region" aria-label="Tier III: Clinical Delivery & Lifecycle Outcomes">
+                <div class="plate-crystal-surface">
+                  <div class="plate-gold-bevel"></div>
                   
                   <div class="plate-header-row">
                     <div class="plate-tier-badge">
-                      <span class="tier-dot"></span>
-                      <span>TIER 03 // HIGHEST LEVEL DELIVERY</span>
+                      <span class="tier-seal">✦</span>
+                      <span>TIER III • CLINICAL DELIVERY &amp; OUTCOMES</span>
                     </div>
-                    <span class="plate-status-tag">CLINICAL &amp; PATIENT OUTCOMES</span>
+                    <span class="plate-status-tag">NATIONAL HEALTH IMPACT</span>
                   </div>
 
                   <h3 class="plate-title">LIFECYCLE HEALTHCARE DELIVERY</h3>
                   <p class="plate-desc">
-                    Frontline medical excellence, prevention programs, functional rehabilitation, and longevity support delivering measurable quality of life.
+                    Frontline medical excellence, precision diagnostics, active rehabilitation, and longevity support delivering measurable quality of life.
                   </p>
 
                   <!-- 4 Pathways Chips Row -->
                   <div class="plate-chips-deck">
-                    <span class="blueprint-chip chip-gold">
-                      <span class="chip-num">01</span> STAY WELL • Prevention
+                    <span class="prestige-chip chip-gold">
+                      <span class="chip-num">I</span> STAY WELL • Prevention
                     </span>
-                    <span class="blueprint-chip chip-cyan">
-                      <span class="chip-num">02</span> GET WELL • Diagnosis
+                    <span class="prestige-chip chip-gold">
+                      <span class="chip-num">II</span> GET WELL • Diagnosis
                     </span>
-                    <span class="blueprint-chip chip-cyan">
-                      <span class="chip-num">03</span> RECOVER WELL • Rehab
+                    <span class="prestige-chip chip-gold">
+                      <span class="chip-num">III</span> RECOVER WELL • Rehab
                     </span>
-                    <span class="blueprint-chip chip-lime">
-                      <span class="chip-num">04</span> AGE WELL • Longevity
+                    <span class="prestige-chip chip-gold">
+                      <span class="chip-num">IV</span> AGE WELL • Longevity
                     </span>
                   </div>
                 </div>
               </div>
 
               <!-- ==========================================
-                   TIER 02: MIDDLE PLATE — TRANSFORMATION ENGINE
+                   TIER II: MIDDLE CRYSTAL PLAQUE — INNOVATION & ENTERPRISE
                    ========================================== -->
-              <div class="blueprint-plate plate-tier-2" id="tierPlate2" data-tier="tier-2" tabindex="0" role="region" aria-label="Tier 02: Innovation & Enterprise Engine">
-                <div class="plate-glass-surface">
-                  <div class="plate-glow-edge"></div>
+              <div class="prestige-plate plate-tier-2" id="tierPlate2" data-tier="tier-2" tabindex="0" role="region" aria-label="Tier II: Innovation & Enterprise Engine">
+                <div class="plate-crystal-surface">
+                  <div class="plate-gold-bevel"></div>
                   
                   <div class="plate-header-row">
                     <div class="plate-tier-badge">
-                      <span class="tier-dot"></span>
-                      <span>TIER 02 // TRANSFORMATION ENGINE</span>
+                      <span class="tier-seal">✦</span>
+                      <span>TIER II • TRANSFORMATION &amp; ENTERPRISE</span>
                     </div>
                     <span class="plate-status-tag">TECHNOLOGY &amp; SMES</span>
                   </div>
 
-                  <h3 class="plate-title">MEDTECH, AI &amp; COMMERCIALISATION</h3>
+                  <h3 class="plate-title">MEDTECH, CLINICAL AI &amp; COMMERCIALISATION</h3>
                   <p class="plate-desc">
-                    Digital health systems, clinical AI diagnostics, intellectual property pipelines, and health enterprise acceleration scaling viable solutions.
+                    Digital health architectures, clinical AI translation, IP commercialisation pipelines, and SME enterprise scaling viable solutions.
                   </p>
 
                   <!-- Focus Domain Chips -->
                   <div class="plate-chips-deck">
-                    <span class="blueprint-chip chip-cyan">MedTech Innovation</span>
-                    <span class="blueprint-chip chip-lime">Clinical AI &amp; IoT</span>
-                    <span class="blueprint-chip chip-gold">SME Incubation</span>
-                    <span class="blueprint-chip chip-cyan">Workforce Talent</span>
+                    <span class="prestige-chip">MedTech Innovation</span>
+                    <span class="prestige-chip">Clinical AI &amp; IoT</span>
+                    <span class="prestige-chip">SME Acceleration</span>
+                    <span class="prestige-chip">Specialist Workforce</span>
                   </div>
                 </div>
               </div>
 
               <!-- ==========================================
-                   TIER 01: BASE PLATE — STRATEGIC FOUNDATIONS
+                   TIER I: BASE CRYSTAL PLAQUE — SOVEREIGN FOUNDATIONS
                    ========================================== -->
-              <div class="blueprint-plate plate-tier-1" id="tierPlate1" data-tier="tier-1" tabindex="0" role="region" aria-label="Tier 01: Strategic Infrastructure & Policy">
-                <div class="plate-glass-surface">
-                  <div class="plate-glow-edge"></div>
+              <div class="prestige-plate plate-tier-1" id="tierPlate1" data-tier="tier-1" tabindex="0" role="region" aria-label="Tier I: Strategic Infrastructure & Policy">
+                <div class="plate-crystal-surface">
+                  <div class="plate-gold-bevel"></div>
                   
                   <div class="plate-header-row">
                     <div class="plate-tier-badge">
-                      <span class="tier-dot"></span>
-                      <span>TIER 01 // STRATEGIC FOUNDATIONS</span>
+                      <span class="tier-seal">✦</span>
+                      <span>TIER I • SOVEREIGN FOUNDATIONS</span>
                     </div>
-                    <span class="plate-status-tag">CAPITAL, SCIENCE &amp; POLICY</span>
+                    <span class="plate-status-tag">CAPITAL, RESEARCH &amp; POLICY</span>
                   </div>
 
-                  <h3 class="plate-title">INSTITUTIONAL CAPITAL &amp; ALLIANCES</h3>
+                  <h3 class="plate-title">INSTITUTIONAL CAPITAL &amp; STRATEGIC ALLIANCES</h3>
                   <p class="plate-desc">
-                    Translational biomedical research, venture capital facilities, private equity, multi-sector coalitions (PPP), and ESG health governance.
+                    Translational biomedical research, dedicated health investment facilities, public-private accords (PPP), and ESG health governance.
                   </p>
 
                   <!-- Strategic Chips -->
                   <div class="plate-chips-deck">
-                    <span class="blueprint-chip chip-lime">Translational Science</span>
-                    <span class="blueprint-chip chip-gold">Growth Capital &amp; VC</span>
-                    <span class="blueprint-chip chip-cyan">Public-Private Alliances</span>
-                    <span class="blueprint-chip chip-gold">ESG Standards</span>
+                    <span class="prestige-chip">Translational Science</span>
+                    <span class="prestige-chip">Growth Capital &amp; VC</span>
+                    <span class="prestige-chip">Public-Private Accords</span>
+                    <span class="prestige-chip">ESG Standards</span>
                   </div>
                 </div>
               </div>
 
             </div>
 
-            <!-- Floating Tier Active Inspector Tooltip Bar -->
-            <div class="blueprint-inspector-bar" id="blueprintInspectorBar" aria-live="polite">
-              <span class="inspector-pulse-indicator" aria-hidden="true"></span>
+            <!-- Stately Plaque Active Inspector Bar -->
+            <div class="prestige-inspector-bar" id="blueprintInspectorBar" aria-live="polite">
+              <span class="inspector-crest" aria-hidden="true">✦</span>
               <div class="inspector-text-group">
-                <span class="inspector-tier-label" id="inspectorTierLabel">TIER 03 ACTIVE FOCUS</span>
-                <span class="inspector-tier-summary" id="inspectorTierSummary">Hover or tap any tier plate to inspect full strategic alignment</span>
+                <span class="inspector-tier-label" id="inspectorTierLabel">TIER III: CLINICAL DELIVERY &amp; OUTCOMES</span>
+                <span class="inspector-tier-summary" id="inspectorTierSummary">Frontline medical excellence, precision diagnostics, rehabilitation, and longevity support.</span>
               </div>
             </div>
 
@@ -213,7 +212,7 @@ require_once __DIR__ . '/includes/nav.php';
 
       <!-- Minimal Subtle Scroll Indicator -->
       <div class="hero-scroll-prompt text-light-prompt" aria-hidden="true">
-        <span>EXPLORE DOMAINS</span>
+        <span>EXPLORE FRAMEWORK</span>
         <span class="prompt-arrow">↓</span>
       </div>
     </section>

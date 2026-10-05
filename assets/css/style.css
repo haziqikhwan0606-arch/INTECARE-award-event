@@ -12385,70 +12385,69 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
 }
 
 /* ==========================================================================
-   HWED ECOSYSTEM HERO — INSTITUTIONAL 3D LAYERED BLUEPRINT STAGE (CADANGAN C)
+   HWED ECOSYSTEM HERO — PRESTIGIOUS SOVEREIGN ARCHITECTURE (CLASSY GALA AWARD)
    ========================================================================== */
 
-.hero-blueprint-spread {
+.hero-prestige-spread {
   position: relative;
   min-height: calc(100svh - 80px);
   min-height: 880px;
   background: 
-    radial-gradient(ellipse 70% 50% at 75% 45%, rgba(14, 108, 128, 0.28) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
-    linear-gradient(135deg, #011116 0%, #031E28 50%, #052B36 100%);
+    radial-gradient(ellipse 75% 55% at 75% 40%, rgba(212, 175, 55, 0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 20% 75%, rgba(0, 59, 48, 0.45) 0%, transparent 60%),
+    linear-gradient(140deg, #021612 0%, #03251F 45%, #051A16 100%);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: clamp(5rem, 8vw, 7.5rem) 0 clamp(4rem, 6vw, 6rem);
-  border-bottom: 1px solid rgba(119, 217, 200, 0.2);
+  padding: clamp(5.5rem, 8vw, 8rem) 0 clamp(4.5rem, 6vw, 6.5rem);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
 }
 
-/* Subtle Architectural Grid Background */
-.blueprint-grid-backdrop {
-  position: absolute;
-  inset: 0;
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(119, 217, 200, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(119, 217, 200, 0.05) 1px, transparent 1px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.blueprint-ambient-orb {
+/* Ambient Royal Silk Glows */
+.prestige-ambient-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 1;
 }
 
-.blueprint-ambient-orb.orb-1 {
+.prestige-ambient-glow.glow-gold {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, transparent 70%);
+  top: 10%;
+  right: 8%;
+  animation: prestigeGlowBreathe 11s ease-in-out infinite alternate;
+}
+
+.prestige-ambient-glow.glow-emerald {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, rgba(119, 217, 200, 0.2) 0%, transparent 70%);
-  top: 15%;
-  right: 10%;
-  animation: blueprintPulseOrb 10s ease-in-out infinite alternate;
-}
-
-.blueprint-ambient-orb.orb-2 {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-  bottom: 10%;
+  background: radial-gradient(circle, rgba(14, 108, 128, 0.2) 0%, transparent 70%);
+  bottom: 8%;
   left: 5%;
-  animation: blueprintPulseOrb 12s ease-in-out infinite alternate-reverse;
+  animation: prestigeGlowBreathe 13s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes blueprintPulseOrb {
-  0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
-  100% { transform: scale(1.15) translate(20px, -20px); opacity: 1; }
+@keyframes prestigeGlowBreathe {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.65; }
+  100% { transform: scale(1.18) translate(15px, -15px); opacity: 1; }
+}
+
+.prestige-filigree-overlay {
+  position: absolute;
+  inset: 0;
+  background-size: 40px 40px;
+  background-image: 
+    radial-gradient(circle, rgba(212, 175, 55, 0.06) 1px, transparent 1px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Hero Container */
-.hero-blueprint-container {
+.hero-prestige-container {
   position: relative;
   z-index: 2;
   width: 94%;
@@ -12460,212 +12459,212 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
   align-items: center;
 }
 
-/* Left Manifesto Content */
-.hero-blueprint-content {
+/* Left Content */
+.hero-prestige-content {
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 3;
 }
 
-.blueprint-badge-pill {
+.prestige-badge-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 1.1rem;
+  gap: 0.65rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  background: rgba(4, 38, 48, 0.75);
-  border: 1px solid rgba(119, 217, 200, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(3, 37, 31, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   width: fit-content;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.6rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.blueprint-pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #C6F24D;
-  box-shadow: 0 0 10px #C6F24D, 0 0 18px #C6F24D;
-  animation: blueprintDotBlink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.gold-crest-icon {
+  color: #D4AF37;
+  font-size: 0.85rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8));
 }
 
-@keyframes blueprintDotBlink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-.blueprint-badge-text {
+.prestige-badge-text {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #77D9C8;
+  color: #F3E7C4;
 }
 
-.hero-blueprint-title {
+.hero-prestige-title {
   font-family: var(--font-heading);
   font-size: clamp(2.6rem, 4.4vw, 4.8rem);
   font-weight: 900;
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.02em;
   color: #FFFFFF;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
 
-.text-blueprint-tier {
-  color: #D4AF37;
-  text-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
-}
-
-.text-blueprint-glow {
-  background: linear-gradient(135deg, #77D9C8 0%, #C6F24D 100%);
+.text-gold-leaf {
+  background: linear-gradient(135deg, #FFF0C8 0%, #D4AF37 50%, #AA7C11 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  filter: drop-shadow(0 0 20px rgba(119, 217, 200, 0.35));
+  filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.45));
 }
 
-.hero-blueprint-lead {
+.text-champagne-shimmer {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E2EDEA 60%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-prestige-lead {
   font-family: var(--font-body);
   font-size: clamp(1.02rem, 1.15vw, 1.18rem);
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.85);
   max-width: 620px;
   margin-bottom: 2rem;
 }
 
-/* 3 Blueprint Metrics Cards */
-.blueprint-metrics-grid {
+/* 3 Stately Metric Dossier Cards */
+.prestige-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.blueprint-metric-card {
+.prestige-metric-card {
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.1rem;
+  padding: 1.1rem 1.2rem;
   border-radius: 12px;
-  background: rgba(3, 30, 40, 0.65);
-  border: 1px solid rgba(119, 217, 200, 0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(3, 35, 29, 0.65);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-.blueprint-metric-card:hover,
-.blueprint-metric-card:focus-visible {
-  background: rgba(5, 43, 56, 0.85);
-  border-color: rgba(212, 175, 55, 0.5);
+.prestige-metric-card:hover,
+.prestige-metric-card:focus-visible {
+  background: rgba(4, 45, 37, 0.88);
+  border-color: rgba(212, 175, 55, 0.75);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.25);
 }
 
-.blueprint-metric-card .metric-number {
+.prestige-metric-card .metric-roman {
   font-family: var(--font-heading);
-  font-size: 1.9rem;
+  font-size: 1.85rem;
   font-weight: 800;
   line-height: 1;
-  color: #C6F24D;
-  margin-bottom: 0.4rem;
-  text-shadow: 0 0 12px rgba(198, 242, 77, 0.3);
+  background: linear-gradient(135deg, #FFF0C8 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.45rem;
 }
 
-.blueprint-metric-card .metric-meta strong {
+.prestige-metric-card .metric-meta strong {
   display: block;
   font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: #FFFFFF;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 
-.blueprint-metric-card .metric-meta span {
+.prestige-metric-card .metric-meta span {
   display: block;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.35;
 }
 
-/* Tier Quick Focus Navigation Bar */
-.blueprint-tier-nav-bar {
+/* Stately Pillar Quick Focus Selector */
+.prestige-tier-nav-bar {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  padding: 0.6rem 0.85rem;
+  padding: 0.65rem 0.95rem;
   border-radius: 999px;
-  background: rgba(2, 20, 26, 0.75);
-  border: 1px solid rgba(119, 217, 200, 0.2);
+  background: rgba(2, 22, 18, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   width: fit-content;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.tier-nav-label {
-  font-size: 0.75rem;
+.prestige-tier-nav-bar .tier-nav-label {
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(243, 231, 196, 0.75);
   padding-left: 0.4rem;
 }
 
-.btn-tier-focus {
+.prestige-tier-nav-bar .btn-tier-focus {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.9rem;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
   border-radius: 999px;
   background: transparent;
   border: 1px solid transparent;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
-.btn-tier-focus .tier-num-tag {
+.prestige-tier-nav-bar .btn-tier-focus .tier-num-tag {
   display: inline-block;
-  padding: 0.12rem 0.35rem;
+  padding: 0.15rem 0.45rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(212, 175, 55, 0.15);
   font-size: 0.65rem;
-  color: #FFFFFF;
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-.btn-tier-focus:hover {
+.prestige-tier-nav-bar .btn-tier-focus:hover {
   color: #FFFFFF;
-  background: rgba(119, 217, 200, 0.15);
-  border-color: rgba(119, 217, 200, 0.3);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
 }
 
-.btn-tier-focus.active {
-  background: linear-gradient(135deg, rgba(14, 108, 128, 0.9) 0%, rgba(5, 61, 77, 0.9) 100%);
+.prestige-tier-nav-bar .btn-tier-focus.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(163, 127, 71, 0.35) 100%);
   color: #FFFFFF;
-  border-color: #77D9C8;
-  box-shadow: 0 0 15px rgba(119, 217, 200, 0.35);
+  border-color: #D4AF37;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.35);
 }
 
-.btn-tier-focus.active .tier-num-tag {
-  background: #C6F24D;
-  color: #031E28;
+.prestige-tier-nav-bar .btn-tier-focus.active .tier-num-tag {
+  background: #D4AF37;
+  color: #021E18;
   font-weight: 800;
+  border-color: #D4AF37;
 }
 
 /* ==========================================================================
-   RIGHT: 3D ISOMETRIC BLUEPRINT STAGE VIEWPORT
+   RIGHT: 3D ISOMETRIC PRESTIGE STAGE VIEWPORT
    ========================================================================== */
-.hero-blueprint-stage-wrap {
+.hero-prestige-stage-wrap {
   position: relative;
   width: 100%;
   display: flex;
@@ -12673,29 +12672,29 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
   align-items: center;
 }
 
-.blueprint-stage-viewport {
+.prestige-stage-viewport {
   position: relative;
   width: 100%;
   max-width: 620px;
   height: 640px;
-  perspective: 1200px;
+  perspective: 1300px;
   perspective-origin: 50% 45%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.blueprint-isometric-stack {
+.prestige-isometric-stack {
   position: relative;
   width: 100%;
   height: 560px;
   transform-style: preserve-3d;
-  transform: rotateX(20deg) rotateY(-16deg) rotateZ(3deg);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotateX(18deg) rotateY(-14deg) rotateZ(2deg);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Laser Energy Conduits Connecting the 3 Plates */
-.blueprint-laser-conduits {
+/* Delicate Gold Filament Lines */
+.prestige-gold-conduits {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -12705,174 +12704,157 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
   transform: translateZ(0);
 }
 
-/* Isometric Plates */
-.blueprint-plate {
+/* Crystal Plaques */
+.prestige-plate {
   position: absolute;
   width: 100%;
   max-width: 500px;
   left: 50%;
   margin-left: -250px;
   transform-style: preserve-3d;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
   cursor: pointer;
   outline: none;
 }
 
-/* Tier 3: Highest Plate (Top) */
-.blueprint-plate.plate-tier-3 {
+/* Tier III: Top Plaque */
+.prestige-plate.plate-tier-3 {
   top: 15px;
   transform: translateZ(95px);
   z-index: 6;
 }
 
-/* Tier 2: Middle Plate */
-.blueprint-plate.plate-tier-2 {
+/* Tier II: Middle Plaque */
+.prestige-plate.plate-tier-2 {
   top: 175px;
   transform: translateZ(25px);
   z-index: 5;
 }
 
-/* Tier 1: Base Plate */
-.blueprint-plate.plate-tier-1 {
+/* Tier I: Base Plaque */
+.prestige-plate.plate-tier-1 {
   top: 335px;
   transform: translateZ(-45px);
   z-index: 4;
 }
 
-/* Active & Hover Plate States */
-.blueprint-plate.is-active,
-.blueprint-plate:hover,
-.blueprint-plate:focus-visible {
+/* Active & Hover Plaque States */
+.prestige-plate.is-active,
+.prestige-plate:hover,
+.prestige-plate:focus-visible {
   z-index: 10;
 }
 
-.blueprint-plate.plate-tier-3.is-active,
-.blueprint-plate.plate-tier-3:hover {
-  transform: translateZ(145px) scale(1.02);
+.prestige-plate.plate-tier-3.is-active,
+.prestige-plate.plate-tier-3:hover {
+  transform: translateZ(150px) scale(1.02);
 }
 
-.blueprint-plate.plate-tier-2.is-active,
-.blueprint-plate.plate-tier-2:hover {
-  transform: translateZ(95px) scale(1.02);
+.prestige-plate.plate-tier-2.is-active,
+.prestige-plate.plate-tier-2:hover {
+  transform: translateZ(100px) scale(1.02);
 }
 
-.blueprint-plate.plate-tier-1.is-active,
-.blueprint-plate.plate-tier-1:hover {
-  transform: translateZ(45px) scale(1.02);
+.prestige-plate.plate-tier-1.is-active,
+.prestige-plate.plate-tier-1:hover {
+  transform: translateZ(50px) scale(1.02);
 }
 
-.blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate:not(.is-active) {
-  opacity: 0.68;
-  filter: brightness(0.85);
+.prestige-isometric-stack:has(.prestige-plate.is-active) .prestige-plate:not(.is-active) {
+  opacity: 0.65;
+  filter: brightness(0.8);
 }
 
-.blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate.is-active {
+.prestige-isometric-stack:has(.prestige-plate.is-active) .prestige-plate.is-active {
   opacity: 1;
   filter: brightness(1.08);
 }
 
-/* Glass Plate Visual Styling */
-.plate-glass-surface {
+/* Frosted Crystal Plaque Visual Styling */
+.plate-crystal-surface {
   position: relative;
-  background: linear-gradient(135deg, rgba(6, 44, 56, 0.88) 0%, rgba(2, 22, 30, 0.92) 100%);
-  border: 1.5px solid rgba(119, 217, 200, 0.3);
+  background: linear-gradient(135deg, rgba(8, 42, 35, 0.88) 0%, rgba(2, 24, 20, 0.94) 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.38);
   border-radius: 18px;
-  padding: 1.5rem 1.75rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 1.55rem 1.85rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   box-shadow: 
-    0 20px 45px rgba(0, 0, 0, 0.55),
-    0 0 25px rgba(119, 217, 200, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    0 22px 50px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(212, 175, 55, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-.blueprint-plate.is-active .plate-glass-surface,
-.blueprint-plate:hover .plate-glass-surface {
-  border-color: rgba(198, 242, 77, 0.85);
+.prestige-plate.is-active .plate-crystal-surface,
+.prestige-plate:hover .plate-crystal-surface {
+  border-color: #D4AF37;
   box-shadow: 
-    0 28px 60px rgba(0, 0, 0, 0.7),
-    0 0 35px rgba(198, 242, 77, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 32px 70px rgba(0, 0, 0, 0.8),
+    0 0 45px rgba(212, 175, 55, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.plate-glow-edge {
+.plate-gold-bevel {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #77D9C8, #C6F24D, #D4AF37, transparent);
-  opacity: 0.65;
+  background: linear-gradient(90deg, transparent, #F3E7C4, #D4AF37, #A87B19, transparent);
+  opacity: 0.75;
 }
 
-.blueprint-plate.is-active .plate-glow-edge,
-.blueprint-plate:hover .plate-glow-edge {
+.prestige-plate.is-active .plate-gold-bevel,
+.prestige-plate:hover .plate-gold-bevel {
   opacity: 1;
   height: 3px;
 }
 
-/* Plate Internal Header */
-.plate-header-row {
+/* Header inside Plaque */
+.prestige-plate .plate-header-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.7rem;
 }
 
-.plate-tier-badge {
+.prestige-plate .plate-tier-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-family: var(--font-heading);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #D4AF37;
 }
 
-.plate-tier-badge .tier-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #D4AF37;
-  box-shadow: 0 0 6px #D4AF37;
+.prestige-plate .plate-tier-badge .tier-seal {
+  color: #D4AF37;
+  font-size: 0.8rem;
+  line-height: 1;
 }
 
-.plate-tier-2 .plate-tier-badge {
-  color: #77D9C8;
-}
-.plate-tier-2 .plate-tier-badge .tier-dot {
-  background: #77D9C8;
-  box-shadow: 0 0 6px #77D9C8;
-}
-
-.plate-tier-1 .plate-tier-badge {
-  color: #C6F24D;
-}
-.plate-tier-1 .plate-tier-badge .tier-dot {
-  background: #C6F24D;
-  box-shadow: 0 0 6px #C6F24D;
-}
-
-.plate-status-tag {
+.prestige-plate .plate-status-tag {
   font-family: var(--font-heading);
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.15rem 0.5rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.85);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #F3E7C4;
 }
 
-.plate-title {
+.prestige-plate .plate-title {
   font-family: var(--font-heading);
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #FFFFFF;
@@ -12880,169 +12862,149 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
   line-height: 1.25;
 }
 
-.plate-desc {
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 0.85rem;
+.prestige-plate .plate-desc {
+  font-size: 0.79rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.9rem;
 }
 
-/* Chips Deck inside Plates */
-.plate-chips-deck {
+/* Chips Deck inside Plaque */
+.prestige-plate .plate-chips-deck {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
-.blueprint-chip {
+.prestige-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.22rem 0.55rem;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 6px;
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 20, 16, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: rgba(255, 255, 255, 0.92);
 }
 
-.blueprint-chip .chip-num {
+.prestige-chip .chip-num {
+  font-family: var(--font-heading);
   font-weight: 800;
-  opacity: 0.85;
-}
-
-.blueprint-chip.chip-gold {
-  border-color: rgba(212, 175, 55, 0.35);
-  color: #F7E7B4;
-}
-.blueprint-chip.chip-gold .chip-num {
   color: #D4AF37;
 }
 
-.blueprint-chip.chip-cyan {
-  border-color: rgba(119, 217, 200, 0.35);
-  color: #D4FAF4;
-}
-.blueprint-chip.chip-cyan .chip-num {
-  color: #77D9C8;
+.prestige-chip.chip-gold {
+  border-color: rgba(212, 175, 55, 0.45);
+  background: rgba(212, 175, 55, 0.08);
+  color: #F8ECD0;
 }
 
-.blueprint-chip.chip-lime {
-  border-color: rgba(198, 242, 77, 0.35);
-  color: #EEFACB;
-}
-.blueprint-chip.chip-lime .chip-num {
-  color: #C6F24D;
-}
-
-/* Floating Tier Inspector Tooltip Bar */
-.blueprint-inspector-bar {
+/* Stately Plaque Active Inspector Bar */
+.prestige-inspector-bar {
   position: absolute;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 480px;
+  max-width: 490px;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 1rem;
+  gap: 0.85rem;
+  padding: 0.75rem 1.15rem;
   border-radius: 12px;
-  background: rgba(2, 18, 24, 0.9);
-  border: 1px solid rgba(119, 217, 200, 0.3);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  background: rgba(2, 20, 16, 0.94);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.2);
   z-index: 20;
 }
 
-.inspector-pulse-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #77D9C8;
-  box-shadow: 0 0 10px #77D9C8;
+.inspector-crest {
+  color: #D4AF37;
+  font-size: 1.1rem;
   flex-shrink: 0;
-  animation: blueprintPulseOrb 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
 }
 
-.inspector-text-group {
+.prestige-inspector-bar .inspector-text-group {
   display: flex;
   flex-direction: column;
 }
 
-.inspector-tier-label {
+.prestige-inspector-bar .inspector-tier-label {
   font-family: var(--font-heading);
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #C6F24D;
+  color: #D4AF37;
 }
 
-.inspector-tier-summary {
+.prestige-inspector-bar .inspector-tier-summary {
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.35;
 }
 
 /* ==========================================================================
-   RESPONSIVENESS: 3D BLUEPRINT HERO
+   RESPONSIVENESS: PRESTIGE GALA HERO
    ========================================================================== */
 @media (max-width: 1199px) {
-  .hero-blueprint-container {
+  .hero-prestige-container {
     grid-template-columns: minmax(0, 50fr) minmax(0, 50fr);
     gap: 2.5rem;
   }
-  .blueprint-stage-viewport {
+  .prestige-stage-viewport {
     height: 600px;
   }
-  .blueprint-isometric-stack {
+  .prestige-isometric-stack {
     height: 520px;
   }
-  .blueprint-plate {
+  .prestige-plate {
     max-width: 440px;
     margin-left: -220px;
   }
-  .plate-glass-surface {
-    padding: 1.25rem 1.4rem;
+  .plate-crystal-surface {
+    padding: 1.35rem 1.5rem;
   }
-  .plate-title {
-    font-size: 1rem;
+  .prestige-plate .plate-title {
+    font-size: 1.02rem;
   }
 }
 
 @media (max-width: 991px) {
-  .hero-blueprint-spread {
+  .hero-prestige-spread {
     min-height: auto;
     padding: 6rem 0 4rem;
   }
-  .hero-blueprint-container {
+  .hero-prestige-container {
     grid-template-columns: 1fr;
     gap: 3.5rem;
   }
-  .blueprint-metrics-grid {
+  .prestige-metrics-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
-  .blueprint-stage-viewport {
+  .prestige-stage-viewport {
     height: auto;
     perspective: none;
     max-width: 100%;
   }
-  .blueprint-isometric-stack {
+  .prestige-isometric-stack {
     height: auto;
     transform: none !important;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.35rem;
   }
-  .blueprint-laser-conduits {
+  .prestige-gold-conduits {
     display: none;
   }
-  .blueprint-plate {
+  .prestige-plate {
     position: relative;
     top: auto !important;
     left: auto !important;
@@ -13050,15 +13012,15 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
     max-width: 100%;
     transform: none !important;
   }
-  .blueprint-plate.is-active,
-  .blueprint-plate:hover {
+  .prestige-plate.is-active,
+  .prestige-plate:hover {
     transform: translateY(-4px) !important;
   }
-  .blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate:not(.is-active) {
+  .prestige-isometric-stack:has(.prestige-plate.is-active) .prestige-plate:not(.is-active) {
     opacity: 1;
     filter: none;
   }
-  .blueprint-inspector-bar {
+  .prestige-inspector-bar {
     position: relative;
     bottom: auto;
     left: auto;
@@ -13070,18 +13032,18 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
 }
 
 @media (max-width: 576px) {
-  .hero-blueprint-title {
+  .hero-prestige-title {
     font-size: 2.2rem;
   }
-  .blueprint-badge-text {
+  .prestige-badge-text {
     font-size: 0.68rem;
   }
-  .plate-header-row {
+  .prestige-plate .plate-header-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.35rem;
   }
-  .plate-glass-surface {
-    padding: 1.15rem 1.15rem;
+  .plate-crystal-surface {
+    padding: 1.25rem 1.25rem;
   }
 }
