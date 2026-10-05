@@ -393,13 +393,13 @@
 }
 
 .ia-action-btn.ia-outline {
-  background: #FFFFFF;
+  background: #FAF8F3;
   color: #062E25;
   border: 1px solid rgba(197, 160, 89, 0.45);
 }
 
 .ia-action-btn.ia-outline:hover {
-  background: #FAFBF8;
+  background: #EDE6DA;
   border-color: #C5A059;
   color: #021C16;
 }
@@ -512,12 +512,52 @@
 }
 
 /* ==========================================================================
-   6. INPUT BAR & FOOTER DISCLAIMER
+   6. QUICK TOPIC CHIPS BAR & INPUT BAR
    ========================================================================== */
+.ia-quick-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem 0.35rem;
+  background: #F4F8F6;
+  border-top: 1px solid #E2EAE7;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.ia-quick-chips-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.ia-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #FFFFFF;
+  border: 1px solid #D6E4E0;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-body, 'Manrope', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #062E25;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.ia-chip-btn:hover {
+  background: #062E25;
+  border-color: #062E25;
+  color: var(--color-lime-accent, #C6F24D);
+  box-shadow: 0 2px 8px rgba(6, 46, 37, 0.2);
+  transform: translateY(-1px);
+}
+
 .ia-footer {
   background: #FFFFFF;
-  border-top: 1px solid #E2EAE7;
-  padding: 0.85rem 1.15rem 0.65rem;
+  padding: 0.65rem 1.15rem 0.65rem;
   flex-shrink: 0;
 }
 

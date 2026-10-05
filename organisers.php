@@ -10,51 +10,75 @@ require_once __DIR__ . '/includes/nav.php';
          HERO: MATCHING ABOUT.PHP VISUAL SYSTEM & TEMPLATE EXACTLY
          Uses identical markup, classes, layout, typography, and responsive rules
          ========================================================================== -->
-    <section class="page-editorial-hero" aria-label="Official Organisers &amp; Strategic Alliance">
-      <div class="page-hero-container">
-        <div class="about-hero-grid">
-          
-          <!-- Left: Editorial Headline & Narrative -->
-          <div class="about-hero-text">
-            <h1 class="about-hero-title">
-              THE STRATEGIC ALLIANCE:<br>
-              <span class="text-lime-glow">HWED &amp; MIHA</span>
-            </h1>
-
-            <p class="about-hero-lead">
-              Intecare Excellence Award 2026 is organised through the strategic collaboration of Healthcare &amp; Wellness Economy Development (HWED) and Malaysian Integrative Health Association (MIHA), uniting clinical integrity, enterprise growth, and academic achievement.
-            </p>
-
-            <div class="about-hero-actions" style="margin-top: 1.75rem;">
-              <button type="button" class="btn btn-lime open-nomination-btn">
-                <span>SUBMIT NOMINATION</span>
-                <span class="btn-arrow" aria-hidden="true">→</span>
-              </button>
-            </div>
+    <!-- ==========================================================================
+         HERO: INSTITUTIONAL SPREAD (THE STRATEGIC ALLIANCE)
+         True full-screen editorial hero with dual-tone ivory aesthetics,
+         prestige credentials, and asymmetric photo composition.
+         ========================================================================== -->
+    <section class="page-editorial-hero hero-organisers-spread" aria-label="Official Organisers &amp; Strategic Alliance">
+      <div class="hero-organisers-container">
+        
+        <!-- Left: Dominant Editorial Authority & Credentials -->
+        <div class="hero-organisers-content">
+          <div class="about-hero-eyebrow" style="color: #0E6C80;">
+            <span class="eyebrow-accent-bar" style="background: #0E6C80;"></span>
+            <span>CO-ORGANISERS &amp; STRATEGIC PARTNERS</span>
           </div>
 
-          <!-- Right: Floating Visual Art Stage (Matching About exactly) -->
-          <div class="about-hero-art-stage" aria-hidden="true">
-            <div class="about-hero-ambient-glow"></div>
-            
-            <!-- Layer 1: Futuristic Medical Technology 3D Sculpture -->
-            <img src="<?= $basePath ?>/assets/images/org1.jpg"
-              alt="Medical Innovation 3D element"
-              class="about-hero-float-primary"
-              width="360"
-              height="412"
-              loading="eager">
+          <h1 class="hero-organisers-title">
+            THE STRATEGIC ALLIANCE:<br>
+            <span class="text-teal-accent">HWED &amp; MIHA</span>
+          </h1>
 
-            <!-- Layer 2: Editorial Supporting Visual Callout Badge -->
-            <img src="<?= $basePath ?>/assets/images/org2.jpg"
-              alt="Ecosystem Innovation Badge"
-              class="about-hero-float-secondary"
-              width="180"
-              height="180"
-              loading="eager">
+          <p class="hero-organisers-lead">
+            Intecare Excellence Award 2026 is organised through the strategic collaboration of Healthcare &amp; Wellness Economy Development (HWED) and Malaysian Integrative Health Association (MIHA), uniting clinical integrity, enterprise growth, and academic achievement.
+          </p>
+
+          <!-- Credential Badges Row -->
+          <div class="hero-organisers-pills-row">
+            <span class="hero-org-badge"><strong>HWED</strong> • Economy &amp; Enterprise</span>
+            <span class="hero-org-badge"><strong>MIHA</strong> • Clinical &amp; Integrative Health</span>
+            <span class="hero-org-badge"><strong>OLYMPIA</strong> • Academic Governance</span>
           </div>
+
 
         </div>
+
+        <!-- Right: Asymmetric Photo Composition & Alliance Seal -->
+        <div class="hero-organisers-visual-stage">
+          <div class="hero-organisers-photo-composition">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/org1.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/org1.jpg"
+                alt="Strategic Alliance in Healthcare and Wellness"
+                class="hero-organisers-main-photo"
+                width="720"
+                height="540"
+                loading="eager">
+            </picture>
+            <div class="photo-editorial-overlay"></div>
+
+            <!-- Floating Alliance Seal -->
+            <div class="hero-alliance-floating-seal">
+              <div class="seal-header">
+                <span class="seal-icon" aria-hidden="true">✦</span>
+                <span class="seal-title">OFFICIAL STRATEGIC ALLIANCE</span>
+              </div>
+              <div class="seal-logos-pair">
+                <img src="<?= $basePath ?>/assets/images/logo-hwed.png" alt="HWED Logo" class="seal-mini-logo" width="80" height="24">
+                <span class="seal-divider" aria-hidden="true">×</span>
+                <img src="<?= $basePath ?>/assets/images/logo-miha.png" alt="MIHA Logo" class="seal-mini-logo" width="70" height="24">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Editorial Scroll Prompt (Dark Prompt for Light Background) -->
+      <div class="hero-scroll-prompt text-dark-prompt" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="prompt-arrow">↓</span>
       </div>
     </section>
 
@@ -64,14 +88,14 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-midnight" id="alliance" aria-label="Co-Organising Entities">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           TWO INSTITUTIONS. <span class="text-lime-glow">ONE UNIFIED MISSION.</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           A powerful partnership uniting cross-sector economic development with clinical medical excellence.
         </p>
 
-        <div class="organisers-alliance-grid">
+        <div class="organisers-alliance-grid reveal-card-group">
 
           <!-- Card 1: HWED -->
           <article class="partner-showcase-card card-hwed" id="cardHwed" tabindex="0" aria-label="Healthcare &amp; Wellness Economy Development Details">
@@ -183,7 +207,7 @@ require_once __DIR__ . '/includes/nav.php';
       <div class="olympia-academic-wrap">
         <div class="olympia-feature-grid">
           <!-- Left: Logo & Milestone Callout Box -->
-          <div class="olympia-card-box">
+          <div class="olympia-card-box reveal-left">
             <div class="olympia-logo-stage">
               <img src="<?= $basePath ?>/assets/images/logo-olympia.png" alt="Olympia Education Group Logo" loading="lazy">
             </div>
@@ -200,7 +224,7 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
 
           <!-- Right: Editorial Narrative -->
-          <div>
+          <div class="reveal-right">
             <div style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 800; color: #0E6C80; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;">
               WORKFORCE DEVELOPMENT &amp; ACADEMIC EXCELLENCE
             </div>
@@ -224,15 +248,15 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="governance-section" id="governance" aria-label="Governance &amp; Selection Integrity">
       <div class="governance-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           RIGOROUS, TRANSPARENT <span class="text-lime-glow">GOVERNANCE</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           The INTECARE Excellence Award evaluation process is managed through a multi-tiered oversight framework ensuring strict credibility, ethical standards, and independent assessment.
         </p>
 
         <!-- Connected Numbered Steps / Selectable Tabs -->
-        <div class="governance-stepper" role="tablist" aria-label="Governance Evaluation Stages">
+        <div class="governance-stepper reveal-card-group" role="tablist" aria-label="Governance Evaluation Stages">
           
           <!-- Stage 1 -->
           <button type="button" class="governance-step-btn active" data-gov-stage="1" role="tab" aria-selected="true" aria-controls="govDetailCard">
@@ -264,7 +288,7 @@ require_once __DIR__ . '/includes/nav.php';
         </div>
 
         <!-- Dedicated Content Panel -->
-        <div class="governance-detail-card" id="govDetailCard" role="tabpanel" aria-live="polite">
+        <div class="governance-detail-card reveal-standard" id="govDetailCard" role="tabpanel" aria-live="polite">
           <div class="gov-detail-watermark" id="govWatermark" aria-hidden="true">01</div>
           <span class="gov-detail-badge" id="govBadge">RIGOROUS OVERSIGHT • STAGE 01</span>
           <h3 class="gov-detail-title" id="govTitle">01. INDEPENDENT PANEL</h3>

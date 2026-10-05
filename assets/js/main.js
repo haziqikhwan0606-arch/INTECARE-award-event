@@ -72,98 +72,99 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.addEventListener('scroll', highlightNavLink, { passive: true });
 
-  // 4. Award Explorer Tabs (Individual vs Corporate)
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-
-      tabButtons.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      const activePane = document.getElementById(target);
-      if (activePane) {
-        activePane.classList.add('active');
-      }
-    });
+  // 4. Award Explorer Tabs (Individual vs Corporate) — Delegated
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const activePane = document.getElementById(target);
+    if (activePane) {
+      activePane.classList.add('active');
+    }
   });
 
-  // 4B. About Section Organization Switcher (HWED vs MIHA)
-  const orgTabButtons = document.querySelectorAll('.about-org-tab-btn');
-  const orgPanes = document.querySelectorAll('.about-org-pane');
-
-  orgTabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.orgTab;
-      orgTabButtons.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      orgPanes.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      const activePane = document.getElementById(target);
-      if (activePane) {
-        activePane.classList.add('active');
-      }
+  // 4B. About Section Organization Switcher (HWED vs MIHA) — Delegated
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.about-org-tab-btn');
+    if (!btn) return;
+    const target = btn.dataset.orgTab;
+    document.querySelectorAll('.about-org-tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
+    document.querySelectorAll('.about-org-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const activePane = document.getElementById(target);
+    if (activePane) {
+      activePane.classList.add('active');
+    }
   });
 
-  // 5. Accessible Dialog Modals with Light Dismiss
-  const setupModal = (modalId, openTriggers, closeTriggers) => {
-    const dialog = document.getElementById(modalId);
-    if (!dialog) return;
-
+  // 5. Accessible Dialog Modals with Delegated Triggers & Light Dismiss
+  const setupModal = (modalId, openTriggers, closeTriggers, onOpen) => {
     openTriggers.forEach(selector => {
-      document.querySelectorAll(selector).forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest(selector);
+        if (!btn) return;
+        e.preventDefault();
+        const dialog = document.getElementById(modalId);
+        if (dialog && typeof dialog.showModal === 'function') {
           dialog.showModal();
-        });
+          if (typeof onOpen === 'function') onOpen(btn);
+        }
       });
     });
 
     closeTriggers.forEach(selector => {
-      dialog.querySelectorAll(selector).forEach(btn => {
-        btn.addEventListener('click', () => {
-          dialog.close();
-        });
-      });
-    });
-
-    // Fallback light-dismiss for browsers without closedby support (e.g. Safari)
-    if (!('closedBy' in HTMLDialogElement.prototype)) {
-      dialog.addEventListener('click', (event) => {
-        if (event.target !== dialog) return;
-        const rect = dialog.getBoundingClientRect();
-        const isDialogContent = (
-          rect.top <= event.clientY &&
-          event.clientY <= rect.top + rect.height &&
-          rect.left <= event.clientX &&
-          event.clientX <= rect.left + rect.width
-        );
-        if (!isDialogContent) {
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest(selector);
+        if (!btn) return;
+        const dialog = document.getElementById(modalId);
+        if (dialog && typeof dialog.close === 'function' && dialog.open) {
           dialog.close();
         }
       });
-    }
+    });
+
+    // Fallback light-dismiss for dialogs
+    document.addEventListener('click', (event) => {
+      const dialog = document.getElementById(modalId);
+      if (!dialog || event.target !== dialog || !dialog.open) return;
+      const rect = dialog.getBoundingClientRect();
+      const isDialogContent = (
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width
+      );
+      if (!isDialogContent) {
+        dialog.close();
+      }
+    });
   };
 
   setupModal('guidelinesModal', ['.open-guidelines-btn'], ['.dialog-close-btn', '.close-modal-btn']);
-  setupModal('nominationModal', ['.open-nomination-btn'], ['.dialog-close-btn', '.close-modal-btn']);
   setupModal('trackingModal', ['.open-tracking-btn'], ['.dialog-close-btn', '.close-modal-btn']);
 
-  // 6. Nomination Form Dynamic Field Switching
+  // 6. Nomination Form Dynamic Field Switching & Auto-Save Draft
   const form = document.getElementById('nominationForm');
   const individualRadio = document.getElementById('typeIndividual');
   const corporateRadio = document.getElementById('typeCorporate');
   const individualFields = document.getElementById('individualFields');
   const corporateFields = document.getElementById('corporateFields');
   const categorySelect = document.getElementById('nominationCategory');
+  const rationaleTextarea = document.getElementById('nominationRationale');
+  const wordCountBadge = document.getElementById('rationaleWordCount');
+  const formAlert = document.getElementById('nominationFormAlert');
+  const csrfInput = document.getElementById('nominationCsrfToken');
+  const draftBanner = document.getElementById('nominationDraftBanner');
+  const clearDraftBtn = document.getElementById('btnClearNominationDraft');
+
+  const DRAFT_STORAGE_KEY = 'intecare_nomination_draft';
 
   const individualCategories = [
     {
@@ -277,42 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     individualRadio.addEventListener('change', updateNomineeType);
     corporateRadio.addEventListener('change', updateNomineeType);
     updateNomineeType();
-
-    // Auto-select stream and category when card nomination button is clicked
-    document.querySelectorAll('.open-nomination-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const stream = btn.getAttribute('data-stream');
-        const awardTitle = btn.getAttribute('data-award-title');
-
-        if (stream === 'corporate' && corporateRadio) {
-          corporateRadio.checked = true;
-          updateNomineeType();
-        } else if (stream === 'individual' && individualRadio) {
-          individualRadio.checked = true;
-          updateNomineeType();
-        }
-
-        if (awardTitle && categorySelect) {
-          const needle = awardTitle.toLowerCase().trim();
-          for (let i = 0; i < categorySelect.options.length; i++) {
-            const opt = categorySelect.options[i];
-            const optVal = (opt.value || '').toLowerCase();
-            const optTxt = (opt.text || '').toLowerCase();
-            if (optVal && (optVal.includes(needle) || needle.includes(optVal) || optTxt.includes(needle) || needle.includes(optTxt))) {
-              categorySelect.selectedIndex = i;
-              break;
-            }
-          }
-        }
-      });
-    });
   }
-
-  // 7. Nomination Form Submission & Real Asynchronous Feedback
-  const rationaleTextarea = document.getElementById('nominationRationale');
-  const wordCountBadge = document.getElementById('rationaleWordCount');
-  const formAlert = document.getElementById('nominationFormAlert');
-  const csrfInput = document.getElementById('nominationCsrfToken');
 
   // Word Counter & 300-word constraint checker
   const updateWordCount = () => {
@@ -338,6 +304,145 @@ document.addEventListener('DOMContentLoaded', () => {
     rationaleTextarea.addEventListener('change', updateWordCount);
     updateWordCount();
   }
+
+  // Auto-Save Draft Functions
+  const saveNominationDraft = () => {
+    if (!form) return;
+    const stream = form.querySelector('input[name="nomineeType"]:checked')?.value || 'individual';
+    const draft = {
+      stream: stream,
+      category: categorySelect ? categorySelect.value : '',
+      nomineeName: document.getElementById('nomineeName')?.value || '',
+      nomineeDesignation: document.getElementById('nomineeDesignation')?.value || '',
+      companyName: document.getElementById('companyName')?.value || '',
+      companyReg: document.getElementById('companyReg')?.value || '',
+      nominatorEmail: document.getElementById('nominatorEmail')?.value || '',
+      nominatorPhone: document.getElementById('nominatorPhone')?.value || '',
+      rationale: rationaleTextarea?.value || '',
+      savedAt: Date.now()
+    };
+
+    const hasContent = Boolean(draft.nomineeName || draft.companyName || draft.nominatorEmail || draft.rationale);
+    if (hasContent) {
+      try {
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+      } catch (e) {}
+    }
+  };
+
+  const loadNominationDraft = (triggerBtn = null) => {
+    if (!form) return;
+
+    // First check if trigger button requested a specific stream/category
+    let triggerStream = null;
+    let triggerAward = null;
+    if (triggerBtn) {
+      triggerStream = triggerBtn.getAttribute('data-stream');
+      triggerAward = triggerBtn.getAttribute('data-award-title');
+    }
+
+    try {
+      const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (raw) {
+        const draft = JSON.parse(raw);
+        if (draft && (draft.nomineeName || draft.companyName || draft.nominatorEmail || draft.rationale)) {
+          // Restore stream (unless explicit override from button)
+          const streamToUse = triggerStream || draft.stream;
+          if (streamToUse === 'corporate' && corporateRadio) {
+            corporateRadio.checked = true;
+            updateNomineeType();
+          } else if (individualRadio) {
+            individualRadio.checked = true;
+            updateNomineeType();
+          }
+
+          // Restore category
+          const catToUse = triggerAward || draft.category;
+          if (catToUse && categorySelect) {
+            const needle = catToUse.toLowerCase().trim();
+            for (let i = 0; i < categorySelect.options.length; i++) {
+              const opt = categorySelect.options[i];
+              const optVal = (opt.value || '').toLowerCase();
+              const optTxt = (opt.text || '').toLowerCase();
+              if (optVal && (optVal.includes(needle) || needle.includes(optVal) || optTxt.includes(needle) || needle.includes(optTxt))) {
+                categorySelect.selectedIndex = i;
+                break;
+              }
+            }
+          }
+
+          // Restore fields
+          if (draft.nomineeName && document.getElementById('nomineeName')) document.getElementById('nomineeName').value = draft.nomineeName;
+          if (draft.nomineeDesignation && document.getElementById('nomineeDesignation')) document.getElementById('nomineeDesignation').value = draft.nomineeDesignation;
+          if (draft.companyName && document.getElementById('companyName')) document.getElementById('companyName').value = draft.companyName;
+          if (draft.companyReg && document.getElementById('companyReg')) document.getElementById('companyReg').value = draft.companyReg;
+          if (draft.nominatorEmail && document.getElementById('nominatorEmail')) document.getElementById('nominatorEmail').value = draft.nominatorEmail;
+          if (draft.nominatorPhone && document.getElementById('nominatorPhone')) document.getElementById('nominatorPhone').value = draft.nominatorPhone;
+          if (draft.rationale && rationaleTextarea) {
+            rationaleTextarea.value = draft.rationale;
+            updateWordCount();
+          }
+
+          if (draftBanner) draftBanner.style.display = 'flex';
+          return;
+        }
+      }
+    } catch (e) {}
+
+    // Fallback: Handle card button pre-selection without prior draft
+    if (triggerStream === 'corporate' && corporateRadio) {
+      corporateRadio.checked = true;
+      updateNomineeType();
+    } else if (triggerStream === 'individual' && individualRadio) {
+      individualRadio.checked = true;
+      updateNomineeType();
+    }
+
+    if (triggerAward && categorySelect) {
+      const needle = triggerAward.toLowerCase().trim();
+      for (let i = 0; i < categorySelect.options.length; i++) {
+        const opt = categorySelect.options[i];
+        const optVal = (opt.value || '').toLowerCase();
+        const optTxt = (opt.text || '').toLowerCase();
+        if (optVal && (optVal.includes(needle) || needle.includes(optVal) || optTxt.includes(needle) || needle.includes(optTxt))) {
+          categorySelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+  };
+
+  const clearNominationDraft = () => {
+    try {
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch (e) {}
+    if (form) form.reset();
+    if (individualRadio) {
+      individualRadio.checked = true;
+      updateNomineeType();
+    }
+    if (draftBanner) draftBanner.style.display = 'none';
+    clearFormErrors();
+    updateWordCount();
+  };
+
+  if (clearDraftBtn) {
+    clearDraftBtn.addEventListener('click', clearNominationDraft);
+  }
+
+  // Auto-save on input with debouncing
+  if (form) {
+    let draftDebounceTimer;
+    form.addEventListener('input', () => {
+      clearTimeout(draftDebounceTimer);
+      draftDebounceTimer = setTimeout(saveNominationDraft, 350);
+    });
+    form.addEventListener('change', saveNominationDraft);
+  }
+
+  setupModal('nominationModal', ['.open-nomination-btn'], ['.dialog-close-btn', '.close-modal-btn'], (btn) => {
+    loadNominationDraft(btn);
+  });
 
   // Clear previous validation errors
   const clearFormErrors = () => {
@@ -402,8 +507,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial CSRF prefetch on page load and modal open
   fetchCsrfToken();
-  document.querySelectorAll('.open-nomination-btn').forEach(btn => {
-    btn.addEventListener('click', () => { fetchCsrfToken(); });
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.open-nomination-btn')) {
+      fetchCsrfToken();
+    }
   });
 
   if (form) {
@@ -569,6 +676,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (formView && successView) {
             formView.style.display = 'none';
             successView.style.display = 'block';
+            try {
+              localStorage.removeItem(DRAFT_STORAGE_KEY);
+            } catch (e) {}
+            if (draftBanner) draftBanner.style.display = 'none';
           }
         } else {
           // Validation error or business logic failure
@@ -1030,15 +1141,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 8. HERO LIVE EVENT COUNTDOWN (Target: 27 November 2026, 19:30:00 GMT+8)
   // ==========================================================================
-  const galaDate = new Date('2026-11-27T19:30:00+08:00').getTime();
-  const cdDays = document.getElementById('cdDays');
-  const cdHours = document.getElementById('cdHours');
-  const cdMins = document.getElementById('cdMins');
-  const cdSecs = document.getElementById('cdSecs');
+  const GALA_TARGET_TIMESTAMP = new Date('2026-11-27T19:30:00+08:00').getTime();
 
   const updateCountdown = () => {
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
+    const cdSecs = document.getElementById('cdSecs');
+    if (!cdDays && !cdHours && !cdMins && !cdSecs) return;
+
     const now = new Date().getTime();
-    const distance = galaDate - now;
+    const distance = GALA_TARGET_TIMESTAMP - now;
 
     if (distance > 0) {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -1058,6 +1171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  window.intecareUpdateCountdown = updateCountdown;
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
@@ -1090,6 +1204,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const startDrag = (e) => {
+      // Ignore drags originating from calendar button or dropdown
+      if (e.target.closest('.cd-calendar-wrap')) return;
+
       // Only drag on primary pointer button (left click) or touch
       if (e.button !== undefined && e.button !== 0) return;
       if (window.innerWidth <= 1024) return; // Allow natural document stacking on mobile
@@ -1174,7 +1291,8 @@ document.addEventListener('DOMContentLoaded', () => {
     countdownEl.addEventListener('pointercancel', stopDrag);
 
     // Double-click resets to default floating location
-    countdownEl.addEventListener('dblclick', () => {
+    countdownEl.addEventListener('dblclick', (e) => {
+      if (e.target.closest('.cd-calendar-wrap')) return;
       countdownEl.style.left = '';
       countdownEl.style.top = '';
       countdownEl.style.right = '';
@@ -1183,17 +1301,92 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem('intecare_hero_cd_pos');
       } catch (e) { }
     });
-
-    // Reset when resizing across mobile / desktop breakpoints
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 1024) {
-        countdownEl.style.left = '';
-        countdownEl.style.top = '';
-        countdownEl.style.right = '';
-        countdownEl.style.bottom = '';
-      }
-    }, { passive: true });
   }
+
+  // ==========================================================================
+  // 8C. ADD TO CALENDAR INTEGRATION (Global Delegated Handler)
+  // ==========================================================================
+  const triggerIcsDownload = () => {
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//INTECARE 2026//Excellence Awards//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:intecare-2026-gala-dinner@intecare.org',
+      'DTSTAMP:20261005T000000Z',
+      'DTSTART:20261127T113000Z',
+      'DTEND:20261127T150000Z',
+      'SUMMARY:INTECARE Excellence Award 2026 — Gala Presentation & Dinner',
+      'DESCRIPTION:Official Gala Presentation & Awards Ceremony celebrating 40 visionary individuals and organisations across Healthcare, Wellness, Education, and Disability (HWED).\\n\\nVenue: Grand Ballroom, Hotel Royale Chulan Damansara.\\nTime: 7:30 PM - 11:00 PM (GMT+8).\\nWebsite: https://intecare.org',
+      'LOCATION:Grand Ballroom, Hotel Royale Chulan Damansara, 2 Jalan PJU 7/3, Mutiara Damansara, 47810 Petaling Jaya, Selangor, Malaysia',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'intecare-2026-gala-presentation.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  // Delegated click handler for + Calendar toggle and options
+  document.addEventListener('click', (e) => {
+    // 1. Toggle button click
+    const btn = e.target.closest('#btnAddToCal, .btn-cal-add');
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const wrap = btn.closest('.cd-calendar-wrap, .hero-event-cal-wrap');
+      const menu = wrap ? wrap.querySelector('.cd-cal-menu') : document.getElementById('calMenu');
+      if (menu) {
+        const isVisible = menu.classList.toggle('is-visible');
+        btn.setAttribute('aria-expanded', String(isVisible));
+      }
+      return;
+    }
+
+    // 2. ICS download button click
+    const icsBtn = e.target.closest('#btnDownloadIcs, .btn-download-ics');
+    if (icsBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      triggerIcsDownload();
+      document.querySelectorAll('.cd-cal-menu').forEach(m => m.classList.remove('is-visible'));
+      document.querySelectorAll('#btnAddToCal, .btn-cal-add').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      return;
+    }
+
+    // 3. Click outside -> close all calendar menus
+    if (!e.target.closest('.cd-calendar-wrap, .hero-event-cal-wrap, .cd-cal-menu')) {
+      document.querySelectorAll('.cd-cal-menu').forEach(m => m.classList.remove('is-visible'));
+      document.querySelectorAll('#btnAddToCal, .btn-cal-add').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.cd-cal-menu.is-visible').forEach(m => m.classList.remove('is-visible'));
+      document.querySelectorAll('#btnAddToCal, .btn-cal-add').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
+
+  // Reset when resizing across mobile / desktop breakpoints
+  window.addEventListener('resize', () => {
+    if (countdownEl && window.innerWidth <= 1024) {
+      countdownEl.style.left = '';
+      countdownEl.style.top = '';
+      countdownEl.style.right = '';
+      countdownEl.style.bottom = '';
+    }
+  }, { passive: true });
 
   // ==========================================================================
   // 9. SUBTLE POINTER-RESPONSIVE ARTWORK PARALLAX & TILT
@@ -1239,241 +1432,208 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
 
   // --- A. HWED Orbit Interactive Controller ---
-  const orbitNodes = document.querySelectorAll('.hwed-orbit-node');
-  const orbitMobilePills = document.querySelectorAll('.hwed-m-pill');
-  const orbitCenterHub = document.getElementById('orbitCenterHub');
-  const orbitResetBtn = document.getElementById('orbitResetBtn');
-  const orbitDomainBadge = document.getElementById('orbitDomainBadge');
-  const orbitDomainTitle = document.getElementById('orbitDomainTitle');
-  const orbitDomainDesc = document.getElementById('orbitDomainDesc');
-  const orbitTagsLabel = document.getElementById('orbitTagsLabel');
-  const orbitDomainTags = document.getElementById('orbitDomainTags');
+  const domainData = {
+    core: {
+      badge: 'CENTRAL ARCHITECTURE • INTEGRATED CORE',
+      title: 'ONE ECOSYSTEM',
+      desc: 'Healthcare & Wellness Economy Development (HWED) serves as the unifying national platform connecting science, technology, clinical practice, enterprise, and investment into an integrated economic engine for the health lifecycle.',
+      label: 'Core Ecosystem Facets:',
+      tags: ['6 Connected Domains', '5 Strategic Pillars', 'Lifelong Value Creation']
+    },
+    science: {
+      badge: 'DOMAIN 01 • DISCOVERY & TRANSLATION',
+      title: '01. SCIENCE & RESEARCH',
+      desc: 'Pioneering clinical research, evidence generation, translational science, and biomedical breakthroughs that form the scientific foundation of progressive health solutions.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['Translational Science', 'Biomedical Studies', 'Clinical Evidence', 'R&D Pipelines']
+    },
+    practice: {
+      badge: 'DOMAIN 02 • CARE DELIVERY & EXCELLENCE',
+      title: '02. CLINICAL PRACTICE',
+      desc: 'Frontline medical practice, clinical protocols, multidisciplinary care teams, and patient-centred service standards advancing healthcare delivery.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['Care Protocols', 'Clinical Standards', 'Multidisciplinary Teams', 'Patient Outcomes']
+    },
+    technology: {
+      badge: 'DOMAIN 03 • INTELLIGENCE & INFRASTRUCTURE',
+      title: '03. TECHNOLOGY & AI',
+      desc: 'Next-generation MedTech, digital health systems, clinical AI analytics, diagnostic IoT, and smart care infrastructure accelerating transformation.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['MedTech Innovation', 'Digital Health', 'AI & Analytics', 'IoT Diagnostics']
+    },
+    enterprise: {
+      badge: 'DOMAIN 04 • COMMERCIALISATION & SCALING',
+      title: '04. ENTERPRISE & SMES',
+      desc: 'Health entrepreneurship, SME capacity development, commercialisation assistance, and intellectual property management scaling viable health solutions.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['SME Acceleration', 'Incubation', 'IP Protection', 'Market Access']
+    },
+    investment: {
+      badge: 'DOMAIN 05 • STRATEGIC FINANCING',
+      title: '05. CAPITAL & INVESTMENT',
+      desc: 'Venture funding, private equity, angel syndicates, and institutional capital backing promising healthcare ventures and high-impact infrastructure.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['Venture Capital', 'Growth Financing', 'Angel Syndicates', 'Capital Facilities']
+    },
+    industry: {
+      badge: 'DOMAIN 06 • GOVERNANCE & ALLIANCES',
+      title: '06. INDUSTRY & PUBLIC POLICY',
+      desc: 'Multi-sector coalitions, public-private partnerships (PPP), standardisation bodies, international trade connectivity, and ESG healthcare alignment.',
+      label: 'Key Domain Focus Areas:',
+      tags: ['PPP Coalitions', 'Policy Standards', 'International Trade', 'ESG Alignment']
+    }
+  };
 
-  if (orbitDomainTitle) {
-    const domainData = {
-      core: {
-        badge: 'CENTRAL ARCHITECTURE • INTEGRATED CORE',
-        title: 'ONE ECOSYSTEM',
-        desc: 'Healthcare & Wellness Economy Development (HWED) serves as the unifying national platform connecting science, technology, clinical practice, enterprise, and investment into an integrated economic engine for the health lifecycle.',
-        label: 'Core Ecosystem Facets:',
-        tags: ['6 Connected Domains', '5 Strategic Pillars', 'Lifelong Value Creation']
-      },
-      science: {
-        badge: 'DOMAIN 01 • DISCOVERY & TRANSLATION',
-        title: '01. SCIENCE & RESEARCH',
-        desc: 'Pioneering clinical research, evidence generation, translational science, and biomedical breakthroughs that form the scientific foundation of progressive health solutions.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['Translational Science', 'Biomedical Studies', 'Clinical Evidence', 'R&D Pipelines']
-      },
-      practice: {
-        badge: 'DOMAIN 02 • CARE DELIVERY & EXCELLENCE',
-        title: '02. CLINICAL PRACTICE',
-        desc: 'Frontline medical practice, clinical protocols, multidisciplinary care teams, and patient-centred service standards advancing healthcare delivery.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['Care Protocols', 'Clinical Standards', 'Multidisciplinary Teams', 'Patient Outcomes']
-      },
-      technology: {
-        badge: 'DOMAIN 03 • INTELLIGENCE & INFRASTRUCTURE',
-        title: '03. TECHNOLOGY & AI',
-        desc: 'Next-generation MedTech, digital health systems, clinical AI analytics, diagnostic IoT, and smart care infrastructure accelerating transformation.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['MedTech Innovation', 'Digital Health', 'AI & Analytics', 'IoT Diagnostics']
-      },
-      enterprise: {
-        badge: 'DOMAIN 04 • COMMERCIALISATION & SCALING',
-        title: '04. ENTERPRISE & SMES',
-        desc: 'Health entrepreneurship, SME capacity development, commercialisation assistance, and intellectual property management scaling viable health solutions.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['SME Acceleration', 'Incubation', 'IP Protection', 'Market Access']
-      },
-      investment: {
-        badge: 'DOMAIN 05 • STRATEGIC FINANCING',
-        title: '05. CAPITAL & INVESTMENT',
-        desc: 'Venture funding, private equity, angel syndicates, and institutional capital backing promising healthcare ventures and high-impact infrastructure.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['Venture Capital', 'Growth Financing', 'Angel Syndicates', 'Capital Facilities']
-      },
-      industry: {
-        badge: 'DOMAIN 06 • GOVERNANCE & ALLIANCES',
-        title: '06. INDUSTRY & PUBLIC POLICY',
-        desc: 'Multi-sector coalitions, public-private partnerships (PPP), standardisation bodies, international trade connectivity, and ESG healthcare alignment.',
-        label: 'Key Domain Focus Areas:',
-        tags: ['PPP Coalitions', 'Policy Standards', 'International Trade', 'ESG Alignment']
-      }
-    };
+  const activateOrbitDomain = (domainKey) => {
+    const data = domainData[domainKey] || domainData.core;
+    const orbitDomainBadge = document.getElementById('orbitDomainBadge');
+    const orbitDomainTitle = document.getElementById('orbitDomainTitle');
+    const orbitDomainDesc = document.getElementById('orbitDomainDesc');
+    const orbitTagsLabel = document.getElementById('orbitTagsLabel');
+    const orbitDomainTags = document.getElementById('orbitDomainTags');
+    const orbitCenterHub = document.getElementById('orbitCenterHub');
 
-    const activateDomain = (domainKey) => {
-      const data = domainData[domainKey] || domainData.core;
+    if (orbitDomainBadge) orbitDomainBadge.textContent = data.badge;
+    if (orbitDomainTitle) orbitDomainTitle.textContent = data.title;
+    if (orbitDomainDesc) orbitDomainDesc.textContent = data.desc;
+    if (orbitTagsLabel) orbitTagsLabel.textContent = data.label;
 
-      // Update text and tags
-      if (orbitDomainBadge) orbitDomainBadge.textContent = data.badge;
-      if (orbitDomainTitle) orbitDomainTitle.textContent = data.title;
-      if (orbitDomainDesc) orbitDomainDesc.textContent = data.desc;
-      if (orbitTagsLabel) orbitTagsLabel.textContent = data.label;
+    if (orbitDomainTags) {
+      orbitDomainTags.innerHTML = data.tags.map(t => `<span class="hwed-tag-pill">${t}</span>`).join('');
+    }
 
-      if (orbitDomainTags) {
-        orbitDomainTags.innerHTML = data.tags.map(t => `<span class="hwed-tag-pill">${t}</span>`).join('');
-      }
-
-      // Update desktop nodes
-      orbitNodes.forEach(node => {
-        const isMatch = node.dataset.domain === domainKey;
-        node.classList.toggle('active', isMatch);
-        node.setAttribute('aria-selected', isMatch ? 'true' : 'false');
-      });
-
-      // Update mobile pills
-      orbitMobilePills.forEach(pill => {
-        const isMatch = pill.dataset.domain === domainKey;
-        pill.classList.toggle('active', isMatch);
-        pill.setAttribute('aria-selected', isMatch ? 'true' : 'false');
-      });
-
-      // Update central hub active state
-      if (orbitCenterHub) {
-        orbitCenterHub.classList.toggle('active', domainKey === 'core');
-      }
-    };
-
-    orbitNodes.forEach(node => {
-      node.addEventListener('click', () => {
-        activateDomain(node.dataset.domain);
-      });
+    document.querySelectorAll('.hwed-orbit-node').forEach(node => {
+      const isMatch = node.dataset.domain === domainKey;
+      node.classList.toggle('active', isMatch);
+      node.setAttribute('aria-selected', isMatch ? 'true' : 'false');
     });
 
-    orbitMobilePills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        activateDomain(pill.dataset.domain);
-      });
+    document.querySelectorAll('.hwed-m-pill').forEach(pill => {
+      const isMatch = pill.dataset.domain === domainKey;
+      pill.classList.toggle('active', isMatch);
+      pill.setAttribute('aria-selected', isMatch ? 'true' : 'false');
     });
 
     if (orbitCenterHub) {
-      orbitCenterHub.addEventListener('click', () => {
-        activateDomain('core');
-      });
+      orbitCenterHub.classList.toggle('active', domainKey === 'core');
     }
+  };
 
-    if (orbitResetBtn) {
-      orbitResetBtn.addEventListener('click', () => {
-        activateDomain('core');
-      });
+  document.addEventListener('click', (e) => {
+    const node = e.target.closest('.hwed-orbit-node');
+    if (node && node.dataset.domain) {
+      activateOrbitDomain(node.dataset.domain);
+      return;
     }
-  }
+    const pill = e.target.closest('.hwed-m-pill');
+    if (pill && pill.dataset.domain) {
+      activateOrbitDomain(pill.dataset.domain);
+      return;
+    }
+    if (e.target.closest('#orbitCenterHub') || e.target.closest('#orbitResetBtn')) {
+      activateOrbitDomain('core');
+      return;
+    }
+  });
 
   // --- B. HWED 5 Strategic Pillars Interactive Cards ---
-  const pillarPhotoCards = document.querySelectorAll('.hwed-pillar-photo-card');
-  if (pillarPhotoCards.length) {
-    pillarPhotoCards.forEach(card => {
-      card.addEventListener('click', () => {
-        pillarPhotoCards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-      });
-    });
-  }
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.hwed-pillar-photo-card');
+    if (!card) return;
+    document.querySelectorAll('.hwed-pillar-photo-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
 
   // --- C. HWED Measurable Impact: Outcomes & Stakeholders Selectors ---
-  const outcomeTabs = document.querySelectorAll('.impact-pill-tab[data-outcome]');
-  const outcomeTitle = document.getElementById('outcomeTitle');
-  const outcomeDesc = document.getElementById('outcomeDesc');
+  const outcomesData = {
+    '1': {
+      title: 'HEALTHIER PEOPLE',
+      desc: 'Improved health, prevention, lifestyle resilience, and lifelong wellbeing across communities.'
+    },
+    '2': {
+      title: 'STRONGER ECONOMY',
+      desc: 'New market opportunities, investment inflows, health entrepreneurship, and sustainable GDP contribution.'
+    },
+    '3': {
+      title: 'GREATER OPPORTUNITIES',
+      desc: 'Cross-sector innovation, commercialisation pipelines, and ASEAN regional market expansion.'
+    },
+    '4': {
+      title: 'SUSTAINABLE TOMORROW',
+      desc: 'A resilient, ethical, and inclusive healthcare and wellness economy prepared for future challenges.'
+    }
+  };
 
-  if (outcomeTabs.length && outcomeTitle) {
-    const outcomesData = {
-      '1': {
-        title: 'HEALTHIER PEOPLE',
-        desc: 'Improved health, prevention, lifestyle resilience, and lifelong wellbeing across communities.'
-      },
-      '2': {
-        title: 'STRONGER ECONOMY',
-        desc: 'New market opportunities, investment inflows, health entrepreneurship, and sustainable GDP contribution.'
-      },
-      '3': {
-        title: 'GREATER OPPORTUNITIES',
-        desc: 'Cross-sector innovation, commercialisation pipelines, and ASEAN regional market expansion.'
-      },
-      '4': {
-        title: 'SUSTAINABLE TOMORROW',
-        desc: 'A resilient, ethical, and inclusive healthcare and wellness economy prepared for future challenges.'
-      }
-    };
+  const stakeholdersData = {
+    '1': {
+      title: 'HEALTHCARE PROVIDERS',
+      desc: 'Hospitals, clinics, and medical centres advancing integrated care.'
+    },
+    '2': {
+      title: 'WELLNESS ORGANISATIONS',
+      desc: 'Preventive centres, lifestyle medicine brands, and wellbeing practitioners.'
+    },
+    '3': {
+      title: 'HEALTH ENTERPRISES & SMES',
+      desc: 'Innovators scaling diagnostic, therapeutic, and nutritional products.'
+    },
+    '4': {
+      title: 'TECH INNOVATORS',
+      desc: 'MedTech, digital health, and AI pioneers creating smart solutions.'
+    },
+    '5': {
+      title: 'UNIVERSITIES & ACADEMIA',
+      desc: 'Medical faculties and institutions developing future clinical talent.'
+    },
+    '6': {
+      title: 'INVESTORS & CAPITAL PARTNERS',
+      desc: 'Venture capital funds and angel syndicates backing healthcare breakthroughs.'
+    }
+  };
 
-    outcomeTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const data = outcomesData[tab.dataset.outcome];
-        if (!data) return;
-
-        outcomeTabs.forEach(t => {
+  document.addEventListener('click', (e) => {
+    const outcomeTab = e.target.closest('.impact-pill-tab[data-outcome]');
+    if (outcomeTab) {
+      const data = outcomesData[outcomeTab.dataset.outcome];
+      if (data) {
+        document.querySelectorAll('.impact-pill-tab[data-outcome]').forEach(t => {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
         });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
+        outcomeTab.classList.add('active');
+        outcomeTab.setAttribute('aria-selected', 'true');
 
-        outcomeTitle.textContent = data.title;
-        outcomeDesc.textContent = data.desc;
-      });
-    });
-  }
-
-  const stakeholderTabs = document.querySelectorAll('.impact-pill-tab[data-stakeholder]');
-  const stakeholderTitle = document.getElementById('stakeholderTitle');
-  const stakeholderDesc = document.getElementById('stakeholderDesc');
-
-  if (stakeholderTabs.length && stakeholderTitle) {
-    const stakeholdersData = {
-      '1': {
-        title: 'HEALTHCARE PROVIDERS',
-        desc: 'Hospitals, clinics, and medical centres advancing integrated care.'
-      },
-      '2': {
-        title: 'WELLNESS ORGANISATIONS',
-        desc: 'Preventive centres, lifestyle medicine brands, and wellbeing practitioners.'
-      },
-      '3': {
-        title: 'HEALTH ENTERPRISES & SMES',
-        desc: 'Innovators scaling diagnostic, therapeutic, and nutritional products.'
-      },
-      '4': {
-        title: 'TECH INNOVATORS',
-        desc: 'MedTech, digital health, and AI pioneers creating smart solutions.'
-      },
-      '5': {
-        title: 'UNIVERSITIES & ACADEMIA',
-        desc: 'Medical faculties and institutions developing future clinical talent.'
-      },
-      '6': {
-        title: 'INVESTORS & CAPITAL PARTNERS',
-        desc: 'Venture capital funds and angel syndicates backing healthcare breakthroughs.'
+        const outcomeTitle = document.getElementById('outcomeTitle');
+        const outcomeDesc = document.getElementById('outcomeDesc');
+        if (outcomeTitle) outcomeTitle.textContent = data.title;
+        if (outcomeDesc) outcomeDesc.textContent = data.desc;
       }
-    };
+      return;
+    }
 
-    stakeholderTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const data = stakeholdersData[tab.dataset.stakeholder];
-        if (!data) return;
-
-        stakeholderTabs.forEach(t => {
+    const stakeholderTab = e.target.closest('.impact-pill-tab[data-stakeholder]');
+    if (stakeholderTab) {
+      const data = stakeholdersData[stakeholderTab.dataset.stakeholder];
+      if (data) {
+        document.querySelectorAll('.impact-pill-tab[data-stakeholder]').forEach(t => {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
         });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
+        stakeholderTab.classList.add('active');
+        stakeholderTab.setAttribute('aria-selected', 'true');
 
-        stakeholderTitle.textContent = data.title;
-        stakeholderDesc.textContent = data.desc;
-      });
-    });
-  }
+        const stakeholderTitle = document.getElementById('stakeholderTitle');
+        const stakeholderDesc = document.getElementById('stakeholderDesc');
+        if (stakeholderTitle) stakeholderTitle.textContent = data.title;
+        if (stakeholderDesc) stakeholderDesc.textContent = data.desc;
+      }
+      return;
+    }
+  });
 
   // ==========================================================================
   // 12. FOUR CHAPTER AWARDS JOURNEY & INTERACTIVE DRAWER (#the-awards)
-  const chapterCards = document.querySelectorAll('.award-chapter-card');
-  const stageAwardsDrawer = document.getElementById('stageAwardsDrawer');
-  const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-  const drawerJourneyTitle = document.getElementById('drawerJourneyTitle');
-  const drawerJourneySub = document.getElementById('drawerJourneySub');
-  const drawerStageEyebrow = document.getElementById('drawerStageEyebrow');
-  const drawerPanels = document.querySelectorAll('.drawer-stage-content');
-
+  // ==========================================================================
   const journeyData = {
     'stay-well': {
       title: 'STAY WELL',
@@ -1498,20 +1658,24 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const openJourneyDrawer = (journeyKey) => {
+    const stageAwardsDrawer = document.getElementById('stageAwardsDrawer');
     if (!stageAwardsDrawer || !journeyData[journeyKey]) return;
 
-    chapterCards.forEach(card => {
+    document.querySelectorAll('.award-chapter-card').forEach(card => {
       const isTarget = card.getAttribute('data-journey') === journeyKey;
       card.classList.toggle('is-active', isTarget);
       card.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
     });
 
     const meta = journeyData[journeyKey];
+    const drawerJourneyTitle = document.getElementById('drawerJourneyTitle');
+    const drawerJourneySub = document.getElementById('drawerJourneySub');
+    const drawerStageEyebrow = document.getElementById('drawerStageEyebrow');
     if (drawerJourneyTitle) drawerJourneyTitle.textContent = meta.title;
     if (drawerJourneySub) drawerJourneySub.textContent = meta.sub;
     if (drawerStageEyebrow) drawerStageEyebrow.textContent = meta.eyebrow;
 
-    drawerPanels.forEach(panel => {
+    document.querySelectorAll('.drawer-stage-content').forEach(panel => {
       panel.classList.remove('active');
     });
     const activePanel = document.getElementById(`panel-${journeyKey}`);
@@ -1527,32 +1691,37 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const closeJourneyDrawer = () => {
+    const stageAwardsDrawer = document.getElementById('stageAwardsDrawer');
     if (!stageAwardsDrawer) return;
     stageAwardsDrawer.style.display = 'none';
-    chapterCards.forEach(card => {
+    document.querySelectorAll('.award-chapter-card').forEach(card => {
       card.classList.remove('is-active');
       card.setAttribute('aria-expanded', 'false');
     });
   };
 
-  chapterCards.forEach(card => {
-    const journey = card.getAttribute('data-journey');
-    card.addEventListener('click', (e) => {
+  document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('#closeDrawerBtn');
+    if (closeBtn) {
+      closeJourneyDrawer();
+      return;
+    }
+    const card = e.target.closest('.award-chapter-card');
+    if (card) {
       if (e.target.closest('.open-nomination-btn')) return;
-      openJourneyDrawer(journey);
-    });
-
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openJourneyDrawer(journey);
-      }
-    });
+      const journey = card.getAttribute('data-journey');
+      if (journey) openJourneyDrawer(journey);
+    }
   });
 
-  if (closeDrawerBtn) {
-    closeDrawerBtn.addEventListener('click', closeJourneyDrawer);
-  }
+  document.addEventListener('keydown', (e) => {
+    const card = e.target.closest('.award-chapter-card');
+    if (card && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      const journey = card.getAttribute('data-journey');
+      if (journey) openJourneyDrawer(journey);
+    }
+  });
 
   // URL Hash or Query Parameter Deep-link support
   const checkUrlJourney = () => {
@@ -1567,75 +1736,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   checkUrlJourney();
+  window.intecareCheckUrlJourney = checkUrlJourney;
 
   // ==========================================================================
   // CORPORATE STREAM TABS SWITCHER (#corporate-awards)
   // ==========================================================================
-  const corpStreamTabs = document.querySelectorAll('.corp-stream-tab');
-  const corpStreamPanels = document.querySelectorAll('.corp-panel, .corp-stream-panel');
+  document.addEventListener('click', (e) => {
+    const tab = e.target.closest('.corp-stream-tab');
+    if (!tab) return;
+    const streamKey = tab.getAttribute('data-corp-stream');
+    if (!streamKey) return;
 
-  corpStreamTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const streamKey = tab.getAttribute('data-corp-stream');
-
-      corpStreamTabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      corpStreamPanels.forEach(p => {
-        p.classList.remove('active');
-        p.style.display = 'none';
-      });
-
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      const targetPanel = document.getElementById(`corp-panel-${streamKey}`);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-        targetPanel.style.display = 'block';
-      }
+    document.querySelectorAll('.corp-stream-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
     });
+    document.querySelectorAll('.corp-panel, .corp-stream-panel').forEach(p => {
+      p.classList.remove('active');
+      p.style.display = 'none';
+    });
+
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const targetPanel = document.getElementById(`corp-panel-${streamKey}`);
+    if (targetPanel) {
+      targetPanel.classList.add('active');
+      targetPanel.style.display = 'block';
+    }
   });
 
   // ==========================================================================
   // AWARD DETAIL MODAL (#awardDetailModal) & CARD INSPECTION
   // ==========================================================================
-  const awardDetailModal = document.getElementById('awardDetailModal');
-  const closeAwardDetailBtn = document.getElementById('closeAwardDetailBtn');
-  const cancelAwardDetailBtn = document.getElementById('cancelAwardDetailBtn');
-  const detailNominateBtn = document.getElementById('detailNominateBtn');
-  const awardDetailNum = document.getElementById('awardDetailNum');
-  const awardDetailBadge = document.getElementById('awardDetailBadge');
-  const awardDetailSubgroup = document.getElementById('awardDetailSubgroup');
-  const awardDetailTitle = document.getElementById('awardDetailTitle');
-  const awardDetailDesc = document.getElementById('awardDetailDesc');
-
   const closeAwardDetail = () => {
+    const awardDetailModal = document.getElementById('awardDetailModal');
     if (awardDetailModal && typeof awardDetailModal.close === 'function' && awardDetailModal.open) {
       awardDetailModal.close();
     }
   };
 
-  if (closeAwardDetailBtn) closeAwardDetailBtn.addEventListener('click', closeAwardDetail);
-  if (cancelAwardDetailBtn) cancelAwardDetailBtn.addEventListener('click', closeAwardDetail);
-  if (awardDetailModal) {
-    awardDetailModal.addEventListener('click', (e) => {
-      if (e.target === awardDetailModal) closeAwardDetail();
-    });
-  }
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#closeAwardDetailBtn') || e.target.closest('#cancelAwardDetailBtn')) {
+      closeAwardDetail();
+      return;
+    }
 
-  document.querySelectorAll('.btn-inspect-award, .btn-drawer-details').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    const awardDetailModal = document.getElementById('awardDetailModal');
+    if (awardDetailModal && e.target === awardDetailModal) {
+      closeAwardDetail();
+      return;
+    }
+
+    const inspectBtn = e.target.closest('.btn-inspect-award, .btn-drawer-details');
+    if (inspectBtn) {
       e.preventDefault();
       e.stopPropagation();
-      const num = btn.getAttribute('data-award-num') || '';
-      const title = btn.getAttribute('data-award-title') || '';
-      const stream = btn.getAttribute('data-stream') || 'individual';
-      const subLabel = btn.getAttribute('data-subgroup-label') || '';
-      const stageLabel = btn.getAttribute('data-stage-label') || '';
-      const nomTitle = btn.getAttribute('data-nom-title') || title;
-      const desc = btn.getAttribute('data-award-desc') || '';
+      const num = inspectBtn.getAttribute('data-award-num') || '';
+      const title = inspectBtn.getAttribute('data-award-title') || '';
+      const stream = inspectBtn.getAttribute('data-stream') || 'individual';
+      const subLabel = inspectBtn.getAttribute('data-subgroup-label') || '';
+      const stageLabel = inspectBtn.getAttribute('data-stage-label') || '';
+      const nomTitle = inspectBtn.getAttribute('data-nom-title') || title;
+      const desc = inspectBtn.getAttribute('data-award-desc') || '';
+
+      const awardDetailNum = document.getElementById('awardDetailNum');
+      const awardDetailBadge = document.getElementById('awardDetailBadge');
+      const awardDetailSubgroup = document.getElementById('awardDetailSubgroup');
+      const awardDetailTitle = document.getElementById('awardDetailTitle');
+      const awardDetailDesc = document.getElementById('awardDetailDesc');
+      const detailNominateBtn = document.getElementById('detailNominateBtn');
 
       if (awardDetailNum) awardDetailNum.textContent = num;
       if (awardDetailBadge) awardDetailBadge.textContent = stream.toUpperCase();
@@ -1651,22 +1821,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (awardDetailModal && typeof awardDetailModal.showModal === 'function') {
         awardDetailModal.showModal();
       }
-    });
-  });
+      return;
+    }
 
-  if (detailNominateBtn) {
-    detailNominateBtn.addEventListener('click', () => {
+    if (e.target.closest('#detailNominateBtn')) {
       closeAwardDetail();
-    });
-  }
-
+    }
+  });
 
   // ==========================================================================
   // TROPHY SHOWCASE: INTERACTIVE 5-ITEM SYMBOLISM SELECTOR
   // ==========================================================================
-  const trophyTabs = document.querySelectorAll('.trophy-sym-tab');
-  const symCardTitle = document.getElementById('symCardTitle');
-  const symCardDesc = document.getElementById('symCardDesc');
   const trophyData = {
     people: {
       title: 'PEOPLE',
@@ -1690,62 +1855,58 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  if (trophyTabs.length && symCardTitle && symCardDesc) {
-    trophyTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const val = tab.getAttribute('data-value');
-        if (!val || !trophyData[val]) return;
+  document.addEventListener('click', (e) => {
+    const tab = e.target.closest('.trophy-sym-tab');
+    if (!tab) return;
+    const val = tab.getAttribute('data-value');
+    if (!val || !trophyData[val]) return;
 
-        trophyTabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        symCardTitle.style.opacity = '0';
-        symCardDesc.style.opacity = '0';
-        setTimeout(() => {
-          symCardTitle.textContent = trophyData[val].title;
-          symCardDesc.textContent = trophyData[val].desc;
-          symCardTitle.style.opacity = '1';
-          symCardDesc.style.opacity = '1';
-        }, 120);
-      });
+    document.querySelectorAll('.trophy-sym-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
     });
-  }
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+
+    const symCardTitle = document.getElementById('symCardTitle');
+    const symCardDesc = document.getElementById('symCardDesc');
+    if (symCardTitle && symCardDesc) {
+      symCardTitle.style.opacity = '0';
+      symCardDesc.style.opacity = '0';
+      setTimeout(() => {
+        symCardTitle.textContent = trophyData[val].title;
+        symCardDesc.textContent = trophyData[val].desc;
+        symCardTitle.style.opacity = '1';
+        symCardDesc.style.opacity = '1';
+      }, 120);
+    }
+  });
 
   // ==========================================================================
   // GUIDELINES: ACCESSIBLE COMPACT ACCORDION
   // ==========================================================================
-  const accItems = document.querySelectorAll('.guideline-accordion-item');
-  if (accItems.length) {
-    accItems.forEach(item => {
-      const btn = item.querySelector('.guideline-acc-btn');
-      if (!btn) return;
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.guideline-acc-btn');
+    if (!btn) return;
+    const item = btn.closest('.guideline-accordion-item');
+    if (!item) return;
 
-      btn.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        accItems.forEach(other => {
-          other.classList.remove('open');
-          const otherBtn = other.querySelector('.guideline-acc-btn');
-          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-        });
-
-        if (!isOpen) {
-          item.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.guideline-accordion-item').forEach(other => {
+      other.classList.remove('open');
+      const otherBtn = other.querySelector('.guideline-acc-btn');
+      if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
     });
-  }
+
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
 
   // ==========================================================================
   // TIMELINE: INTERACTIVE MILESTONE SWITCHER
   // ==========================================================================
-  const milestoneBtns = document.querySelectorAll('.timeline-ms-btn');
-  const timelineMsTitle = document.getElementById('timelineMsTitle');
-  const timelineMsDesc = document.getElementById('timelineMsDesc');
   const milestoneData = {
     opening: {
       title: 'NOMINATION OPENING — 28 SEPTEMBER 2026',
@@ -1757,450 +1918,584 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  if (milestoneBtns.length && timelineMsTitle && timelineMsDesc) {
-    milestoneBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ms = btn.getAttribute('data-milestone');
-        if (!ms || !milestoneData[ms]) return;
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.timeline-ms-btn');
+    if (!btn) return;
+    const ms = btn.getAttribute('data-milestone');
+    if (!ms || !milestoneData[ms]) return;
 
-        milestoneBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    document.querySelectorAll('.timeline-ms-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-        timelineMsTitle.style.opacity = '0';
-        timelineMsDesc.style.opacity = '0';
-        setTimeout(() => {
-          timelineMsTitle.textContent = milestoneData[ms].title;
-          timelineMsDesc.textContent = milestoneData[ms].desc;
-          timelineMsTitle.style.opacity = '1';
-          timelineMsDesc.style.opacity = '1';
-        }, 100);
-      });
-    });
-  }
+    const timelineMsTitle = document.getElementById('timelineMsTitle');
+    const timelineMsDesc = document.getElementById('timelineMsDesc');
+    if (timelineMsTitle && timelineMsDesc) {
+      timelineMsTitle.style.opacity = '0';
+      timelineMsDesc.style.opacity = '0';
+      setTimeout(() => {
+        timelineMsTitle.textContent = milestoneData[ms].title;
+        timelineMsDesc.textContent = milestoneData[ms].desc;
+        timelineMsTitle.style.opacity = '1';
+        timelineMsDesc.style.opacity = '1';
+      }, 100);
+    }
+  });
 
   // ==========================================================================
   // 13. ABOUT PAGE: 10 STRATEGIC OBJECTIVES INTERACTIVE SWITCHER
   // Provides two-column interactive showcase on desktop + accordion on mobile
   // Keyboard accessible with Enter, Space, Up and Down arrow navigation
   // ==========================================================================
-  const objectiveBtns = document.querySelectorAll('.objective-nav-btn');
-  const watermarkEl = document.getElementById('activeObjectiveWatermark');
-  const titleEl = document.getElementById('activeObjectiveTitle');
-  const descEl = document.getElementById('activeObjectiveDesc');
-  const badgeEl = document.getElementById('activeObjectiveBadge');
+  const activateObjective = (btn, shouldFocus = false) => {
+    if (!btn) return;
+    const num = btn.getAttribute('data-num') || '01';
+    const title = btn.getAttribute('data-title') || '';
+    const desc = btn.getAttribute('data-desc') || '';
+    const wrap = btn.closest('.objective-nav-item-wrap');
 
-  if (objectiveBtns.length) {
-    const activateObjective = (btn, shouldFocus = false) => {
-      const num = btn.getAttribute('data-num') || '01';
-      const title = btn.getAttribute('data-title') || '';
-      const desc = btn.getAttribute('data-desc') || '';
-      const wrap = btn.closest('.objective-nav-item-wrap');
-
-      // Update button states
-      objectiveBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      if (shouldFocus) {
-        btn.focus();
-      }
-
-      // Mobile Accordion toggle
-      document.querySelectorAll('.objective-nav-item-wrap').forEach(w => {
-        if (w !== wrap) {
-          w.classList.remove('open');
-        }
-      });
-      if (wrap) {
-        wrap.classList.toggle('open');
-      }
-
-      // Desktop Featured Panel update with smooth transition
-      if (titleEl && descEl) {
-        titleEl.style.opacity = '0';
-        descEl.style.opacity = '0';
-        titleEl.style.transform = 'translateY(6px)';
-        descEl.style.transform = 'translateY(6px)';
-
-        setTimeout(() => {
-          if (watermarkEl) watermarkEl.textContent = num;
-          if (badgeEl) badgeEl.textContent = `OBJECTIVE ${num} OF 10 • STRATEGIC MANDATE`;
-          titleEl.textContent = title;
-          descEl.textContent = desc;
-
-          titleEl.style.opacity = '1';
-          descEl.style.opacity = '1';
-          titleEl.style.transform = 'translateY(0)';
-          descEl.style.transform = 'translateY(0)';
-        }, 150);
-      }
-    };
-
-    objectiveBtns.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        activateObjective(btn, false);
-      });
-
-      // Keyboard navigation: Up/Down arrow keys
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          const nextIndex = (index + 1) % objectiveBtns.length;
-          activateObjective(objectiveBtns[nextIndex], true);
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          const prevIndex = (index - 1 + objectiveBtns.length) % objectiveBtns.length;
-          activateObjective(objectiveBtns[prevIndex], true);
-        }
-      });
+    document.querySelectorAll('.objective-nav-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
-  }
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+
+    if (shouldFocus) {
+      btn.focus();
+    }
+
+    // Mobile Accordion toggle
+    document.querySelectorAll('.objective-nav-item-wrap').forEach(w => {
+      if (w !== wrap) {
+        w.classList.remove('open');
+      }
+    });
+    if (wrap) {
+      wrap.classList.toggle('open');
+    }
+
+    // Desktop Featured Panel update with smooth transition
+    const watermarkEl = document.getElementById('activeObjectiveWatermark');
+    const titleEl = document.getElementById('activeObjectiveTitle');
+    const descEl = document.getElementById('activeObjectiveDesc');
+    const badgeEl = document.getElementById('activeObjectiveBadge');
+
+    if (titleEl && descEl) {
+      titleEl.style.opacity = '0';
+      descEl.style.opacity = '0';
+      titleEl.style.transform = 'translateY(6px)';
+      descEl.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        if (watermarkEl) watermarkEl.textContent = num;
+        if (badgeEl) badgeEl.textContent = `OBJECTIVE ${num} OF 10 • STRATEGIC MANDATE`;
+        titleEl.textContent = title;
+        descEl.textContent = desc;
+
+        titleEl.style.opacity = '1';
+        descEl.style.opacity = '1';
+        titleEl.style.transform = 'translateY(0)';
+        descEl.style.transform = 'translateY(0)';
+      }, 150);
+    }
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.objective-nav-btn');
+    if (!btn) return;
+    activateObjective(btn, false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const btn = e.target.closest('.objective-nav-btn');
+    if (!btn) return;
+    const allBtns = Array.from(document.querySelectorAll('.objective-nav-btn'));
+    const index = allBtns.indexOf(btn);
+    if (index === -1) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (index + 1) % allBtns.length;
+      activateObjective(allBtns[nextIndex], true);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = (index - 1 + allBtns.length) % allBtns.length;
+      activateObjective(allBtns[prevIndex], true);
+    }
+  });
 
   // ==========================================================================
   // 14. ORGANISERS ALLIANCE: PARTNER PROFILE EXPAND/COLLAPSE CONTROLLER
   // ==========================================================================
-  const partnerToggleBtns = document.querySelectorAll('.partner-toggle-btn');
-  partnerToggleBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const targetId = btn.getAttribute('data-target');
-      const drawer = document.getElementById(targetId);
-      if (!drawer) return;
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.partner-toggle-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    const targetId = btn.getAttribute('data-target');
+    const drawer = document.getElementById(targetId);
+    if (!drawer) return;
 
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        drawer.classList.add('collapsed');
-        btn.setAttribute('aria-expanded', 'false');
-        const textSpan = btn.querySelector('.btn-text');
-        const iconSpan = btn.querySelector('.btn-icon');
-        if (textSpan) textSpan.textContent = 'View Detailed Profile';
-        if (iconSpan) iconSpan.textContent = '▼';
-      } else {
-        drawer.classList.remove('collapsed');
-        btn.setAttribute('aria-expanded', 'true');
-        const textSpan = btn.querySelector('.btn-text');
-        const iconSpan = btn.querySelector('.btn-icon');
-        if (textSpan) textSpan.textContent = 'Hide Detailed Profile';
-        if (iconSpan) iconSpan.textContent = '▲';
-      }
-    });
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      drawer.classList.add('collapsed');
+      btn.setAttribute('aria-expanded', 'false');
+      const textSpan = btn.querySelector('.btn-text');
+      const iconSpan = btn.querySelector('.btn-icon');
+      if (textSpan) textSpan.textContent = 'View Detailed Profile';
+      if (iconSpan) iconSpan.textContent = '▼';
+    } else {
+      drawer.classList.remove('collapsed');
+      btn.setAttribute('aria-expanded', 'true');
+      const textSpan = btn.querySelector('.btn-text');
+      const iconSpan = btn.querySelector('.btn-icon');
+      if (textSpan) textSpan.textContent = 'Hide Detailed Profile';
+      if (iconSpan) iconSpan.textContent = '▲';
+    }
   });
 
   // ==========================================================================
   // 15. GOVERNANCE & EVALUATION INTEGRITY: 3-STAGE INTERACTIVE EXPLORER
   // ==========================================================================
-  const govStepBtns = document.querySelectorAll('.governance-step-btn');
-  const govWatermark = document.getElementById('govWatermark');
-  const govBadge = document.getElementById('govBadge');
-  const govTitle = document.getElementById('govTitle');
-  const govDesc = document.getElementById('govDesc');
+  const govStages = {
+    '1': {
+      num: '01',
+      badge: 'RIGOROUS OVERSIGHT • STAGE 01',
+      title: '01. INDEPENDENT PANEL',
+      desc: 'Dossiers are scored independently by senior healthcare professionals, medical educators, and enterprise leaders without conflict of interest.'
+    },
+    '2': {
+      num: '02',
+      badge: 'RIGOROUS OVERSIGHT • STAGE 02',
+      title: '02. EVIDENCE AUDITING',
+      desc: 'All claims of clinical innovation, patient impact, and enterprise scalability are validated against verifiable documentation and testimonials.'
+    },
+    '3': {
+      num: '03',
+      badge: 'RIGOROUS OVERSIGHT • STAGE 03',
+      title: '03. NO COMMERCIAL BIAS',
+      desc: 'Sponsorship or commercial partnership does not influence judging outcomes; selection is strictly predicated on genuine merit and ecosystem impact.'
+    }
+  };
 
-  if (govStepBtns.length && govTitle) {
-    const govStages = {
-      '1': {
-        num: '01',
-        badge: 'RIGOROUS OVERSIGHT • STAGE 01',
-        title: '01. INDEPENDENT PANEL',
-        desc: 'Dossiers are scored independently by senior healthcare professionals, medical educators, and enterprise leaders without conflict of interest.'
-      },
-      '2': {
-        num: '02',
-        badge: 'RIGOROUS OVERSIGHT • STAGE 02',
-        title: '02. EVIDENCE AUDITING',
-        desc: 'All claims of clinical innovation, patient impact, and enterprise scalability are validated against verifiable documentation and testimonials.'
-      },
-      '3': {
-        num: '03',
-        badge: 'RIGOROUS OVERSIGHT • STAGE 03',
-        title: '03. NO COMMERCIAL BIAS',
-        desc: 'Sponsorship or commercial partnership does not influence judging outcomes; selection is strictly predicated on genuine merit and ecosystem impact.'
-      }
-    };
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.governance-step-btn');
+    if (!btn) return;
+    const stageKey = btn.getAttribute('data-gov-stage');
+    const data = govStages[stageKey];
+    if (!data) return;
 
-    govStepBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const stageKey = btn.getAttribute('data-gov-stage');
-        const data = govStages[stageKey];
-        if (!data) return;
-
-        govStepBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-
-        if (govWatermark) govWatermark.textContent = data.num;
-        if (govBadge) govBadge.textContent = data.badge;
-        if (govTitle) govTitle.textContent = data.title;
-        if (govDesc) govDesc.textContent = data.desc;
-      });
+    document.querySelectorAll('.governance-step-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
-  }
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+
+    const govWatermark = document.getElementById('govWatermark');
+    const govBadge = document.getElementById('govBadge');
+    const govTitle = document.getElementById('govTitle');
+    const govDesc = document.getElementById('govDesc');
+
+    if (govWatermark) govWatermark.textContent = data.num;
+    if (govBadge) govBadge.textContent = data.badge;
+    if (govTitle) govTitle.textContent = data.title;
+    if (govDesc) govDesc.textContent = data.desc;
+  });
 
   // ==========================================================================
   // 16. EVENT DETAILS: PROGRAMME TIMELINE INTERACTIVE CONTROLLER
   // ==========================================================================
-  const progTimelineBtns = document.querySelectorAll('.programme-timeline-btn');
-  const progWatermark = document.getElementById('progWatermark');
-  const progTimeTag = document.getElementById('progTimeTag');
-  const progStatusTag = document.getElementById('progStatusTag');
-  const progTitle = document.getElementById('progTitle');
-  const progDesc = document.getElementById('progDesc');
-  const progFootnote = document.getElementById('progFootnote');
+  const programmeMilestones = {
+    '1': {
+      num: '01',
+      time: '6:30 PM',
+      status: 'GALA RECEPTION • MILESTONE 01',
+      title: 'RED CARPET & VVIP ARRIVAL',
+      desc: 'Arrival reception, photo opportunities, media wall interviews, and registration for guests, nominees, and delegates.',
+      foot: 'Official Event Schedule — Grand Ballroom Foyer'
+    },
+    '2': {
+      num: '02',
+      time: '7:30 PM',
+      status: 'FORMAL COMMENCEMENT • MILESTONE 02',
+      title: 'OPENING ADDRESS & GALA COMMENCEMENT',
+      desc: 'Welcome addresses by the Organising Committee and leadership of HWED & MIHA, setting the strategic vision for the evening.',
+      foot: 'Official Event Schedule — Grand Ballroom'
+    },
+    '3': {
+      num: '03',
+      time: '8:00 PM',
+      status: 'KEYNOTE ECOSYSTEM LAUNCH • MILESTONE 03',
+      title: 'OFFICIAL HWED ECOSYSTEM LAUNCH',
+      desc: 'Formal national introduction of the Healthcare & Wellness Economy Development (HWED) multi-sector initiative and strategic framework.',
+      foot: 'Featured Milestone ✦ Grand Ballroom Main Stage'
+    },
+    '4': {
+      num: '04',
+      time: '8:30 PM',
+      status: 'ACADEMIC CONVOCATION • MILESTONE 04',
+      title: 'OLYMPIA EDUCATION CONVOCATION CEREMONY',
+      desc: 'Conferment ceremony honouring 45 graduating healthcare & wellness professionals receiving their professional credentials and diplomas.',
+      foot: 'Official Event Schedule — Grand Ballroom Main Stage'
+    },
+    '5': {
+      num: '05',
+      time: '9:00 PM',
+      status: 'ENTERPRISE SHOWCASE • MILESTONE 05',
+      title: 'PRODUCT INNOVATION SHOWCASE: NANOTECH SANITIZER',
+      desc: 'Official unveiling of the advanced Nanotech Sanitizer enterprise innovation, highlighting breakthrough antimicrobial standards and commercial deployment.',
+      foot: 'Official Event Schedule — Grand Ballroom Main Stage'
+    },
+    '6': {
+      num: '06',
+      time: '9:30 PM',
+      status: 'SIGNATURE AWARDS CEREMONY • MILESTONE 06',
+      title: 'PRESENTATION OF 40 EXCELLENCE AWARDS',
+      desc: 'Signature ceremony presenting 20 Individual and 20 Corporate Excellence Awards honouring transformative clinical leaders and pioneering healthcare organisations.',
+      foot: 'Featured Milestone ✦ Grand Ballroom Main Stage'
+    },
+    '7': {
+      num: '07',
+      time: '10:30 PM',
+      status: 'EXECUTIVE CELEBRATION • MILESTONE 07',
+      title: 'FORMAL DINNER, NETWORKING SOIRÉE & CELEBRATION',
+      desc: 'Executive networking dinner, commemorative photography, and celebratory fellowship among healthcare leaders, corporate partners, and dignitaries.',
+      foot: 'Official Event Schedule — Grand Ballroom & Banquet Tables'
+    }
+  };
 
-  if (progTimelineBtns.length && progTitle) {
-    const programmeMilestones = {
-      '1': {
-        num: '01',
-        time: '6:30 PM',
-        status: 'GALA RECEPTION • MILESTONE 01',
-        title: 'RED CARPET & VVIP ARRIVAL',
-        desc: 'Arrival reception, photo opportunities, media wall interviews, and registration for guests, nominees, and delegates.',
-        foot: 'Official Event Schedule — Grand Ballroom Foyer'
-      },
-      '2': {
-        num: '02',
-        time: '7:30 PM',
-        status: 'FORMAL COMMENCEMENT • MILESTONE 02',
-        title: 'OPENING ADDRESS & GALA COMMENCEMENT',
-        desc: 'Welcome addresses by the Organising Committee and leadership of HWED & MIHA, setting the strategic vision for the evening.',
-        foot: 'Official Event Schedule — Grand Ballroom'
-      },
-      '3': {
-        num: '03',
-        time: '8:00 PM',
-        status: 'KEYNOTE ECOSYSTEM LAUNCH • MILESTONE 03',
-        title: 'OFFICIAL HWED ECOSYSTEM LAUNCH',
-        desc: 'Formal national introduction of the Healthcare & Wellness Economy Development (HWED) multi-sector initiative and strategic framework.',
-        foot: 'Featured Milestone ✦ Grand Ballroom Main Stage'
-      },
-      '4': {
-        num: '04',
-        time: '8:30 PM',
-        status: 'ACADEMIC CONVOCATION • MILESTONE 04',
-        title: 'OLYMPIA EDUCATION CONVOCATION CEREMONY',
-        desc: 'Conferment ceremony honouring 45 graduating healthcare & wellness professionals receiving their professional credentials and diplomas.',
-        foot: 'Official Event Schedule — Grand Ballroom Main Stage'
-      },
-      '5': {
-        num: '05',
-        time: '9:00 PM',
-        status: 'ENTERPRISE SHOWCASE • MILESTONE 05',
-        title: 'PRODUCT INNOVATION SHOWCASE: NANOTECH SANITIZER',
-        desc: 'Official unveiling of the advanced Nanotech Sanitizer enterprise innovation, highlighting breakthrough antimicrobial standards and commercial deployment.',
-        foot: 'Official Event Schedule — Grand Ballroom Main Stage'
-      },
-      '6': {
-        num: '06',
-        time: '9:30 PM',
-        status: 'SIGNATURE AWARDS CEREMONY • MILESTONE 06',
-        title: 'PRESENTATION OF 40 EXCELLENCE AWARDS',
-        desc: 'Signature ceremony presenting 20 Individual and 20 Corporate Excellence Awards honouring transformative clinical leaders and pioneering healthcare organisations.',
-        foot: 'Featured Milestone ✦ Grand Ballroom Main Stage'
-      },
-      '7': {
-        num: '07',
-        time: '10:30 PM',
-        status: 'EXECUTIVE CELEBRATION • MILESTONE 07',
-        title: 'FORMAL DINNER, NETWORKING SOIRÉE & CELEBRATION',
-        desc: 'Executive networking dinner, commemorative photography, and celebratory fellowship among healthcare leaders, corporate partners, and dignitaries.',
-        foot: 'Official Event Schedule — Grand Ballroom & Banquet Tables'
-      }
-    };
+  const activateMilestone = (btn) => {
+    if (!btn) return;
+    const milestoneId = btn.getAttribute('data-programme-id');
+    const data = programmeMilestones[milestoneId];
+    if (!data) return;
 
-    const activateMilestone = (btn) => {
-      const milestoneId = btn.getAttribute('data-programme-id');
-      const data = programmeMilestones[milestoneId];
-      if (!data) return;
-
-      progTimelineBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      if (progWatermark) progWatermark.textContent = data.num;
-      if (progTimeTag) progTimeTag.textContent = data.time;
-      if (progStatusTag) progStatusTag.textContent = data.status;
-      if (progTitle) progTitle.textContent = data.title;
-      if (progDesc) progDesc.textContent = data.desc;
-      if (progFootnote) progFootnote.textContent = data.foot;
-    };
-
-    progTimelineBtns.forEach((btn, index) => {
-      btn.addEventListener('click', () => activateMilestone(btn));
-
-      // Keyboard accessibility for tablist
-      btn.addEventListener('keydown', (e) => {
-        let targetIndex = -1;
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-          e.preventDefault();
-          targetIndex = (index + 1) % progTimelineBtns.length;
-        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          targetIndex = (index - 1 + progTimelineBtns.length) % progTimelineBtns.length;
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          targetIndex = 0;
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          targetIndex = progTimelineBtns.length - 1;
-        }
-
-        if (targetIndex >= 0) {
-          progTimelineBtns[targetIndex].focus();
-          activateMilestone(progTimelineBtns[targetIndex]);
-        }
-      });
+    document.querySelectorAll('.programme-timeline-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
-  }
+
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+
+    const progWatermark = document.getElementById('progWatermark');
+    const progTimeTag = document.getElementById('progTimeTag');
+    const progStatusTag = document.getElementById('progStatusTag');
+    const progTitle = document.getElementById('progTitle');
+    const progDesc = document.getElementById('progDesc');
+    const progFootnote = document.getElementById('progFootnote');
+
+    if (progWatermark) progWatermark.textContent = data.num;
+    if (progTimeTag) progTimeTag.textContent = data.time;
+    if (progStatusTag) progStatusTag.textContent = data.status;
+    if (progTitle) progTitle.textContent = data.title;
+    if (progDesc) progDesc.textContent = data.desc;
+    if (progFootnote) progFootnote.textContent = data.foot;
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.programme-timeline-btn');
+    if (!btn) return;
+    activateMilestone(btn);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const btn = e.target.closest('.programme-timeline-btn');
+    if (!btn) return;
+    const allBtns = Array.from(document.querySelectorAll('.programme-timeline-btn'));
+    const index = allBtns.indexOf(btn);
+    if (index === -1) return;
+
+    let targetIndex = -1;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      targetIndex = (index + 1) % allBtns.length;
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      targetIndex = (index - 1 + allBtns.length) % allBtns.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      targetIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      targetIndex = allBtns.length - 1;
+    }
+
+    if (targetIndex >= 0 && allBtns[targetIndex]) {
+      allBtns[targetIndex].focus();
+      activateMilestone(allBtns[targetIndex]);
+    }
+  });
 });
 
 /* ==========================================================================
-   EDITORIAL BOOK PAGE-TURN TRANSITION CONTROLLER
-   Luxury Editorial Magazine / Awards Publication Page Turn:
-   - Intercepts internal navigation links
-   - Initiates physical right-to-left 3D page bending & light sheen
-/* ==========================================================================
-   LUXURY EDITORIAL MAGAZINE / ART BOOK PAGE REVEAL CONTROLLER
-   - Seamlessly animates flat ivory paper sheet with curved leading fold
-   - Moving soft translucent shadow tracks with the leading edge
-   - Triggers clean multi-page PHP navigation at ~400ms
-   - Subtle destination settle on page load
+   EDITORIAL BOOK PAGE-TURN TRANSITION CONTROLLER (SPA-ENHANCED / ZERO BLINK)
+   Luxury Editorial Magazine / Awards Publication Seamless Page Reveal:
+   - Dynamic Background HTML Fetch + In-Place DOM Swapping behind the paper sheet.
+   - 100% Zero document unload, zero white flashes, continuous physical book page sweep.
+   - Seamless popstate / back-forward browser history support.
    ========================================================================== */
 (function initEditorialPaperReveal() {
-  const setupTransition = () => {
-    const transitionOverlay = document.getElementById('intecarePageTransition');
-    if (!transitionOverlay) return;
+  const transitionOverlay = document.getElementById('intecarePageTransition');
+  if (!transitionOverlay) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let isNavigating = false;
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let isTransitioning = false;
 
-    // 1. Check for incoming page settlement
-    const hasPendingTransition = sessionStorage.getItem('intecare_editorial_transition') === 'active';
-    if (hasPendingTransition && !prefersReducedMotion) {
-      sessionStorage.removeItem('intecare_editorial_transition');
-      document.body.classList.add('is-page-settling');
-      transitionOverlay.classList.remove('is-active');
+  const cleanPath = (p) => {
+    let path = (p || '').toLowerCase().replace(/\/index\.php$/i, '/').replace(/\.php$/i, '').replace(/\/+$/, '');
+    return path === '' ? '/' : path;
+  };
 
-      setTimeout(() => {
-        document.body.classList.remove('is-page-settling');
-      }, 250);
-    } else {
-      sessionStorage.removeItem('intecare_editorial_transition');
-      transitionOverlay.classList.remove('is-active');
-    }
-
-    // 2. Browser Back/Forward & BFCache restoration
-    window.addEventListener('pageshow', (event) => {
-      isNavigating = false;
-      sessionStorage.removeItem('intecare_editorial_transition');
-      transitionOverlay.classList.remove('is-active');
-      document.body.classList.remove('is-page-settling');
-    });
-
-    // 3. Intercept internal navigation clicks
-    document.addEventListener('click', (event) => {
-      const link = event.target.closest('a');
-      if (!link) return;
-
-      // Skip modifier keys or non-primary clicks
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
-        return;
-      }
-
-      // Skip explicit download or new tab links
-      if (link.hasAttribute('download') || (link.target && link.target !== '_self')) {
-        return;
-      }
-
-      // Skip modal buttons & AI assistant widgets
-      if (link.classList.contains('open-nomination-btn') || 
-          link.classList.contains('open-tracking-btn') || 
-          link.classList.contains('no-transition') ||
-          link.closest('.assistant-concierge-panel') ||
-          link.closest('.assistant-widget')) {
-        return;
-      }
-
-      const hrefAttr = link.getAttribute('href');
-      if (!hrefAttr) return;
-
-      // Skip anchors, javascript, mailto, tel
-      if (hrefAttr.startsWith('#') || 
-          hrefAttr.startsWith('javascript:') || 
-          hrefAttr.startsWith('mailto:') || 
-          hrefAttr.startsWith('tel:')) {
-        return;
-      }
-
-      // Parse destination URL
-      let targetUrl;
+  const updateActiveNav = (targetPathname) => {
+    const normTarget = cleanPath(targetPathname);
+    const navLinks = document.querySelectorAll('.nav-link, .footer-nav-list a');
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('javascript:') || href.startsWith('#')) return;
       try {
-        targetUrl = new URL(link.href, window.location.href);
-      } catch (e) {
-        return;
-      }
-
-      // Must be same origin (internal page)
-      if (targetUrl.origin !== window.location.origin) {
-        return;
-      }
-
-      // If destination is on same path and only hash differs, allow smooth scroll
-      const isSamePath = (targetUrl.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '')) &&
-                         (targetUrl.search === window.location.search);
-      if (isSamePath && targetUrl.hash) {
-        return;
-      }
-
-      // If exact same URL, do nothing
-      if (targetUrl.href === window.location.href) {
-        return;
-      }
-
-      // If reduced motion is preferred, let browser handle navigation instantly
-      if (prefersReducedMotion) {
-        return;
-      }
-
-      // Prevent default jump and initiate paper reveal sweep
-      event.preventDefault();
-      if (isNavigating) return;
-      isNavigating = true;
-
-      // Set transition flag for destination page
-      sessionStorage.setItem('intecare_editorial_transition', 'active');
-
-      // Trigger Right-to-Left Continuous Paper Sweep
-      transitionOverlay.classList.add('is-active');
-
-      // Navigate once paper sheet has swept across (~400ms)
-      setTimeout(() => {
-        window.location.href = targetUrl.href;
-      }, 400);
-
-      // Safety fallback: Reset if navigation is cancelled or delayed
-      setTimeout(() => {
-        if (isNavigating) {
-          isNavigating = false;
-          transitionOverlay.classList.remove('is-active');
+        const linkUrl = new URL(href, window.location.href);
+        if (cleanPath(linkUrl.pathname) === normTarget) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
         }
-      }, 2500);
+      } catch(e) {}
     });
   };
 
+  const reinitPageModules = () => {
+    // 1. Re-calculate & render Live Countdown immediately
+    if (typeof window.intecareUpdateCountdown === 'function') {
+      window.intecareUpdateCountdown();
+    }
+    // 2. Re-trigger Scroll Reveal Engine
+    if (typeof window.intecareSetupReveal === 'function') {
+      window.intecareSetupReveal();
+    }
+    // 3. Update sticky header state
+    const header = document.querySelector('.site-header');
+    if (header) {
+      if (window.scrollY > 40) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    }
+    // 4. Autoplay hero video if present
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+      heroVideo.play().catch(() => {});
+    }
+    // 5. Deep-link journey drawer check
+    if (typeof window.intecareCheckUrlJourney === 'function') {
+      window.intecareCheckUrlJourney();
+    }
+    // 6. Blur active element to remove lingering focus boxes
+    if (document.activeElement && document.activeElement.blur) {
+      document.activeElement.blur();
+    }
+  };
+
+  const performSeamlessTransition = async (targetUrl, pushState = true) => {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    // Start Phase 1: Paper sheet sweeps in from right to fully cover the screen (300ms)
+    transitionOverlay.classList.remove('is-entering');
+    transitionOverlay.classList.add('is-exiting');
+
+    // Concurrently fetch the new page HTML
+    const fetchPromise = fetch(targetUrl.href, {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    });
+
+    // Ensure paper has fully covered viewport before DOM swap
+    const delayPromise = new Promise(resolve => setTimeout(resolve, 290));
+
+    try {
+      const [htmlText] = await Promise.all([fetchPromise, delayPromise]);
+      const parser = new DOMParser();
+      const newDoc = parser.parseFromString(htmlText, 'text/html');
+
+      const newMain = newDoc.querySelector('main');
+      const currentMain = document.querySelector('main');
+
+      if (newMain && currentMain) {
+        currentMain.innerHTML = newMain.innerHTML;
+        currentMain.className = newMain.className;
+      }
+
+      if (newDoc.title) {
+        document.title = newDoc.title;
+      }
+
+      // Update active navigation state
+      updateActiveNav(targetUrl.pathname);
+
+      // Update URL in browser history
+      if (pushState) {
+        window.history.pushState({ path: targetUrl.href }, '', targetUrl.href);
+      }
+
+      // Scroll to top instantly behind the paper
+      window.scrollTo(0, 0);
+
+      // Re-initialize modules on new content
+      reinitPageModules();
+
+      // Phase 2: Paper continues smoothly gliding off to the left (420ms)
+      transitionOverlay.classList.remove('is-exiting');
+      transitionOverlay.classList.add('is-entering');
+
+      setTimeout(() => {
+        transitionOverlay.classList.remove('is-entering');
+        isTransitioning = false;
+      }, 450);
+
+    } catch (err) {
+      console.warn('Seamless transition fallback to hard navigation:', err);
+      window.location.href = targetUrl.href;
+    }
+  };
+
+  // Browser Back / Forward button support
+  window.addEventListener('popstate', () => {
+    try {
+      const targetUrl = new URL(window.location.href);
+      performSeamlessTransition(targetUrl, false);
+    } catch(e) {}
+  });
+
+  // Link click listener
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+      return;
+    }
+
+    if (link.hasAttribute('download') || (link.target && link.target !== '_self')) {
+      return;
+    }
+
+    if (link.classList.contains('open-nomination-btn') || 
+        link.classList.contains('open-tracking-btn') || 
+        link.classList.contains('no-transition') ||
+        link.closest('.assistant-concierge-panel') ||
+        link.closest('.assistant-widget')) {
+      return;
+    }
+
+    const hrefAttr = link.getAttribute('href');
+    if (!hrefAttr) return;
+
+    if (hrefAttr.startsWith('#') || 
+        hrefAttr.startsWith('javascript:') || 
+        hrefAttr.startsWith('mailto:') || 
+        hrefAttr.startsWith('tel:')) {
+      return;
+    }
+
+    let targetUrl;
+    try {
+      targetUrl = new URL(link.href, window.location.href);
+    } catch (e) {
+      return;
+    }
+
+    if (targetUrl.origin !== window.location.origin) {
+      return;
+    }
+
+    const isSamePage = (cleanPath(targetUrl.pathname) === cleanPath(window.location.pathname)) &&
+                       (targetUrl.search === window.location.search);
+
+    if (isSamePage) {
+      if (targetUrl.hash) return;
+      event.preventDefault();
+      return;
+    }
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    event.preventDefault();
+    if (typeof link.blur === 'function') {
+      link.blur();
+    }
+    performSeamlessTransition(targetUrl, true);
+  });
+})();
+
+// ==========================================================================
+// ART-DIRECTED EDITORIAL SCROLL REVEAL SYSTEM
+// High-performance IntersectionObserver scroll reveal engine
+// ==========================================================================
+(function initScrollReveal() {
+  const setupReveal = () => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const revealSelector = [
+      '.reveal-up',
+      '.reveal-standard',
+      '.reveal-heading',
+      '.reveal-editorial-title',
+      '.reveal-left',
+      '.reveal-right',
+      '.reveal-scale',
+      '.reveal-stat',
+      '.reveal-image',
+      '.reveal-mask',
+      '.reveal-card-group'
+    ].join(', ');
+
+    const revealElements = document.querySelectorAll(revealSelector);
+    if (!revealElements.length) return;
+
+    document.documentElement.classList.add('reveal-engine-ready');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('is-revealed');
+      } else {
+        revealObserver.observe(el);
+      }
+    });
+  };
+
+  window.intecareSetupReveal = setupReveal;
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupTransition);
+    document.addEventListener('DOMContentLoaded', setupReveal);
   } else {
-    setupTransition();
+    setupReveal();
   }
 })();
+
 
 

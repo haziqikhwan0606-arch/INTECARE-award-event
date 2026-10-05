@@ -7,47 +7,64 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: MATCHING ABOUT.PHP VISUAL SYSTEM & TEMPLATE EXACTLY
-         Uses identical markup, classes, layout, typography, and responsive rules
+         HERO: PRESTIGIOUS AWARDS STATEMENT (Full-Screen 100svh Emerald & Gold Cover)
+         Asymmetrical layout: Oversized architectural '40' + Floating Trophy Sculpture
          ========================================================================== -->
-    <section class="page-editorial-hero" aria-label="INTECARE 2026 Awards Overview">
-      <div class="page-hero-container">
-        <div class="about-hero-grid">
-          
-          <!-- Left: Editorial Headline & Narrative -->
-          <div class="about-hero-text">
-            <h1 class="about-hero-title">
-              RECOGNISING EXCELLENCE.<br>
-              <span class="text-lime-glow">CELEBRATING IMPACT.</span>
-            </h1>
-
-            <p class="about-hero-lead">
-              The official Intecare Excellence Award 2026 programme recognises visionary clinicians, researchers, innovators, health enterprises, and organisations advancing the healthcare and wellness economy across the human lifecycle.
-            </p>
+    <section class="page-editorial-hero hero-awards-spread" aria-label="INTECARE 2026 Awards Overview">
+      <div class="hero-awards-container">
+        
+        <!-- Left: Editorial Statement -->
+        <div class="hero-awards-content">
+          <div class="hero-awards-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>INTECARE EXCELLENCE AWARDS 2026</span>
           </div>
 
-          <!-- Right: Floating Visual Art Stage (Restrained Depth & Layering) -->
-          <div class="about-hero-art-stage" aria-hidden="true">
-            <div class="about-hero-ambient-glow"></div>
-            
-            <!-- Layer 1: Futuristic Medical Technology 3D Sculpture (Transparent PNG) -->
-            <img src="<?= $basePath ?>/assets/images/award1.jpg"
-              alt="Medical Innovation 3D element"
-              class="about-hero-float-primary"
-              width="360"
-              height="412"
-              loading="eager">
+          <h1 class="hero-awards-title">
+            RECOGNISING EXCELLENCE.<br>
+            <span class="text-gold-bright">CELEBRATING IMPACT.</span>
+          </h1>
 
-            <!-- Layer 2: Editorial Supporting Visual Callout Badge (Transparent PNG) -->
-            <img src="<?= $basePath ?>/assets/images/award2.jpg"
-              alt="Ecosystem Innovation Badge"
-              class="about-hero-float-secondary"
-              width="180"
-              height="180"
-              loading="eager">
-          </div>
+          <p class="hero-awards-lead">
+            The national benchmark recognising 40 visionary individuals, clinicians, health enterprises, and organisations advancing the healthcare and wellness economy across the human lifecycle.
+          </p>
+
 
         </div>
+
+        <!-- Right: Oversized '40' Statement with Trophy Graphic Integration -->
+        <div class="hero-awards-monument" aria-hidden="true">
+          <div class="hero-awards-big-stat-wrap">
+            <div class="hero-awards-giant-num">40</div>
+            <div class="hero-awards-stat-meta">
+              <span class="stat-meta-main">DISTINGUISHED AWARDS</span>
+              <div class="stat-meta-split">
+                <span class="stat-pill">20 INDIVIDUAL</span>
+                <span class="stat-pill">20 CORPORATE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-awards-trophy-focal">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/award-trophy-rendered.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/award-trophy-rendered.jpg"
+                alt="Official INTECARE Excellence Trophy"
+                class="hero-trophy-img"
+                width="420"
+                height="560"
+                loading="eager">
+            </picture>
+            <div class="trophy-ambient-gold-glow"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Minimal Subtle Scroll Indicator -->
+      <div class="hero-scroll-prompt" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="prompt-arrow">↓</span>
       </div>
     </section>
 
@@ -185,20 +202,20 @@ $corporateCards = [
         <!-- Section Header -->
         <div class="booklet-header-wrap">
           <div class="booklet-title-hero">
-            <div class="hero-num-gold">20</div>
-            <div class="hero-title-text">
+            <div class="hero-num-gold reveal-scale">20</div>
+            <div class="hero-title-text reveal-heading">
               <span class="title-line-1">INDIVIDUALS</span>
               <span class="title-line-2">EXCELLENCE AWARDS</span>
             </div>
           </div>
 
-          <div class="booklet-ribbon-tag">
+          <div class="booklet-ribbon-tag reveal-standard">
             <span>RECOGNISING INDIVIDUALS WHO MAKE A DIFFERENCE</span>
           </div>
         </div>
 
         <!-- 4 CATEGORY PANELS (2x2 Grid Desktop / 1-Col Mobile) -->
-        <div class="booklet-panels-grid">
+        <div class="booklet-panels-grid reveal-card-group">
           <?php foreach ($individualCards as $card): ?>
             <article class="booklet-card theme-<?= $card['theme'] ?>" id="card-<?= $card['id'] ?>">
               <!-- Leaf Watermark vector in top-right -->
@@ -256,7 +273,7 @@ $corporateCards = [
         </div>
 
         <!-- Booklet Bottom Ribbon -->
-        <div class="booklet-bottom-ribbon">
+        <div class="booklet-bottom-ribbon reveal-standard">
           <div class="ribbon-pill-frame">
             <span class="ribbon-pill-text">DIFFERENT JOURNEYS. A HEALTHIER TOMORROW.</span>
           </div>
@@ -275,20 +292,20 @@ $corporateCards = [
         <!-- Section Header -->
         <div class="booklet-header-wrap">
           <div class="booklet-title-hero">
-            <div class="hero-num-gold corp-gold">20</div>
-            <div class="hero-title-text">
+            <div class="hero-num-gold corp-gold reveal-scale">20</div>
+            <div class="hero-title-text reveal-heading">
               <span class="title-line-1 corp-line-1">CORPORATE</span>
               <span class="title-line-2 corp-line-2">EXCELLENCE AWARDS</span>
             </div>
           </div>
 
-          <div class="booklet-ribbon-tag corp-ribbon-tag">
+          <div class="booklet-ribbon-tag corp-ribbon-tag reveal-standard">
             <span>RECOGNISING ORGANIZATIONS DRIVING IMPACT</span>
           </div>
         </div>
 
         <!-- 4 CATEGORY PANELS (2x2 Grid Desktop / 1-Col Mobile) -->
-        <div class="booklet-panels-grid">
+        <div class="booklet-panels-grid reveal-card-group">
           <?php foreach ($corporateCards as $card): ?>
             <article class="booklet-card theme-<?= $card['theme'] ?>" id="card-corp-<?= $card['code'] ?>">
               <!-- Leaf Watermark vector in top-right -->
@@ -346,7 +363,7 @@ $corporateCards = [
         </div>
 
         <!-- Booklet Bottom Ribbon -->
-        <div class="booklet-bottom-ribbon">
+        <div class="booklet-bottom-ribbon reveal-standard">
           <div class="ribbon-pill-frame corp-ribbon-pill">
             <span class="ribbon-pill-text">STRONGER ORGANIZATIONS. A HEALTHIER TOMORROW.</span>
           </div>
@@ -362,15 +379,18 @@ $corporateCards = [
     <section class="awards-trophy-showcase-section" id="trophy" aria-label="Official Trophy Showcase">
       <div class="trophy-interactive-showcase">
         <!-- Left: Trophy Image with Soft Compact Framing -->
-        <div class="trophy-compact-frame">
-          <img src="<?= $basePath ?>/assets/images/award-trophy-rendered.jpg" alt="Official INTECARE 2026 Excellence Trophy" class="trophy-compact-img" loading="lazy">
+        <div class="trophy-compact-frame reveal-left">
+          <picture>
+            <source srcset="<?= $basePath ?>/assets/images/award-trophy-rendered.webp" type="image/webp">
+            <img src="<?= $basePath ?>/assets/images/award-trophy-rendered.jpg" alt="Official INTECARE 2026 Excellence Trophy" class="trophy-compact-img" loading="lazy">
+          </picture>
           <div>
             <span class="trophy-frame-pill">OFFICIAL 2026 TROPHY</span>
           </div>
         </div>
 
         <!-- Right: Interactive Symbolism Selector -->
-        <div class="trophy-selector-container">
+        <div class="trophy-selector-container reveal-right">
           <h2 class="trophy-title">
             A SYMBOL OF INTEGRATED <span style="color: #0E6C80;">EXCELLENCE</span>
           </h2>
@@ -417,7 +437,7 @@ $corporateCards = [
          ========================================================================== -->
     <section class="awards-guidelines-section" id="guidelines" aria-label="Award Nomination Guidelines">
       <div class="guidelines-wrap">
-        <div class="guidelines-header">
+        <div class="guidelines-header reveal-heading">
           <h2 class="guidelines-title">
             AWARD GUIDELINES &amp; <span style="color: #17546C;">SELECTION INTEGRITY</span>
           </h2>
@@ -426,7 +446,7 @@ $corporateCards = [
           </p>
         </div>
 
-        <div class="guidelines-accordion-list" role="region" aria-label="Guidelines Accordion">
+        <div class="guidelines-accordion-list reveal-card-group" role="region" aria-label="Guidelines Accordion">
           <!-- 01: Purpose & Eligibility -->
           <div class="guideline-accordion-item open">
             <button type="button" class="guideline-acc-btn" aria-expanded="true">
@@ -532,40 +552,39 @@ $corporateCards = [
           </div>
         </div>
       </div>
+      <!-- ==========================================================================
+           AWARD DETAIL MODAL (Compact Card Deep-Dive)
+           Displays complete original description and direct nomination action
+           ========================================================================== -->
+      <dialog id="awardDetailModal" class="award-detail-dialog" aria-labelledby="awardDetailTitle">
+        <div class="award-detail-inner">
+          <div class="award-detail-header">
+            <div class="award-detail-meta">
+              <span class="award-detail-num" id="awardDetailNum">01</span>
+              <span class="award-detail-badge" id="awardDetailBadge">INDIVIDUAL</span>
+            </div>
+            <button type="button" class="award-detail-close-btn" id="closeAwardDetailBtn" aria-label="Close award details">✕</button>
+          </div>
+
+          <div class="award-detail-subgroup" id="awardDetailSubgroup">Stay Well • Prevention</div>
+          <h2 class="award-detail-title" id="awardDetailTitle">Preventive Health Leadership Award</h2>
+          
+          <div class="award-detail-desc-box">
+            <div class="award-detail-desc-label">Official Category Scope &amp; Criteria</div>
+            <p class="award-detail-desc" id="awardDetailDesc"></p>
+          </div>
+
+          <div class="award-detail-actions">
+            <button type="button" class="btn-outline-modal" id="cancelAwardDetailBtn">Close</button>
+            <button type="button" class="btn-primary open-nomination-btn" id="detailNominateBtn" data-stream="individual" data-award-title="">
+              <span>Nominate for This Category</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </dialog>
     </section>
   </main>
-
-  <!-- ==========================================================================
-       AWARD DETAIL MODAL (Compact Card Deep-Dive)
-       Displays complete original description and direct nomination action
-       ========================================================================== -->
-  <dialog id="awardDetailModal" class="award-detail-dialog" aria-labelledby="awardDetailTitle">
-    <div class="award-detail-inner">
-      <div class="award-detail-header">
-        <div class="award-detail-meta">
-          <span class="award-detail-num" id="awardDetailNum">01</span>
-          <span class="award-detail-badge" id="awardDetailBadge">INDIVIDUAL</span>
-        </div>
-        <button type="button" class="award-detail-close-btn" id="closeAwardDetailBtn" aria-label="Close award details">✕</button>
-      </div>
-
-      <div class="award-detail-subgroup" id="awardDetailSubgroup">Stay Well • Prevention</div>
-      <h2 class="award-detail-title" id="awardDetailTitle">Preventive Health Leadership Award</h2>
-      
-      <div class="award-detail-desc-box">
-        <div class="award-detail-desc-label">Official Category Scope &amp; Criteria</div>
-        <p class="award-detail-desc" id="awardDetailDesc"></p>
-      </div>
-
-      <div class="award-detail-actions">
-        <button type="button" class="btn-outline-modal" id="cancelAwardDetailBtn">Close</button>
-        <button type="button" class="btn-primary open-nomination-btn" id="detailNominateBtn" data-stream="individual" data-award-title="">
-          <span>Nominate for This Category</span>
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-    </div>
-  </dialog>
 
 <?php
 require_once __DIR__ . '/includes/footer.php';

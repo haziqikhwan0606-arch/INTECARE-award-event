@@ -1,7 +1,30 @@
-DirectoryIndex index.php index.html
+DirectoryIndex index.php
 
+# ==============================================================================
+# SECURITY: BLOCK ACCESS TO SENSITIVE FILES AND LOGS
+# ==============================================================================
+<FilesMatch "^\.(env|git|gitignore|htaccess|htpasswd)|(\.(sql|log|md|json|lock))$">
+    Require all denied
+</FilesMatch>
+
+# ==============================================================================
+# SECURITY HEADERS
+# ==============================================================================
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ==============================================================================
+# URL REWRITE ENGINE & CLEAN ROUTING
+# ==============================================================================
 <IfModule mod_rewrite.c>
     RewriteEngine On
+
+    # Block access to hidden directories (.git, .env, etc.)
+    RewriteRule (^|/)\.(?!well-known) - [F]
 
     # Prevent looping if file exists
     RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -9,6 +32,7 @@ DirectoryIndex index.php index.html
     RewriteRule ^ - [L]
 
     # Clean URL rewrites for dedicated pages
+    RewriteRule ^(index|home)/?$ index.php [L,QSA]
     RewriteRule ^about/?$ about.php [L,QSA]
     RewriteRule ^awards/?$ awards.php [L,QSA]
     RewriteRule ^hwed-ecosystem/?$ hwed-ecosystem.php [L,QSA]

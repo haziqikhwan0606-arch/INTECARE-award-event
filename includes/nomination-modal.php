@@ -41,6 +41,15 @@ if (!isset($basePath)) {
             <!-- CSRF Security Token -->
             <input type="hidden" name="csrf_token" id="nominationCsrfToken" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
 
+            <!-- Draft Auto-Save Recovery Banner -->
+            <div id="nominationDraftBanner" class="nomination-draft-banner" style="display: none;" role="status">
+              <span class="draft-text">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Restored your saved nomination draft</span>
+              </span>
+              <button type="button" class="btn-clear-draft" id="btnClearNominationDraft">Clear Draft</button>
+            </div>
+
             <!-- Global Form Alert Container -->
             <div id="nominationFormAlert" class="nomination-alert alert-danger" style="display: none; margin-bottom: 1.25rem;" role="alert"></div>
 

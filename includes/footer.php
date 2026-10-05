@@ -51,7 +51,10 @@ if (!isset($basePath)) {
   <footer class="site-footer comprehensive-footer" id="siteFooter">
     <!-- Editorial Environmental/Urban Background Artwork -->
     <div class="footer-artwork-wrap" aria-hidden="true">
-      <img src="<?= $basePath ?>/assets/images/footer-bg.png" alt="" class="footer-artwork-img" loading="lazy">
+      <picture>
+        <source srcset="<?= $basePath ?>/assets/images/footer-bg.webp" type="image/webp">
+        <img src="<?= $basePath ?>/assets/images/footer-bg.png" alt="" class="footer-artwork-img" loading="lazy">
+      </picture>
     </div>
 
     <div class="comprehensive-footer-inner">

@@ -33,6 +33,12 @@ if (!isset($basePath)) {
         $basePath = '';
     }
 }
+
+// Compute full URL for canonical and Open Graph
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$currentUrl = $protocol . $host . ($_SERVER['REQUEST_URI'] ?? '');
+$ogImage = $protocol . $host . $basePath . '/assets/images/logo-intecare3.png';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,14 +48,192 @@ if (!isset($basePath)) {
   <title><?= htmlspecialchars($pageTitle) ?></title>
   <meta name="description" content="<?= htmlspecialchars($pageDescription) ?>">
   <link rel="icon" href="<?= $basePath ?>/assets/images/logo-intecare.png" type="image/png">
+  <link rel="apple-touch-icon" href="<?= $basePath ?>/assets/images/logo-intecare.png">
 
-  <!-- Global Font System: Barlow Condensed (Display & Headings) + Manrope (Body & UI) -->
+  <!-- Mobile Status Bar & Browser Palette (Deep Emerald Theme) -->
+  <meta name="theme-color" content="#00201B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph / Social Media Preview (WhatsApp, LinkedIn, Telegram, Facebook) -->
+  <meta property="og:site_name" content="INTECARE 2026">
+  <meta property="og:title" content="<?= htmlspecialchars($pageTitle) ?>">
+  <meta property="og:description" content="<?= htmlspecialchars($pageDescription) ?>">
+  <meta property="og:image" content="<?= htmlspecialchars($ogImage) ?>">
+  <meta property="og:url" content="<?= htmlspecialchars($currentUrl) ?>">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_MY">
+
+  <!-- Twitter / X Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<?= htmlspecialchars($pageTitle) ?>">
+  <meta name="twitter:description" content="<?= htmlspecialchars($pageDescription) ?>">
+  <meta name="twitter:image" content="<?= htmlspecialchars($ogImage) ?>">
+
+  <!-- Global Structured Data (Organization Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INTECARE 2026",
+    "alternateName": "INTECARE Excellence Award 2026",
+    "url": "<?= htmlspecialchars($protocol . $host . $basePath . '/') ?>",
+    "logo": "<?= htmlspecialchars($ogImage) ?>",
+    "description": "<?= htmlspecialchars($pageDescription) ?>",
+    "email": "secretariat@intecare.org"
+  }
+  </script>
+
+  <!-- Global Font System: Barlow Condensed + Manrope + Plus Jakarta Sans + Cinzel (Luxury & Gala Cards) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Cinzel:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="<?= $basePath ?>/assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>">
   <link rel="stylesheet" href="<?= $basePath ?>/assets/css/assistant.css?v=<?= filemtime(__DIR__ . '/../assets/css/assistant.css') ?>">
+
+  <!-- Inline Critical Transition CSS for Zero-Latency First Paint -->
+  <style id="intecareCriticalTransitionCSS">
+    .intecare-page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999999;
+      pointer-events: none;
+      visibility: hidden;
+      overflow: hidden;
+    }
+    .intecare-page-transition__sheet {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 140vw;
+      height: 100vh;
+      will-change: transform;
+      transform: translate3d(calc(100vw + 260px), 0, 0);
+      display: flex;
+    }
+    .intecare-page-transition__shadow {
+      width: clamp(80px, 12vw, 160px);
+      height: 100%;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 32, 27, 0.03) 25%, rgba(0, 32, 27, 0.12) 65%, rgba(0, 32, 27, 0.28) 100%);
+      pointer-events: none;
+    }
+    .intecare-page-transition__fold {
+      width: clamp(40px, 5.5vw, 90px);
+      height: 100%;
+      flex-shrink: 0;
+      position: relative;
+      overflow: visible;
+      z-index: 3;
+    }
+    .intecare-page-transition__curve-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .intecare-page-transition__paper {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      background-color: #F6F3EC;
+      background: linear-gradient(90deg, #F6F3EC 0%, #FAF8F3 15%, #F3EFE6 55%, #ECE5D8 90%, #E4DCB8 100%);
+      z-index: 2;
+      overflow: hidden;
+    }
+    .intecare-page-transition__sheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 20%, transparent 45%);
+      pointer-events: none;
+    }
+    .intecare-page-transition__brand {
+      position: absolute;
+      top: 50%;
+      left: 55vw;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      text-align: center;
+    }
+    .intecare-page-transition__logo {
+      width: clamp(170px, 20vw, 260px);
+      height: auto;
+      max-height: 90px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 4px 16px rgba(0, 32, 27, 0.08));
+    }
+
+    @keyframes intecarePaperSweepIn {
+      0% { transform: translate3d(calc(100vw + 260px), 0, 0); }
+      100% { transform: translate3d(-10vw, 0, 0); }
+    }
+    @keyframes intecarePaperSweepOut {
+      0% { transform: translate3d(-10vw, 0, 0); }
+      100% { transform: translate3d(calc(-150vw - 260px), 0, 0); }
+    }
+
+    html.intecare-transitioning-in,
+    html.intecare-transitioning-in body {
+      overflow: hidden !important;
+    }
+
+    html.intecare-transitioning-in .intecare-page-transition,
+    .intecare-page-transition.is-exiting,
+    .intecare-page-transition.is-entering,
+    .intecare-page-transition.is-active {
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+
+    html.intecare-transitioning-in .intecare-page-transition__sheet {
+      transform: translate3d(-10vw, 0, 0) !important;
+      transition: none !important;
+      animation: none !important;
+    }
+
+    .intecare-page-transition.is-exiting .intecare-page-transition__sheet,
+    .intecare-page-transition.is-active .intecare-page-transition__sheet {
+      animation: intecarePaperSweepIn 0.30s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+    }
+
+    .intecare-page-transition.is-entering .intecare-page-transition__sheet {
+      animation: intecarePaperSweepOut 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    }
+
+    @media print {
+      #intecarePageTransition,
+      .intecare-page-transition,
+      .intecare-page-transition * {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: static !important;
+        overflow: hidden !important;
+        transform: none !important;
+      }
+    }
+  </style>
+
+  <!-- Seamless Editorial Page Transition Pre-Paint Guard -->
+  <script>
+    (function() {
+      try {
+        if (sessionStorage.getItem('intecare_editorial_transition') === 'active') {
+          document.documentElement.classList.add('intecare-transitioning-in');
+        }
+      } catch(e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -75,9 +259,33 @@ if (!isset($basePath)) {
       <!-- Main Flat Warm Ivory Paper Surface -->
       <div class="intecare-page-transition__paper">
         <div class="intecare-page-transition__sheen"></div>
+        <div class="intecare-page-transition__brand">
+          <img src="<?= $basePath ?>/assets/images/logo-intecare3.png" alt="INTECARE 2026" class="intecare-page-transition__logo" width="220" height="70">
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Immediate Inline Transition Entry Kickoff (Zero frame gap) -->
+  <script>
+    (function() {
+      try {
+        if (sessionStorage.getItem('intecare_editorial_transition') === 'active') {
+          sessionStorage.removeItem('intecare_editorial_transition');
+          var overlay = document.getElementById('intecarePageTransition');
+          if (overlay) {
+            overlay.classList.add('is-entering');
+            requestAnimationFrame(function() {
+              document.documentElement.classList.remove('intecare-transitioning-in');
+            });
+            setTimeout(function() {
+              overlay.classList.remove('is-entering');
+            }, 460);
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
 
   <!-- ==========================================================================
        GLOBAL SITE HEADER (6 Dedicated Pages + Submit Nomination CTA)

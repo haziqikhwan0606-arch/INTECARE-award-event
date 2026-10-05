@@ -34,6 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
     header('Pragma: no-cache');
 
+    // 0. Rate Limiting (Max 20 lookups per 60s per session)
+    $now = time();
+    $_SESSION['tracking_attempts'] = array_filter(
+        $_SESSION['tracking_attempts'] ?? [],
+        fn($t) => ($now - $t) < 60
+    );
+    if (count($_SESSION['tracking_attempts']) >= 20) {
+        http_response_code(429);
+        echo json_encode([
+            'success' => false,
+            'title'   => 'TOO MANY ATTEMPTS',
+            'message' => 'Too many tracking lookups. Please wait a minute before searching again.'
+        ]);
+        exit;
+    }
+    $_SESSION['tracking_attempts'][] = $now;
+
     // 1. Verify CSRF Token
     $submittedToken = (string)($_POST['csrf_token'] ?? '');
     $sessionToken = (string)($_SESSION['csrf_token'] ?? '');

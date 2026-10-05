@@ -7,48 +7,63 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: HOMEPAGE-INSPIRED, MINIMAL AND VISUAL
-         Refined editorial statement with 2 floating transparent PNG elements
+         HERO: EDITORIAL MANIFESTO SPREAD (Full-Screen 100svh Ivory Editorial Cover)
+         Asymmetrical layout: Manifesto headline + Sharp full-bleed photography
          ========================================================================== -->
-    <section class="page-editorial-hero" aria-label="About INTECARE 2026">
-      <div class="page-hero-container">
-        <div class="about-hero-grid">
-          
-          <!-- Left: Editorial Headline & Narrative -->
-          <div class="about-hero-text">
-            <h1 class="about-hero-title">
-              ONE ECOSYSTEM.<br>
-              ONE VISION.<br>
-              <span class="text-lime-glow">A HEALTHIER FUTURE.</span>
-            </h1>
-
-            <p class="about-hero-lead">
-              Intecare Excellence Award 2026 brings together healthcare, wellness, education, professional practice, innovation, technology, enterprise, and industry in one distinguished platform celebrating excellence across the healthcare and wellness economy.
-            </p>
+    <section class="page-editorial-hero hero-about-spread" aria-label="About INTECARE 2026 Overview">
+      <div class="hero-about-container">
+        
+        <!-- Left: Editorial Manifesto -->
+        <div class="hero-about-narrative">
+          <div class="hero-about-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>ABOUT INTECARE 2026</span>
           </div>
 
-          <!-- Right: Floating Visual Art Stage (Restrained Depth & Layering) -->
-          <div class="about-hero-art-stage" aria-hidden="true">
-            <div class="about-hero-ambient-glow"></div>
-            
-            <!-- Layer 1: Futuristic Medical Technology 3D Sculpture (Transparent PNG) -->
-            <img src="<?= $basePath ?>/assets/images/about1.jpg"
-              alt="Medical Innovation 3D element"
-              class="about-hero-float-primary"
-              width="360"
-              height="412"
-              loading="eager">
+          <h1 class="hero-about-title">
+            ONE ECOSYSTEM.<br>
+            ONE VISION.<br>
+            <span class="text-gradient-teal-gold">A HEALTHIER FUTURE.</span>
+          </h1>
 
-            <!-- Layer 2: Editorial Supporting Visual Callout Badge (Transparent PNG) -->
-            <img src="<?= $basePath ?>/assets/images/about2.jpg"
-              alt="Ecosystem Innovation Badge"
-              class="about-hero-float-secondary"
-              width="180"
-              height="180"
-              loading="eager">
-          </div>
+          <p class="hero-about-tagline">
+            A platform connecting healthcare, wellness, innovation and economic growth.
+          </p>
+
+          <p class="hero-about-lead">
+            Intecare Excellence Award 2026 unifies clinical excellence, academic achievement, health enterprise, and investment into one cohesive national platform advancing human wellbeing across all stages of life.
+          </p>
+
 
         </div>
+
+        <!-- Right: Full-Bleed Sharp Editorial Photography -->
+        <div class="hero-about-visual" aria-hidden="true">
+          <div class="hero-about-img-frame">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/hero-editorial-luxury.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/hero-editorial-luxury.jpg"
+                alt="INTECARE Editorial Healthcare and Leadership Overview"
+                class="hero-about-img"
+                width="840"
+                height="920"
+                fetchpriority="high"
+                loading="eager">
+            </picture>
+            <div class="hero-about-img-overlay"></div>
+            <div class="hero-about-img-caption">
+              <span class="caption-num">2026</span>
+              <span class="caption-text">NATIONAL EXCELLENCE PLATFORM</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Minimal Subtle Scroll Indicator -->
+      <div class="hero-scroll-prompt text-dark-prompt" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="prompt-arrow">↓</span>
       </div>
     </section>
 
@@ -58,23 +73,26 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-light-warm" id="purpose-vision">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           BUILDING ONE HEALTHCARE &amp; <span class="text-lime-glow">WELLNESS ECOSYSTEM</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           Rather than a collection of fragmented, separate industries, the future of national health and prosperity requires an interconnected continuum uniting clinical science, enterprise, and sustainable investment.
         </p>
 
-        <div class="purpose-cards-grid">
+        <div class="purpose-cards-grid reveal-card-group">
           
           <!-- Card 1: Purpose / Connected Economy (Teal Tint) -->
           <div class="purpose-photo-card card-tint-teal">
-            <img src="<?= $basePath ?>/assets/images/hero/hero-healthcare-innovation.jpg"
-              alt="Healthcare collaboration and clinical research innovation"
-              class="card-photo-bg"
-              width="400"
-              height="394"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/hero/hero-healthcare-innovation.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/hero/hero-healthcare-innovation.jpg"
+                alt="Healthcare collaboration and clinical research innovation"
+                class="card-photo-bg"
+                width="400"
+                height="394"
+                loading="lazy">
+            </picture>
             <div class="card-photo-overlay" aria-hidden="true"></div>
             
             <div class="card-inner-content">
@@ -94,12 +112,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Card 2: Vision / Lifelong Vitality (Lime Tint) -->
           <div class="purpose-photo-card card-tint-lime">
-            <img src="<?= $basePath ?>/assets/images/hero/hero-wellness.jpg"
-              alt="Human vitality, wellness, preventive health and healthy living"
-              class="card-photo-bg"
-              width="480"
-              height="248"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/hero/hero-wellness.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/hero/hero-wellness.jpg"
+                alt="Human vitality, wellness, preventive health and healthy living"
+                class="card-photo-bg"
+                width="480"
+                height="248"
+                loading="lazy">
+            </picture>
             <div class="card-photo-overlay" aria-hidden="true"></div>
 
             <div class="card-inner-content">
@@ -119,12 +140,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Card 3: Mandate / Integrated Impact (Cyan Tint) -->
           <div class="purpose-photo-card card-tint-cyan">
-            <img src="<?= $basePath ?>/assets/images/hero/hero-architecture.jpg"
-              alt="Modern sustainable healthcare facility and advanced technology"
-              class="card-photo-bg"
-              width="392"
-              height="332"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/hero/hero-architecture.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/hero/hero-architecture.jpg"
+                alt="Modern sustainable healthcare facility and advanced technology"
+                class="card-photo-bg"
+                width="392"
+                height="332"
+                loading="lazy">
+            </picture>
             <div class="card-photo-overlay" aria-hidden="true"></div>
 
             <div class="card-inner-content">
@@ -152,14 +176,14 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-deep-teal" id="strategic-alliance">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           CO-ORGANISERS FOR <span class="text-lime-glow">NATIONAL IMPACT</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           An alliance between <strong>HWED</strong> and <strong>MIHA</strong>, bridging clinical integrity, enterprise innovation, and sustainable healthcare transformation.
         </p>
 
-        <div class="alliance-twocol-grid">
+        <div class="alliance-twocol-grid reveal-card-group">
 
           <!-- HWED Profile -->
           <div class="alliance-profile-card">
@@ -243,7 +267,7 @@ require_once __DIR__ . '/includes/nav.php';
 
         </div>
 
-        <div class="alliance-footer-link">
+        <div class="alliance-footer-link reveal-standard">
           <a href="<?= $basePath ?>/organisers" class="link-arrow-lime">
             <span>Learn more about our Organisers &amp; Strategic Partners</span>
             <span class="arrow-char" aria-hidden="true">→</span>
@@ -258,14 +282,14 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-white-section" id="continuum">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           HEALTH THROUGH EVERY <span class="text-lime-glow">STAGE OF LIFE</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           Connecting the human lifecycle with sustainable economic opportunity: Stay Well, Get Well, Recover Well, and Age Well.
         </p>
 
-        <div class="lifecycle-stages-track">
+        <div class="lifecycle-stages-track reveal-card-group">
           <!-- Stage 1 -->
           <div class="stage-step-card" data-stage="01">
             <div class="step-card-top">
@@ -324,7 +348,7 @@ require_once __DIR__ . '/includes/nav.php';
         </div>
 
         <!-- Ecosystem Ribbon -->
-        <div class="about-eco-banner" style="margin-top: 2.25rem;">
+        <div class="about-eco-banner reveal-standard" style="margin-top: 2.25rem;">
           <span class="eco-banner-label">HWED ECOSYSTEM PILLARS:</span>
           <div class="eco-banner-pills">
             <span class="eco-tag">KNOWLEDGE</span>
@@ -343,14 +367,14 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-pale-teal" id="objectives">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           10 STRATEGIC OBJECTIVES: <span class="text-lime-glow">FROM EXCELLENCE TO IMPACT</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           Verified objectives guiding the assessment and recognition of leadership across the healthcare and wellness economy.
         </p>
 
-        <div class="objectives-interactive-layout">
+        <div class="objectives-interactive-layout reveal-standard">
           
           <!-- Left Column: Interactive Numbered List (Accessible Tabs) -->
           <div class="objectives-nav-list" role="tablist" aria-label="10 Strategic Objectives">
@@ -559,7 +583,7 @@ require_once __DIR__ . '/includes/nav.php';
         <div class="convocation-editorial-banner">
           
           <!-- Left Visual Composition: Photography & Layered Badge -->
-          <div class="convocation-photo-wrap">
+          <div class="convocation-photo-wrap reveal-left">
             <img src="<?= $basePath ?>/assets/images/awards-individual.jpg"
               alt="Healthcare graduates and distinguished practitioners celebrated at formal podium"
               width="600"
@@ -574,7 +598,7 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
 
           <!-- Right Editorial Content -->
-          <div class="convocation-content-wrap">
+          <div class="convocation-content-wrap reveal-right">
             <h3 class="convocation-heading">
               CELEBRATING 45 OLYMPIA EDUCATION GRADUATES
             </h3>

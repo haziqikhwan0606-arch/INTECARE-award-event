@@ -96,6 +96,16 @@
           <!-- Populated dynamically -->
         </div>
 
+        <!-- Persistent Quick Suggestion Chips Bar -->
+        <div class="ia-quick-chips-bar" id="iaQuickChipsBar" aria-label="Suggested topics">
+          <button type="button" class="ia-chip-btn" data-query="How do I submit a nomination for INTECARE 2026?">Nomination Steps</button>
+          <button type="button" class="ia-chip-btn" data-query="What are the 20 Individual Excellence Award categories?">Individual Awards</button>
+          <button type="button" class="ia-chip-btn" data-query="What are the 20 Corporate Excellence Award categories?">Corporate Awards</button>
+          <button type="button" class="ia-chip-btn" data-query="When is the gala dinner and what is the venue?">Gala Date & Venue</button>
+          <button type="button" class="ia-chip-btn" data-query="What is the HWED ecosystem model?">HWED Ecosystem</button>
+          <button type="button" class="ia-chip-btn" data-query="How can I track my nomination dossier status?">Track Dossier</button>
+        </div>
+
         <!-- Footer Input Bar -->
         <footer class="ia-footer">
           <form class="ia-input-wrap" id="iaInputForm" novalidate>
@@ -124,6 +134,7 @@
       this.sendBtn = windowEl.querySelector('#iaSendBtn');
       this.closeBtn = windowEl.querySelector('.ia-close-btn');
       this.resetBtn = windowEl.querySelector('.ia-reset-btn');
+      this.chipsBar = windowEl.querySelector('#iaQuickChipsBar');
     }
 
     bindEvents() {
@@ -131,6 +142,18 @@
       this.launcherEl.addEventListener('click', () => this.toggle());
       this.closeBtn.addEventListener('click', () => this.close());
       this.resetBtn.addEventListener('click', () => this.reset());
+
+      // Quick Chips Click Handling
+      if (this.chipsBar) {
+        this.chipsBar.querySelectorAll('.ia-chip-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const query = btn.getAttribute('data-query');
+            if (query && !this.isTyping) {
+              this.handleQuery(query);
+            }
+          });
+        });
+      }
 
       // Form Submission
       this.formEl.addEventListener('submit', (e) => {

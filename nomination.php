@@ -61,7 +61,25 @@ if ($method !== 'POST') {
 }
 
 // -----------------------------------------------------------------------------
-// 2. Validate CSRF Protection
+// 2. Rate Limiting Protection (Max 10 requests per 60s per session)
+// -----------------------------------------------------------------------------
+$now = time();
+$_SESSION['nomination_attempts'] = array_filter(
+    $_SESSION['nomination_attempts'] ?? [],
+    fn($t) => ($now - $t) < 60
+);
+if (count($_SESSION['nomination_attempts']) >= 10) {
+    http_response_code(429);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Too many nomination requests. Please wait a moment before trying again.'
+    ], JSON_UNESCAPED_SLASHES);
+    exit;
+}
+$_SESSION['nomination_attempts'][] = $now;
+
+// -----------------------------------------------------------------------------
+// 3. Validate CSRF Protection
 // -----------------------------------------------------------------------------
 $submittedToken = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
 if (!is_string($submittedToken) || !hash_equals($_SESSION['csrf_token'] ?? '', $submittedToken)) {

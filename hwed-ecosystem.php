@@ -7,47 +7,88 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: MATCHING ABOUT.PHP VISUAL SYSTEM & TEMPLATE EXACTLY
-         Uses identical markup, classes, layout, typography, and responsive rules
+         HERO: ECOSYSTEM LIFECYCLE CONCEPT (Full-Screen 100svh Sage & Teal Spread)
+         Asymmetrical layout: Ecosystem headline + Circular 4-stage lifecycle quadrant
          ========================================================================== -->
-    <section class="page-editorial-hero" aria-label="HWED Ecosystem Architecture">
-      <div class="page-hero-container">
-        <div class="about-hero-grid">
-          
-          <!-- Left: Editorial Headline & Narrative -->
-          <div class="about-hero-text">
-            <h1 class="about-hero-title">
-              ONE ECOSYSTEM.<br>
-              <span class="text-lime-glow">CONNECTED FOR BETTER HEALTH.</span>
-            </h1>
-
-            <p class="about-hero-lead">
-              Healthcare &amp; Wellness Economy Development (HWED) connects science, professional practice, technology, enterprise, investment, and industry within an integrated ecosystem designed to create measurable value across the complete human health lifecycle.
-            </p>
+    <section class="page-editorial-hero hero-ecosystem-spread" aria-label="HWED Ecosystem Architecture">
+      <div class="hero-ecosystem-container">
+        
+        <!-- Left: Ecosystem Editorial Manifesto -->
+        <div class="hero-ecosystem-content">
+          <div class="hero-ecosystem-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>HEALTHCARE &amp; WELLNESS ECONOMY DEVELOPMENT</span>
           </div>
 
-          <!-- Right: Floating Visual Art Stage (Matching About exactly) -->
-          <div class="about-hero-art-stage" aria-hidden="true">
-            <div class="about-hero-ambient-glow"></div>
-            
-            <!-- Layer 1: Futuristic Medical Technology 3D Sculpture (Transparent PNG/JPG) -->
-            <img src="<?= $basePath ?>/assets/images/eco1.jpg"
-              alt="Medical Innovation 3D element"
-              class="about-hero-float-primary"
-              width="360"
-              height="412"
-              loading="eager">
+          <h1 class="hero-ecosystem-title">
+            ONE ECOSYSTEM.<br>
+            FOUR PATHWAYS.<br>
+            <span class="text-teal-accent">ONE HEALTHIER FUTURE.</span>
+          </h1>
 
-            <!-- Layer 2: Editorial Supporting Visual Callout Badge (Transparent PNG/JPG) -->
-            <img src="<?= $basePath ?>/assets/images/eco2.jpg"
-              alt="Ecosystem Innovation Badge"
-              class="about-hero-float-secondary"
-              width="180"
-              height="180"
-              loading="eager">
-          </div>
+          <p class="hero-ecosystem-lead">
+            HWED connects science, clinical practice, technology, enterprise, and investment into an integrated national platform creating measurable economic and human value across every stage of life.
+          </p>
+
 
         </div>
+
+        <!-- Right: Editorial Circular Lifecycle Pathway Composition -->
+        <div class="hero-ecosystem-diagram-stage" aria-label="Lifecycle Pathways: Stay Well, Get Well, Recover Well, Age Well">
+          <div class="ecosystem-cycle-stage">
+            <!-- Center Core -->
+            <div class="cycle-center-hub">
+              <span class="hub-label">HWED</span>
+              <span class="hub-sub">ONE ECOSYSTEM</span>
+            </div>
+
+            <!-- SVG Orbit Pathway Lines -->
+            <svg class="cycle-svg-ring" viewBox="0 0 440 440" aria-hidden="true">
+              <circle cx="220" cy="220" r="170" stroke="rgba(14, 108, 128, 0.25)" stroke-width="1.5" stroke-dasharray="6 4" fill="none" />
+              <circle cx="220" cy="220" r="115" stroke="rgba(197, 160, 89, 0.35)" stroke-width="1.5" fill="none" />
+            </svg>
+
+            <!-- 4 Editorial Pathway Quadrants -->
+            <div class="cycle-node node-top">
+              <span class="node-num">01</span>
+              <div class="node-info">
+                <strong>STAY WELL</strong>
+                <span>Prevention &amp; Wellness</span>
+              </div>
+            </div>
+
+            <div class="cycle-node node-right">
+              <span class="node-num">02</span>
+              <div class="node-info">
+                <strong>GET WELL</strong>
+                <span>Healthcare &amp; Diagnosis</span>
+              </div>
+            </div>
+
+            <div class="cycle-node node-bottom">
+              <span class="node-num">03</span>
+              <div class="node-info">
+                <strong>RECOVER WELL</strong>
+                <span>Rehabilitation &amp; Care</span>
+              </div>
+            </div>
+
+            <div class="cycle-node node-left">
+              <span class="node-num">04</span>
+              <div class="node-info">
+                <strong>AGE WELL</strong>
+                <span>Longevity &amp; Vitality</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Minimal Subtle Scroll Indicator -->
+      <div class="hero-scroll-prompt text-dark-prompt" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="prompt-arrow">↓</span>
       </div>
     </section>
 
@@ -58,10 +99,10 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="page-editorial-section bg-midnight" id="architecture" aria-label="Interactive Ecosystem Architecture">
       <div class="section-editorial-wrap">
-        <h2 class="section-head-title">
+        <h2 class="section-head-title reveal-heading">
           THE 6 CONNECTED DOMAINS: <span class="text-lime-glow">INTERACTIVE ORBIT</span>
         </h2>
-        <p class="section-head-lead">
+        <p class="section-head-lead reveal-standard">
           HWED bridges traditional industry silos by coordinating six key domains around human health outcomes and economic growth. Select any domain or the central core to inspect its integrated role.
         </p>
 
@@ -79,7 +120,7 @@ require_once __DIR__ . '/includes/nav.php';
         </div>
 
         <!-- Desktop & Tablet Orbit + Contextual Panel -->
-        <div class="hwed-orbit-wrap">
+        <div class="hwed-orbit-wrap reveal-standard">
           
           <!-- Orbit Diagram Col -->
           <div class="hwed-orbit-stage-col">
@@ -180,24 +221,27 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="hwed-pillars-section" id="pillars" aria-label="5 Strategic Pillars">
       <div class="hwed-pillars-wrap">
-        <h2 style="font-family: var(--font-heading); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800; color: #06232B; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.75rem;">
+        <h2 class="reveal-heading" style="font-family: var(--font-heading); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800; color: #06232B; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.75rem;">
           THE 5 PILLARS OF <span style="color: #0E6C80;">HWED ENABLERS</span>
         </h2>
-        <p style="font-size: 1.02rem; color: #43646D; max-width: 780px; line-height: 1.6; margin-bottom: 2rem;">
+        <p class="reveal-standard" style="font-size: 1.02rem; color: #43646D; max-width: 780px; line-height: 1.6; margin-bottom: 2rem;">
           HWED enriches every stage of the health economy through five targeted operational mechanisms:
         </p>
 
         <!-- 5 Strategic Foundation Pillar Cards with Unique Background Images -->
-        <div class="hwed-pillars-cards-grid">
+        <div class="hwed-pillars-cards-grid reveal-card-group">
           
           <!-- Pillar 1: Knowledge & Education -->
           <div class="hwed-pillar-photo-card" tabindex="0">
-            <img src="<?= $basePath ?>/assets/images/pillar-knowledge-education.jpg"
-              alt="Knowledge and Education in Healthcare"
-              class="pillar-photo-bg"
-              width="600"
-              height="450"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/pillar-knowledge-education.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/pillar-knowledge-education.jpg"
+                alt="Knowledge and Education in Healthcare"
+                class="pillar-photo-bg"
+                width="600"
+                height="450"
+                loading="lazy">
+            </picture>
             <div class="pillar-photo-overlay" aria-hidden="true"></div>
             <div class="pillar-inner-content">
               <div class="pillar-card-top">
@@ -213,12 +257,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Pillar 2: Technology & Digital -->
           <div class="hwed-pillar-photo-card" tabindex="0">
-            <img src="<?= $basePath ?>/assets/images/pillar-technology-digital.jpg"
-              alt="Technology and Digital Health"
-              class="pillar-photo-bg"
-              width="600"
-              height="450"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/pillar-technology-digital.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/pillar-technology-digital.jpg"
+                alt="Technology and Digital Health"
+                class="pillar-photo-bg"
+                width="600"
+                height="450"
+                loading="lazy">
+            </picture>
             <div class="pillar-photo-overlay" aria-hidden="true"></div>
             <div class="pillar-inner-content">
               <div class="pillar-card-top">
@@ -234,12 +281,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Pillar 3: Enterprise & Commerce -->
           <div class="hwed-pillar-photo-card" tabindex="0">
-            <img src="<?= $basePath ?>/assets/images/pillar-enterprise-commerce.jpg"
-              alt="Enterprise and Commerce in Healthcare"
-              class="pillar-photo-bg"
-              width="600"
-              height="450"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/pillar-enterprise-commerce.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/pillar-enterprise-commerce.jpg"
+                alt="Enterprise and Commerce in Healthcare"
+                class="pillar-photo-bg"
+                width="600"
+                height="450"
+                loading="lazy">
+            </picture>
             <div class="pillar-photo-overlay" aria-hidden="true"></div>
             <div class="pillar-inner-content">
               <div class="pillar-card-top">
@@ -255,12 +305,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Pillar 4: Investment & Capital -->
           <div class="hwed-pillar-photo-card" tabindex="0">
-            <img src="<?= $basePath ?>/assets/images/pillar-investment-capital.jpg"
-              alt="Healthcare Investment and Capital"
-              class="pillar-photo-bg"
-              width="600"
-              height="450"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/pillar-investment-capital.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/pillar-investment-capital.jpg"
+                alt="Healthcare Investment and Capital"
+                class="pillar-photo-bg"
+                width="600"
+                height="450"
+                loading="lazy">
+            </picture>
             <div class="pillar-photo-overlay" aria-hidden="true"></div>
             <div class="pillar-inner-content">
               <div class="pillar-card-top">
@@ -276,12 +329,15 @@ require_once __DIR__ . '/includes/nav.php';
 
           <!-- Pillar 5: Industry & Policy Alliance -->
           <div class="hwed-pillar-photo-card" tabindex="0">
-            <img src="<?= $basePath ?>/assets/images/pillar-industry-policy.jpg"
-              alt="Industry and Policy Alliance in Healthcare"
-              class="pillar-photo-bg"
-              width="600"
-              height="450"
-              loading="lazy">
+            <picture>
+              <source srcset="<?= $basePath ?>/assets/images/pillar-industry-policy.webp" type="image/webp">
+              <img src="<?= $basePath ?>/assets/images/pillar-industry-policy.jpg"
+                alt="Industry and Policy Alliance in Healthcare"
+                class="pillar-photo-bg"
+                width="600"
+                height="450"
+                loading="lazy">
+            </picture>
             <div class="pillar-photo-overlay" aria-hidden="true"></div>
             <div class="pillar-inner-content">
               <div class="pillar-card-top">
@@ -306,14 +362,14 @@ require_once __DIR__ . '/includes/nav.php';
          ========================================================================== -->
     <section class="hwed-impact-section" id="impact" aria-label="Ecosystem Value Creation and Stakeholders">
       <div class="hwed-impact-wrap">
-        <h2 style="font-family: var(--font-heading); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800; color: #06232B; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.75rem;">
+        <h2 class="reveal-heading" style="font-family: var(--font-heading); font-size: clamp(2.2rem, 3.8vw, 3.4rem); font-weight: 800; color: #06232B; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.75rem;">
           ECOSYSTEM VALUE &amp; <span style="color: #0E6C80;">STAKEHOLDERS</span>
         </h2>
-        <p style="font-size: 1.02rem; color: #43646D; max-width: 780px; line-height: 1.6; margin-bottom: 2rem;">
+        <p class="reveal-standard" style="font-size: 1.02rem; color: #43646D; max-width: 780px; line-height: 1.6; margin-bottom: 2rem;">
           Explore the tangible societal outcomes generated by HWED and the diverse sectors united under its mandate:
         </p>
 
-        <div class="hwed-impact-twocol">
+        <div class="hwed-impact-twocol reveal-card-group">
           
           <!-- Column A: What HWED Creates -->
           <div class="impact-subcolumn">
