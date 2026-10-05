@@ -12383,3 +12383,705 @@ html.reveal-engine-ready .reveal-card-group.is-revealed > * {
     opacity: 0.85 !important;
   }
 }
+
+/* ==========================================================================
+   HWED ECOSYSTEM HERO — INSTITUTIONAL 3D LAYERED BLUEPRINT STAGE (CADANGAN C)
+   ========================================================================== */
+
+.hero-blueprint-spread {
+  position: relative;
+  min-height: calc(100svh - 80px);
+  min-height: 880px;
+  background: 
+    radial-gradient(ellipse 70% 50% at 75% 45%, rgba(14, 108, 128, 0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #011116 0%, #031E28 50%, #052B36 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 7.5rem) 0 clamp(4rem, 6vw, 6rem);
+  border-bottom: 1px solid rgba(119, 217, 200, 0.2);
+}
+
+/* Subtle Architectural Grid Background */
+.blueprint-grid-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(119, 217, 200, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(119, 217, 200, 0.05) 1px, transparent 1px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blueprint-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blueprint-ambient-orb.orb-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(119, 217, 200, 0.2) 0%, transparent 70%);
+  top: 15%;
+  right: 10%;
+  animation: blueprintPulseOrb 10s ease-in-out infinite alternate;
+}
+
+.blueprint-ambient-orb.orb-2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  bottom: 10%;
+  left: 5%;
+  animation: blueprintPulseOrb 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blueprintPulseOrb {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+  100% { transform: scale(1.15) translate(20px, -20px); opacity: 1; }
+}
+
+/* Hero Container */
+.hero-blueprint-container {
+  position: relative;
+  z-index: 2;
+  width: 94%;
+  max-width: 1560px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+}
+
+/* Left Manifesto Content */
+.hero-blueprint-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+.blueprint-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(4, 38, 48, 0.75);
+  border: 1px solid rgba(119, 217, 200, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: fit-content;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.blueprint-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #C6F24D;
+  box-shadow: 0 0 10px #C6F24D, 0 0 18px #C6F24D;
+  animation: blueprintDotBlink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes blueprintDotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.blueprint-badge-text {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #77D9C8;
+}
+
+.hero-blueprint-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 4.4vw, 4.8rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.text-blueprint-tier {
+  color: #D4AF37;
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+}
+
+.text-blueprint-glow {
+  background: linear-gradient(135deg, #77D9C8 0%, #C6F24D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(119, 217, 200, 0.35));
+}
+
+.hero-blueprint-lead {
+  font-family: var(--font-body);
+  font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+
+/* 3 Blueprint Metrics Cards */
+.blueprint-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.blueprint-metric-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(3, 30, 40, 0.65);
+  border: 1px solid rgba(119, 217, 200, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.blueprint-metric-card:hover,
+.blueprint-metric-card:focus-visible {
+  background: rgba(5, 43, 56, 0.85);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.blueprint-metric-card .metric-number {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #C6F24D;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 0 12px rgba(198, 242, 77, 0.3);
+}
+
+.blueprint-metric-card .metric-meta strong {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  margin-bottom: 0.15rem;
+}
+
+.blueprint-metric-card .metric-meta span {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.35;
+}
+
+/* Tier Quick Focus Navigation Bar */
+.blueprint-tier-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 0.6rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(2, 20, 26, 0.75);
+  border: 1px solid rgba(119, 217, 200, 0.2);
+  width: fit-content;
+}
+
+.tier-nav-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  padding-left: 0.4rem;
+}
+
+.btn-tier-focus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-tier-focus .tier-num-tag {
+  display: inline-block;
+  padding: 0.12rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.65rem;
+  color: #FFFFFF;
+}
+
+.btn-tier-focus:hover {
+  color: #FFFFFF;
+  background: rgba(119, 217, 200, 0.15);
+  border-color: rgba(119, 217, 200, 0.3);
+}
+
+.btn-tier-focus.active {
+  background: linear-gradient(135deg, rgba(14, 108, 128, 0.9) 0%, rgba(5, 61, 77, 0.9) 100%);
+  color: #FFFFFF;
+  border-color: #77D9C8;
+  box-shadow: 0 0 15px rgba(119, 217, 200, 0.35);
+}
+
+.btn-tier-focus.active .tier-num-tag {
+  background: #C6F24D;
+  color: #031E28;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   RIGHT: 3D ISOMETRIC BLUEPRINT STAGE VIEWPORT
+   ========================================================================== */
+.hero-blueprint-stage-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blueprint-stage-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  height: 640px;
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blueprint-isometric-stack {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(-16deg) rotateZ(3deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Laser Energy Conduits Connecting the 3 Plates */
+.blueprint-laser-conduits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transform: translateZ(0);
+}
+
+/* Isometric Plates */
+.blueprint-plate {
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  left: 50%;
+  margin-left: -250px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Tier 3: Highest Plate (Top) */
+.blueprint-plate.plate-tier-3 {
+  top: 15px;
+  transform: translateZ(95px);
+  z-index: 6;
+}
+
+/* Tier 2: Middle Plate */
+.blueprint-plate.plate-tier-2 {
+  top: 175px;
+  transform: translateZ(25px);
+  z-index: 5;
+}
+
+/* Tier 1: Base Plate */
+.blueprint-plate.plate-tier-1 {
+  top: 335px;
+  transform: translateZ(-45px);
+  z-index: 4;
+}
+
+/* Active & Hover Plate States */
+.blueprint-plate.is-active,
+.blueprint-plate:hover,
+.blueprint-plate:focus-visible {
+  z-index: 10;
+}
+
+.blueprint-plate.plate-tier-3.is-active,
+.blueprint-plate.plate-tier-3:hover {
+  transform: translateZ(145px) scale(1.02);
+}
+
+.blueprint-plate.plate-tier-2.is-active,
+.blueprint-plate.plate-tier-2:hover {
+  transform: translateZ(95px) scale(1.02);
+}
+
+.blueprint-plate.plate-tier-1.is-active,
+.blueprint-plate.plate-tier-1:hover {
+  transform: translateZ(45px) scale(1.02);
+}
+
+.blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate:not(.is-active) {
+  opacity: 0.68;
+  filter: brightness(0.85);
+}
+
+.blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate.is-active {
+  opacity: 1;
+  filter: brightness(1.08);
+}
+
+/* Glass Plate Visual Styling */
+.plate-glass-surface {
+  position: relative;
+  background: linear-gradient(135deg, rgba(6, 44, 56, 0.88) 0%, rgba(2, 22, 30, 0.92) 100%);
+  border: 1.5px solid rgba(119, 217, 200, 0.3);
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(119, 217, 200, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.blueprint-plate.is-active .plate-glass-surface,
+.blueprint-plate:hover .plate-glass-surface {
+  border-color: rgba(198, 242, 77, 0.85);
+  box-shadow: 
+    0 28px 60px rgba(0, 0, 0, 0.7),
+    0 0 35px rgba(198, 242, 77, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.plate-glow-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #77D9C8, #C6F24D, #D4AF37, transparent);
+  opacity: 0.65;
+}
+
+.blueprint-plate.is-active .plate-glow-edge,
+.blueprint-plate:hover .plate-glow-edge {
+  opacity: 1;
+  height: 3px;
+}
+
+/* Plate Internal Header */
+.plate-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.plate-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #D4AF37;
+}
+
+.plate-tier-badge .tier-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D4AF37;
+  box-shadow: 0 0 6px #D4AF37;
+}
+
+.plate-tier-2 .plate-tier-badge {
+  color: #77D9C8;
+}
+.plate-tier-2 .plate-tier-badge .tier-dot {
+  background: #77D9C8;
+  box-shadow: 0 0 6px #77D9C8;
+}
+
+.plate-tier-1 .plate-tier-badge {
+  color: #C6F24D;
+}
+.plate-tier-1 .plate-tier-badge .tier-dot {
+  background: #C6F24D;
+  box-shadow: 0 0 6px #C6F24D;
+}
+
+.plate-status-tag {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.plate-title {
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  margin-bottom: 0.45rem;
+  line-height: 1.25;
+}
+
+.plate-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.85rem;
+}
+
+/* Chips Deck inside Plates */
+.plate-chips-deck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.blueprint-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.blueprint-chip .chip-num {
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+.blueprint-chip.chip-gold {
+  border-color: rgba(212, 175, 55, 0.35);
+  color: #F7E7B4;
+}
+.blueprint-chip.chip-gold .chip-num {
+  color: #D4AF37;
+}
+
+.blueprint-chip.chip-cyan {
+  border-color: rgba(119, 217, 200, 0.35);
+  color: #D4FAF4;
+}
+.blueprint-chip.chip-cyan .chip-num {
+  color: #77D9C8;
+}
+
+.blueprint-chip.chip-lime {
+  border-color: rgba(198, 242, 77, 0.35);
+  color: #EEFACB;
+}
+.blueprint-chip.chip-lime .chip-num {
+  color: #C6F24D;
+}
+
+/* Floating Tier Inspector Tooltip Bar */
+.blueprint-inspector-bar {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  background: rgba(2, 18, 24, 0.9);
+  border: 1px solid rgba(119, 217, 200, 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+.inspector-pulse-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #77D9C8;
+  box-shadow: 0 0 10px #77D9C8;
+  flex-shrink: 0;
+  animation: blueprintPulseOrb 2s ease-in-out infinite alternate;
+}
+
+.inspector-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.inspector-tier-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #C6F24D;
+}
+
+.inspector-tier-summary {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS: 3D BLUEPRINT HERO
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .hero-blueprint-container {
+    grid-template-columns: minmax(0, 50fr) minmax(0, 50fr);
+    gap: 2.5rem;
+  }
+  .blueprint-stage-viewport {
+    height: 600px;
+  }
+  .blueprint-isometric-stack {
+    height: 520px;
+  }
+  .blueprint-plate {
+    max-width: 440px;
+    margin-left: -220px;
+  }
+  .plate-glass-surface {
+    padding: 1.25rem 1.4rem;
+  }
+  .plate-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-blueprint-spread {
+    min-height: auto;
+    padding: 6rem 0 4rem;
+  }
+  .hero-blueprint-container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  .blueprint-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .blueprint-stage-viewport {
+    height: auto;
+    perspective: none;
+    max-width: 100%;
+  }
+  .blueprint-isometric-stack {
+    height: auto;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .blueprint-laser-conduits {
+    display: none;
+  }
+  .blueprint-plate {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    margin-left: 0 !important;
+    max-width: 100%;
+    transform: none !important;
+  }
+  .blueprint-plate.is-active,
+  .blueprint-plate:hover {
+    transform: translateY(-4px) !important;
+  }
+  .blueprint-isometric-stack:has(.blueprint-plate.is-active) .blueprint-plate:not(.is-active) {
+    opacity: 1;
+    filter: none;
+  }
+  .blueprint-inspector-bar {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-blueprint-title {
+    font-size: 2.2rem;
+  }
+  .blueprint-badge-text {
+    font-size: 0.68rem;
+  }
+  .plate-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+  .plate-glass-surface {
+    padding: 1.15rem 1.15rem;
+  }
+}

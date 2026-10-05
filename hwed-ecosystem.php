@@ -7,87 +7,213 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: ECOSYSTEM LIFECYCLE CONCEPT (Full-Screen 100svh Sage & Teal Spread)
-         Asymmetrical layout: Ecosystem headline + Circular 4-stage lifecycle quadrant
+         HERO: INSTITUTIONAL 3D LAYERED BLUEPRINT STAGE (100svh Luxury Blueprint)
+         Architecture: Left Manifesto & Live Metrics + Right 3D Isometric Glass Plate Stack
          ========================================================================== -->
-    <section class="page-editorial-hero hero-ecosystem-spread" aria-label="HWED Ecosystem Architecture">
-      <div class="hero-ecosystem-container">
+    <section class="page-editorial-hero hero-blueprint-spread" aria-label="HWED Institutional Blueprint Architecture">
+      <!-- Architectural Grid Backdrop Overlay -->
+      <div class="blueprint-grid-backdrop" aria-hidden="true"></div>
+      <div class="blueprint-ambient-orb orb-1" aria-hidden="true"></div>
+      <div class="blueprint-ambient-orb orb-2" aria-hidden="true"></div>
+
+      <div class="hero-blueprint-container">
         
-        <!-- Left: Ecosystem Editorial Manifesto -->
-        <div class="hero-ecosystem-content">
-          <div class="hero-ecosystem-eyebrow">
-            <span class="pulse-dot" aria-hidden="true"></span>
-            <span>HEALTHCARE &amp; WELLNESS ECONOMY DEVELOPMENT</span>
+        <!-- Left: Ecosystem Institutional Manifesto -->
+        <div class="hero-blueprint-content">
+          <div class="blueprint-badge-pill">
+            <span class="blueprint-pulse-dot" aria-hidden="true"></span>
+            <span class="blueprint-badge-text">STRATEGIC BLUEPRINT • ARCHITECTURAL PLATFORM 2026–2030</span>
           </div>
 
-          <h1 class="hero-ecosystem-title">
-            ONE ECOSYSTEM.<br>
-            FOUR PATHWAYS.<br>
-            <span class="text-teal-accent">ONE HEALTHIER FUTURE.</span>
+          <h1 class="hero-blueprint-title">
+            ONE ARCHITECTURE.<br>
+            <span class="text-blueprint-tier">THREE STRATEGIC TIERS.</span><br>
+            <span class="text-blueprint-glow">ONE UNIFIED ECOSYSTEM.</span>
           </h1>
 
-          <p class="hero-ecosystem-lead">
-            HWED connects science, clinical practice, technology, enterprise, and investment into an integrated national platform creating measurable economic and human value across every stage of life.
+          <p class="hero-blueprint-lead">
+            Healthcare &amp; Wellness Economy Development (HWED) establishes an integrated national framework connecting foundational policy and capital, transformative technology and enterprise, into measurable clinical and societal outcomes across the complete human lifecycle.
           </p>
 
+          <!-- 3 Institutional Key Blueprint Metrics -->
+          <div class="blueprint-metrics-grid">
+            <div class="blueprint-metric-card" tabindex="0">
+              <span class="metric-number">03</span>
+              <div class="metric-meta">
+                <strong>Strategic Tiers</strong>
+                <span>Foundations • Engine • Outcomes</span>
+              </div>
+            </div>
 
+            <div class="blueprint-metric-card" tabindex="0">
+              <span class="metric-number">06</span>
+              <div class="metric-meta">
+                <strong>Connected Domains</strong>
+                <span>Science, Tech, Enterprise &amp; Policy</span>
+              </div>
+            </div>
+
+            <div class="blueprint-metric-card" tabindex="0">
+              <span class="metric-number">04</span>
+              <div class="metric-meta">
+                <strong>Lifecycle Pathways</strong>
+                <span>Stay, Get, Recover &amp; Age Well</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Tier Interactive Focus Navigation -->
+          <div class="blueprint-tier-nav-bar" aria-label="Quick Tier Focus">
+            <span class="tier-nav-label">Focus Tier:</span>
+            <button type="button" class="btn-tier-focus active" data-target-tier="tier-3">
+              <span class="tier-num-tag">T3</span> Outcomes
+            </button>
+            <button type="button" class="btn-tier-focus" data-target-tier="tier-2">
+              <span class="tier-num-tag">T2</span> Transformation
+            </button>
+            <button type="button" class="btn-tier-focus" data-target-tier="tier-1">
+              <span class="tier-num-tag">T1</span> Foundations
+            </button>
+          </div>
         </div>
 
-        <!-- Right: Editorial Circular Lifecycle Pathway Composition -->
-        <div class="hero-ecosystem-diagram-stage" aria-label="Lifecycle Pathways: Stay Well, Get Well, Recover Well, Age Well">
-          <div class="ecosystem-cycle-stage">
-            <!-- Center Core -->
-            <div class="cycle-center-hub">
-              <span class="hub-label">HWED</span>
-              <span class="hub-sub">ONE ECOSYSTEM</span>
+        <!-- Right: 3D Isometric Layered Glass Blueprint Stage -->
+        <div class="hero-blueprint-stage-wrap" aria-label="3D Isometric Blueprint Platform">
+          <div class="blueprint-stage-viewport" id="blueprintViewport">
+            
+            <!-- Isometric Layer Stack Container (with 3D Parallax Transform) -->
+            <div class="blueprint-isometric-stack" id="blueprintStack">
+
+              <!-- SVG Vertical Laser Data Energy Conduits -->
+              <svg class="blueprint-laser-conduits" viewBox="0 0 540 600" aria-hidden="true">
+                <!-- Vertical Conduits Connecting Tiers -->
+                <line x1="120" y1="110" x2="120" y2="490" stroke="rgba(119, 217, 200, 0.3)" stroke-width="1.5" stroke-dasharray="4 4" />
+                <line x1="420" y1="110" x2="420" y2="490" stroke="rgba(198, 242, 77, 0.35)" stroke-width="1.5" stroke-dasharray="4 4" />
+                <line x1="270" y1="80" x2="270" y2="520" stroke="rgba(212, 175, 55, 0.4)" stroke-width="2" stroke-dasharray="6 3" />
+                
+                <!-- Center Core Node Connection Points -->
+                <circle cx="270" cy="115" r="5" fill="#D4AF37" filter="drop-shadow(0 0 8px #D4AF37)" />
+                <circle cx="270" cy="300" r="5" fill="#77D9C8" filter="drop-shadow(0 0 8px #77D9C8)" />
+                <circle cx="270" cy="485" r="5" fill="#C6F24D" filter="drop-shadow(0 0 8px #C6F24D)" />
+              </svg>
+
+              <!-- ==========================================
+                   TIER 03: TOP PLATE — OUTCOMES & DELIVERY
+                   ========================================== -->
+              <div class="blueprint-plate plate-tier-3 is-active" id="tierPlate3" data-tier="tier-3" tabindex="0" role="region" aria-label="Tier 03: Clinical Delivery & Lifecycle Outcomes">
+                <div class="plate-glass-surface">
+                  <div class="plate-glow-edge"></div>
+                  
+                  <div class="plate-header-row">
+                    <div class="plate-tier-badge">
+                      <span class="tier-dot"></span>
+                      <span>TIER 03 // HIGHEST LEVEL DELIVERY</span>
+                    </div>
+                    <span class="plate-status-tag">CLINICAL &amp; PATIENT OUTCOMES</span>
+                  </div>
+
+                  <h3 class="plate-title">LIFECYCLE HEALTHCARE DELIVERY</h3>
+                  <p class="plate-desc">
+                    Frontline medical excellence, prevention programs, functional rehabilitation, and longevity support delivering measurable quality of life.
+                  </p>
+
+                  <!-- 4 Pathways Chips Row -->
+                  <div class="plate-chips-deck">
+                    <span class="blueprint-chip chip-gold">
+                      <span class="chip-num">01</span> STAY WELL • Prevention
+                    </span>
+                    <span class="blueprint-chip chip-cyan">
+                      <span class="chip-num">02</span> GET WELL • Diagnosis
+                    </span>
+                    <span class="blueprint-chip chip-cyan">
+                      <span class="chip-num">03</span> RECOVER WELL • Rehab
+                    </span>
+                    <span class="blueprint-chip chip-lime">
+                      <span class="chip-num">04</span> AGE WELL • Longevity
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ==========================================
+                   TIER 02: MIDDLE PLATE — TRANSFORMATION ENGINE
+                   ========================================== -->
+              <div class="blueprint-plate plate-tier-2" id="tierPlate2" data-tier="tier-2" tabindex="0" role="region" aria-label="Tier 02: Innovation & Enterprise Engine">
+                <div class="plate-glass-surface">
+                  <div class="plate-glow-edge"></div>
+                  
+                  <div class="plate-header-row">
+                    <div class="plate-tier-badge">
+                      <span class="tier-dot"></span>
+                      <span>TIER 02 // TRANSFORMATION ENGINE</span>
+                    </div>
+                    <span class="plate-status-tag">TECHNOLOGY &amp; SMES</span>
+                  </div>
+
+                  <h3 class="plate-title">MEDTECH, AI &amp; COMMERCIALISATION</h3>
+                  <p class="plate-desc">
+                    Digital health systems, clinical AI diagnostics, intellectual property pipelines, and health enterprise acceleration scaling viable solutions.
+                  </p>
+
+                  <!-- Focus Domain Chips -->
+                  <div class="plate-chips-deck">
+                    <span class="blueprint-chip chip-cyan">MedTech Innovation</span>
+                    <span class="blueprint-chip chip-lime">Clinical AI &amp; IoT</span>
+                    <span class="blueprint-chip chip-gold">SME Incubation</span>
+                    <span class="blueprint-chip chip-cyan">Workforce Talent</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ==========================================
+                   TIER 01: BASE PLATE — STRATEGIC FOUNDATIONS
+                   ========================================== -->
+              <div class="blueprint-plate plate-tier-1" id="tierPlate1" data-tier="tier-1" tabindex="0" role="region" aria-label="Tier 01: Strategic Infrastructure & Policy">
+                <div class="plate-glass-surface">
+                  <div class="plate-glow-edge"></div>
+                  
+                  <div class="plate-header-row">
+                    <div class="plate-tier-badge">
+                      <span class="tier-dot"></span>
+                      <span>TIER 01 // STRATEGIC FOUNDATIONS</span>
+                    </div>
+                    <span class="plate-status-tag">CAPITAL, SCIENCE &amp; POLICY</span>
+                  </div>
+
+                  <h3 class="plate-title">INSTITUTIONAL CAPITAL &amp; ALLIANCES</h3>
+                  <p class="plate-desc">
+                    Translational biomedical research, venture capital facilities, private equity, multi-sector coalitions (PPP), and ESG health governance.
+                  </p>
+
+                  <!-- Strategic Chips -->
+                  <div class="plate-chips-deck">
+                    <span class="blueprint-chip chip-lime">Translational Science</span>
+                    <span class="blueprint-chip chip-gold">Growth Capital &amp; VC</span>
+                    <span class="blueprint-chip chip-cyan">Public-Private Alliances</span>
+                    <span class="blueprint-chip chip-gold">ESG Standards</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            <!-- SVG Orbit Pathway Lines -->
-            <svg class="cycle-svg-ring" viewBox="0 0 440 440" aria-hidden="true">
-              <circle cx="220" cy="220" r="170" stroke="rgba(14, 108, 128, 0.25)" stroke-width="1.5" stroke-dasharray="6 4" fill="none" />
-              <circle cx="220" cy="220" r="115" stroke="rgba(197, 160, 89, 0.35)" stroke-width="1.5" fill="none" />
-            </svg>
-
-            <!-- 4 Editorial Pathway Quadrants -->
-            <div class="cycle-node node-top">
-              <span class="node-num">01</span>
-              <div class="node-info">
-                <strong>STAY WELL</strong>
-                <span>Prevention &amp; Wellness</span>
+            <!-- Floating Tier Active Inspector Tooltip Bar -->
+            <div class="blueprint-inspector-bar" id="blueprintInspectorBar" aria-live="polite">
+              <span class="inspector-pulse-indicator" aria-hidden="true"></span>
+              <div class="inspector-text-group">
+                <span class="inspector-tier-label" id="inspectorTierLabel">TIER 03 ACTIVE FOCUS</span>
+                <span class="inspector-tier-summary" id="inspectorTierSummary">Hover or tap any tier plate to inspect full strategic alignment</span>
               </div>
             </div>
 
-            <div class="cycle-node node-right">
-              <span class="node-num">02</span>
-              <div class="node-info">
-                <strong>GET WELL</strong>
-                <span>Healthcare &amp; Diagnosis</span>
-              </div>
-            </div>
-
-            <div class="cycle-node node-bottom">
-              <span class="node-num">03</span>
-              <div class="node-info">
-                <strong>RECOVER WELL</strong>
-                <span>Rehabilitation &amp; Care</span>
-              </div>
-            </div>
-
-            <div class="cycle-node node-left">
-              <span class="node-num">04</span>
-              <div class="node-info">
-                <strong>AGE WELL</strong>
-                <span>Longevity &amp; Vitality</span>
-              </div>
-            </div>
           </div>
         </div>
 
       </div>
 
       <!-- Minimal Subtle Scroll Indicator -->
-      <div class="hero-scroll-prompt text-dark-prompt" aria-hidden="true">
-        <span>SCROLL</span>
+      <div class="hero-scroll-prompt text-light-prompt" aria-hidden="true">
+        <span>EXPLORE DOMAINS</span>
         <span class="prompt-arrow">↓</span>
       </div>
     </section>
