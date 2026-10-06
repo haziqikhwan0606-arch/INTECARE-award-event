@@ -7,78 +7,84 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: EDITORIAL AWARDS GALA ECOSYSTEM PRESENTATION
-         Grand Emerald & Gold Editorial Hero matching Gala Prestige standards
-         Left: Stately National Accord Manifesto & 3-Pillar Folio
-         Right: Framed Luxury Editorial Visual Showcase with Gilded Accord Plaque
+         HERO: EDITORIAL SOVEREIGN ECOSYSTEM BLUEPRINT
+         Deep Obsidian & Champagne Gold Prestige Theme
+         Left: Sovereign Architecture Manifesto & 3-Tier Blueprint
+         Right: Framed Editorial Showcase with Gilded Accord Plaque
          ========================================================================== -->
-    <section class="page-editorial-hero hero-event-spread" aria-label="HWED National Ecosystem Accord">
-      <div class="hero-event-container">
+    <section class="page-editorial-hero hero-ecosystem-spread" aria-label="HWED National Ecosystem Accord">
+      <div class="hero-ecosystem-container">
         
-        <!-- Left: Stately National Accord Manifesto -->
-        <div class="hero-event-poster-col">
-          <div class="hero-event-title">
-            <span class="title-sub" style="letter-spacing: 0.16em; color: #D4AF37;">THE SOVEREIGN ARCHITECTURE</span>
-            <h1 class="title-main text-gold-glow" style="font-size: clamp(2.4rem, 4.2vw, 4.4rem); line-height: 1.05; margin-bottom: 1.5rem;">
-              HEALTHCARE &amp; WELLNESS ECONOMY DEVELOPMENT
-            </h1>
+        <!-- Left: Sovereign Architecture Manifesto & 3-Tier Blueprint -->
+        <div class="hero-ecosystem-content">
+          <div class="hero-ecosystem-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>SOVEREIGN ARCHITECTURE &amp; FRAMEWORK</span>
           </div>
 
-          <p class="hero-event-lead" style="color: rgba(255, 255, 255, 0.88); font-size: clamp(1.02rem, 1.15vw, 1.18rem); line-height: 1.85; max-width: 640px; margin-bottom: 2rem;">
+          <h1 class="hero-ecosystem-title">
+            HEALTHCARE &amp; WELLNESS<br>
+            <span class="text-gold-glow">ECONOMY DEVELOPMENT</span>
+          </h1>
+
+          <p class="hero-ecosystem-lead">
             Under the patronage of the INTECARE Excellence Framework, HWED establishes Malaysia's sovereign multi-sector platform unifying foundational research, institutional capital, transformative enterprise, and healthcare excellence across the complete human lifecycle.
           </p>
 
-          <!-- 3 Stately Tier Dossier Bar -->
-          <div class="gala-tier-dossier-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.25rem;">
-            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
-              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER I</span>
-              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Capital &amp; Policy</strong>
-              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Foundational science, investment facilities &amp; PPP accords</span>
+          <!-- 3-Tier Sovereign Blueprint Grid -->
+          <div class="ecosystem-hero-tiers">
+            <div class="ecosystem-tier-card">
+              <span class="tier-tag">TIER I</span>
+              <strong class="tier-name">Capital &amp; Policy</strong>
+              <p class="tier-desc">Foundational science, sovereign investment facilities &amp; PPP accords</p>
             </div>
 
-            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
-              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER II</span>
-              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Innovation Engine</strong>
-              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Clinical AI, MedTech translation &amp; enterprise scaling</span>
+            <div class="ecosystem-tier-card">
+              <span class="tier-tag">TIER II</span>
+              <strong class="tier-name">Innovation Engine</strong>
+              <p class="tier-desc">Clinical AI, MedTech translation &amp; enterprise scaling</p>
             </div>
 
-            <div class="gala-tier-dossier-card" style="padding: 1.1rem 1.2rem; border-radius: 12px; background: rgba(2, 32, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
-              <span style="font-family: var(--font-heading); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: #D4AF37; display: block; margin-bottom: 0.35rem;">TIER III</span>
-              <strong style="font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; color: #FFFFFF; display: block; margin-bottom: 0.25rem;">Lifecycle Delivery</strong>
-              <span style="font-size: 0.74rem; color: rgba(255, 255, 255, 0.7); line-height: 1.4; display: block;">Stay, Get, Recover &amp; Age Well frontline outcomes</span>
+            <div class="ecosystem-tier-card">
+              <span class="tier-tag">TIER III</span>
+              <strong class="tier-name">Lifecycle Delivery</strong>
+              <p class="tier-desc">Stay, Get, Recover &amp; Age Well frontline outcomes</p>
             </div>
           </div>
 
           <!-- Actions -->
-          <div class="hero-event-action-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-            <a href="<?= $basePath ?>/awards.php" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem;">
-              <span>VIEW 40 EXCELLENCE AWARDS</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <div class="hero-ecosystem-actions">
+            <a href="#architecture" class="btn btn-primary">
+              <span>EXPLORE 6 DOMAINS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+            <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill">
+              <span>VIEW 40 AWARDS</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
         </div>
 
         <!-- Right: Stately Framed Editorial Visual Showcase -->
-        <div class="hero-event-visual-col">
-          <div class="hero-event-img-composition" style="border: 1px solid rgba(212, 175, 55, 0.35); box-shadow: 0 25px 60px rgba(0,0,0,0.65), 0 0 40px rgba(212, 175, 55, 0.15);">
+        <div class="hero-ecosystem-visual" aria-hidden="true">
+          <div class="hero-ecosystem-img-frame">
             <picture>
               <source srcset="<?= $basePath ?>/assets/images/medical-innovation.webp" type="image/webp">
               <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
                 alt="INTECARE HWED Sovereign Ecosystem"
-                class="hero-event-main-img"
+                class="hero-ecosystem-img"
                 width="720"
                 height="540"
-                loading="eager"
-                style="object-fit: cover; filter: brightness(0.92) contrast(1.08);">
+                loading="eager">
             </picture>
-            <div class="hero-event-img-overlay" style="background: linear-gradient(180deg, rgba(2, 24, 19, 0.2) 0%, rgba(2, 24, 19, 0.85) 100%);"></div>
+            <div class="hero-ecosystem-img-overlay"></div>
 
             <!-- Gilded Accord Plaque -->
-            <div class="hero-event-location-plaque" style="background: rgba(2, 24, 19, 0.94); border: 1px solid rgba(212, 175, 55, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.65);">
-              <span class="plaque-pin" aria-hidden="true" style="color: #D4AF37; font-size: 1.1rem;">✦</span>
+            <div class="hero-ecosystem-plaque">
+              <span class="plaque-pin">✦</span>
               <div>
-                <strong style="font-family: var(--font-heading); font-size: 0.86rem; letter-spacing: 0.1em; color: #D4AF37; text-transform: uppercase;">THE NATIONAL ACCORD</strong>
-                <span style="font-size: 0.74rem; color: #E2ECE8; display: block; margin-top: 0.15rem;">6 Connected Domains • 4 Lifecycle Pathways</span>
+                <strong class="plaque-title">THE NATIONAL ACCORD</strong>
+                <span class="plaque-sub">6 Connected Domains • 4 Lifecycle Pathways</span>
               </div>
             </div>
           </div>

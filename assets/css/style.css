@@ -5215,14 +5215,17 @@ footer,
 }
 
 /* ==========================================================================
-   3. HWED ECOSYSTEM HERO — SOPHISTICATED ECOSYSTEM CONCEPT (Warm Sage/Teal)
+   3. HWED ECOSYSTEM HERO — PRESTIGIOUS SOVEREIGN ARCHITECTURE (Obsidian & Gold)
    ========================================================================== */
 .hero-ecosystem-spread {
   background:
-    radial-gradient(ellipse 65% 55% at 80% 40%, rgba(14, 108, 128, 0.08) 0%, transparent 60%),
-    linear-gradient(135deg, #FBF9F5 0%, #F1F6F3 55%, #E6EFEA 100%);
-  color: #0D221D;
-  border-bottom: 1px solid var(--color-cream-border, rgba(197, 160, 89, 0.28));
+    radial-gradient(ellipse 65% 55% at 75% 35%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 65%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #070a0f 0%, #0d121b 55%, #06090e 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
 }
 
 .hero-ecosystem-container {
@@ -5230,7 +5233,7 @@ footer,
   max-width: 1560px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 54fr) minmax(0, 46fr);
+  grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
   gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
   position: relative;
@@ -5243,28 +5246,91 @@ footer,
   justify-content: center;
 }
 
+.hero-ecosystem-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-heading);
+  font-size: clamp(0.78rem, 0.9vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-gold-bright, #D4AF37);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
 .hero-ecosystem-title {
   font-family: var(--font-heading);
-  font-size: clamp(3.2rem, 5.8vw, 6.2rem);
+  font-size: clamp(2.5rem, 4.2vw, 4.4rem);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 1.02;
   letter-spacing: -0.02em;
-  color: #06232B;
+  color: #FFFFFF;
   text-transform: uppercase;
   margin-bottom: 1.15rem;
 }
 
-.text-teal-accent {
-  color: #0E6C80;
-}
-
 .hero-ecosystem-lead {
   font-family: var(--font-body);
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  font-size: clamp(1.02rem, 1.15vw, 1.15rem);
   line-height: 1.8;
-  color: #335048;
-  max-width: 600px;
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 620px;
+  margin-bottom: 1.75rem;
+}
+
+/* 3-Tier Blueprint Cards (Dark Obsidian Glass & Gold) */
+.ecosystem-hero-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.ecosystem-tier-card {
+  padding: 1.1rem 1.15rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ecosystem-tier-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.ecosystem-tier-card .tier-tag {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--color-gold-bright, #D4AF37);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.ecosystem-tier-card .tier-name {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.ecosystem-tier-card .tier-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0;
 }
 
 .hero-ecosystem-actions {
@@ -5274,10 +5340,88 @@ footer,
   align-items: center;
 }
 
-/* Ecosystem Right Visual: Minimalist Orbital Diagram */
-.hero-ecosystem-visual-stage,
-.hero-ecosystem-diagram-stage {
+/* Ecosystem Right Visual Stage: Framed Architectural Showcase */
+.hero-ecosystem-visual {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-ecosystem-img-frame {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: clamp(380px, 48vh, 520px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(212, 175, 55, 0.12);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.hero-ecosystem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.92) contrast(1.06);
+}
+
+.hero-ecosystem-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 10, 15, 0.15) 0%, rgba(7, 10, 15, 0.85) 100%);
+  pointer-events: none;
+}
+
+.hero-ecosystem-plaque {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  background: rgba(8, 12, 18, 0.92);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 1.15rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+}
+
+.hero-ecosystem-plaque .plaque-pin {
+  color: var(--color-gold-bright, #D4AF37);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-ecosystem-plaque div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-ecosystem-plaque .plaque-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-gold-bright, #D4AF37);
+  text-transform: uppercase;
+}
+
+.hero-ecosystem-plaque .plaque-sub {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 0.1rem;
+}
   width: 100%;
   display: flex;
   align-items: center;
@@ -6028,9 +6172,16 @@ footer,
 
   .hero-about-img-frame,
   .hero-organisers-photo-composition,
+  .hero-ecosystem-img-frame,
   .hero-event-img-composition {
     height: clamp(240px, 42vw, 320px);
     max-width: 100%;
+  }
+
+  .ecosystem-hero-tiers {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
   }
 
   .hero-event-spec-strip {
