@@ -5585,6 +5585,46 @@ footer,
   color: #FFFFFF;
 }
 
+/* Event Details Specific Half-Background with Luxury Fade */
+.hero-event-details-spread {
+  position: relative;
+  overflow: hidden;
+  background: #021410;
+}
+
+.hero-event-half-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(48%, 56vw, 65%);
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 15%, rgba(0, 0, 0, 0.9) 40%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.35) 15%, rgba(0, 0, 0, 0.9) 40%, black 100%);
+}
+
+.hero-event-half-bg picture,
+.hero-event-half-bg .hero-event-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  display: block;
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.hero-event-half-bg .hero-event-bg-gradient-mask {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #021410 0%, rgba(2, 20, 16, 0.88) 18%, rgba(2, 20, 16, 0.45) 50%, rgba(2, 20, 16, 0.1) 85%, transparent 100%),
+    linear-gradient(180deg, rgba(2, 20, 16, 0.75) 0%, transparent 20%, transparent 75%, #021410 100%);
+}
+
 .hero-event-container {
   width: 94%;
   max-width: 1560px;
@@ -5595,6 +5635,18 @@ footer,
   align-items: center;
   position: relative;
   z-index: 2;
+}
+
+.hero-event-container.hero-event-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero-event-details-container .hero-event-poster-col {
+  max-width: 820px;
+  width: 100%;
 }
 
 .hero-event-poster-col {
@@ -5924,6 +5976,23 @@ footer,
 
   .cycle-node.node-left {
     left: 0;
+  }
+
+  .hero-event-half-bg {
+    width: 100%;
+    opacity: 0.35;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-event-half-bg .hero-event-bg-gradient-mask {
+    background:
+      linear-gradient(180deg, rgba(2, 20, 16, 0.85) 0%, rgba(2, 20, 16, 0.65) 50%, #021410 100%);
+  }
+
+  .hero-event-container.hero-event-details-container {
+    align-items: center;
+    text-align: center;
   }
 }
 

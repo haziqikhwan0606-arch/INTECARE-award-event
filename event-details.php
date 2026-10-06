@@ -48,8 +48,22 @@ require_once __DIR__ . '/includes/nav.php';
          True full-screen editorial hero with dramatic date typography,
          event spec strip, 1-click calendar dropdown, and Grand Ballroom visual.
          ========================================================================== -->
-    <section class="page-editorial-hero hero-event-spread" aria-label="Event Details &amp; Gala Night">
-      <div class="hero-event-container">
+    <section class="page-editorial-hero hero-event-spread hero-event-details-spread" aria-label="Event Details &amp; Gala Night">
+      <!-- Half-Screen Background Image with Smooth Luxury Fading -->
+      <div class="hero-event-half-bg" aria-hidden="true">
+        <picture>
+          <source srcset="<?= $basePath ?>/assets/images/event2.webp" type="image/webp">
+          <img src="<?= $basePath ?>/assets/images/event2.jpg"
+            alt=""
+            class="hero-event-bg-img"
+            width="1200"
+            height="800"
+            loading="eager">
+        </picture>
+        <div class="hero-event-bg-gradient-mask"></div>
+      </div>
+
+      <div class="hero-event-container hero-event-details-container">
         
         <!-- Left: Dominant Event Poster Layout -->
         <div class="hero-event-poster-col">
@@ -82,10 +96,8 @@ require_once __DIR__ . '/includes/nav.php';
             <span class="spec-dot" aria-hidden="true">•</span>
             <div class="event-spec-item">
               <span class="spec-label">Venue</span>
-              <span class="spec-val">Royale Chulan Damansara</span>
+              <span class="spec-val">Grand Ballroom, Royale Chulan Damansara</span>
             </div>
-            <span class="spec-dot" aria-hidden="true">•</span>
-            
           </div>
 
           <!-- Actions & Calendar -->
@@ -114,32 +126,6 @@ require_once __DIR__ . '/includes/nav.php';
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
               <span>PRINT INVITATION</span>
             </button>
-          </div>
-        </div>
-
-        <!-- Right: Grand Ballroom Visual Stage -->
-        <div class="hero-event-visual-col">
-          <div class="hero-event-img-composition">
-            <picture>
-              <source srcset="<?= $basePath ?>/assets/images/event1.webp" type="image/webp">
-              <img src="<?= $basePath ?>/assets/images/event1.jpg"
-                alt="INTECARE 2026 Grand Gala Ballroom"
-                class="hero-event-main-img"
-                width="720"
-                height="540"
-                loading="eager">
-            </picture>
-            <div class="hero-event-img-overlay"></div>
-
-            <div class="hero-event-location-plaque">
-              <span class="plaque-pin" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              </span>
-              <div>
-                <strong style="font-family: var(--font-heading); font-size: 0.88rem; letter-spacing: 0.05em;">GRAND BALLROOM</strong>
-                <span style="font-size: 0.76rem; color: #D4E5DE;">Hotel Royale Chulan Damansara, Petaling Jaya</span>
-              </div>
-            </div>
           </div>
         </div>
 
