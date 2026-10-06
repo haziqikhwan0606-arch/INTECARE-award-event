@@ -7,95 +7,89 @@ require_once __DIR__ . '/includes/nav.php';
 
   <main>
     <!-- ==========================================================================
-         HERO: EDITORIAL SOVEREIGN ECOSYSTEM BLUEPRINT
-         Deep Obsidian & Champagne Gold Prestige Attention-Grabber
+         HERO: FULL-BLEED PANORAMIC SOVEREIGN HEALTH ARCHITECTURE
+         Deep Obsidian & Champagne Gold Panoramic Masterpiece
          ========================================================================== -->
-    <section class="page-editorial-hero hero-ecosystem-spread" aria-label="HWED National Ecosystem Accord">
-      <div class="hero-ecosystem-container">
-        
-        <!-- Left: Sovereign Architecture Manifesto & Luxury Ribbon -->
-        <div class="hero-ecosystem-content">
-          <div class="hero-ecosystem-eyebrow">
-            <span class="eyebrow-accent-gem" aria-hidden="true">♦</span>
-            <span>MALAYSIA SOVEREIGN ECOSYSTEM ACCORD</span>
-            <span class="eyebrow-accent-gem" aria-hidden="true">♦</span>
-          </div>
+    <section class="page-editorial-hero hero-ecosystem-panoramic" aria-label="HWED National Ecosystem Sovereign Accord">
+      <!-- Full-Bleed Panoramic Background Image with Smooth Fading Voids -->
+      <div class="hwed-pano-bg-wrap" aria-hidden="true">
+        <picture>
+          <source srcset="<?= $basePath ?>/assets/images/hwed-panoramic-hero.webp" type="image/webp">
+          <img src="<?= $basePath ?>/assets/images/hwed-panoramic-hero.jpg"
+            alt=""
+            class="hwed-pano-bg-img"
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            loading="eager">
+        </picture>
+        <div class="hwed-pano-overlay"></div>
+      </div>
 
-          <h1 class="hero-ecosystem-title">
-            HEALTHCARE &amp; WELLNESS<br>
-            <span class="text-gold-luxury">ECONOMY DEVELOPMENT</span>
-          </h1>
-
-          <p class="hero-ecosystem-lead">
-            Under the patronage of the INTECARE Excellence Framework, HWED unifies foundational research, institutional capital, transformative enterprise, and healthcare excellence across the complete human lifecycle.
-          </p>
-
-          <!-- Luxury Ribbon: 3 Strategic Pillars At-A-Glance -->
-          <div class="ecosystem-luxury-stat-strip" aria-label="Key Ecosystem Highlights">
-            <div class="lux-stat-unit">
-              <span class="lux-stat-num">06</span>
-              <span class="lux-stat-label">Connected Domains</span>
-            </div>
-            <span class="lux-stat-divider" aria-hidden="true">♦</span>
-            <div class="lux-stat-unit">
-              <span class="lux-stat-num">04</span>
-              <span class="lux-stat-label">Lifecycle Pathways</span>
-            </div>
-            <span class="lux-stat-divider" aria-hidden="true">♦</span>
-            <div class="lux-stat-unit">
-              <span class="lux-stat-num">01</span>
-              <span class="lux-stat-label">Unified Platform</span>
-            </div>
-          </div>
-
-          <!-- Actions -->
-          <div class="hero-ecosystem-actions">
-            <a href="#architecture" class="btn btn-primary">
-              <span>EXPLORE 6 DOMAINS</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-            </a>
-            <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill">
-              <span>VIEW 40 AWARDS</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+      <div class="hwed-pano-container">
+        <!-- Stately Eyebrow Tag -->
+        <div class="hwed-pano-eyebrow">
+          <span class="pano-gem" aria-hidden="true">✦</span>
+          <span>MALAYSIA SOVEREIGN HEALTH &amp; WELLNESS FRAMEWORK</span>
+          <span class="pano-gem" aria-hidden="true">✦</span>
         </div>
 
-        <!-- Right: Stately Framed Editorial Visual Showcase with Ambient Halo -->
-        <div class="hero-ecosystem-visual" aria-hidden="true">
-          <div class="hero-ecosystem-stage-wrap">
-            <div class="hero-ecosystem-ambient-glow"></div>
-            
-            <div class="hero-ecosystem-img-frame">
-              <picture>
-                <source srcset="<?= $basePath ?>/assets/images/medical-innovation.webp" type="image/webp">
-                <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
-                  alt="INTECARE HWED Sovereign Ecosystem"
-                  class="hero-ecosystem-img"
-                  width="720"
-                  height="540"
-                  loading="eager">
-              </picture>
-              <div class="hero-ecosystem-img-overlay"></div>
+        <!-- Monumental Hero Heading -->
+        <h1 class="hwed-pano-title">
+          THE SOVEREIGN<br>
+          <span class="text-gold-panoramic">HEALTH ECOSYSTEM</span>
+        </h1>
 
-              <!-- Gilded Floating Seal -->
-              <div class="hero-ecosystem-seal">
-                <span class="seal-icon">✦</span>
-                <span class="seal-text">SOVEREIGN BLUEPRINT</span>
-              </div>
+        <p class="hwed-pano-tagline">
+          HEALTHCARE &amp; WELLNESS ECONOMY DEVELOPMENT (HWED)
+        </p>
 
-              <!-- Gilded Accord Plaque -->
-              <div class="hero-ecosystem-plaque">
-                <span class="plaque-pin">♦</span>
-                <div>
-                  <strong class="plaque-title">THE NATIONAL ACCORD</strong>
-                  <span class="plaque-sub">6 Connected Domains • 4 Lifecycle Pathways</span>
-                </div>
-              </div>
+        <p class="hwed-pano-lead">
+          Under the patronage of the INTECARE Excellence Framework, HWED unites foundational scientific research, institutional investment capital, transformative clinical enterprise, and sovereign policy across the complete human lifecycle.
+        </p>
+
+        <!-- Horizontal Sovereign Stat Ribbon -->
+        <div class="hwed-pano-stats-ribbon" aria-label="Sovereign Architecture Metrics">
+          <div class="pano-stat-col">
+            <span class="pano-stat-num">06</span>
+            <div class="pano-stat-meta">
+              <strong class="pano-stat-title">Connected Domains</strong>
+              <span class="pano-stat-desc">Science, Clinical, AI, Enterprise, Capital &amp; Policy</span>
+            </div>
+          </div>
+
+          <div class="pano-stat-divider" aria-hidden="true"></div>
+
+          <div class="pano-stat-col">
+            <span class="pano-stat-num">04</span>
+            <div class="pano-stat-meta">
+              <strong class="pano-stat-title">Lifecycle Pathways</strong>
+              <span class="pano-stat-desc">Stay, Get, Recover &amp; Age Well frontlines</span>
+            </div>
+          </div>
+
+          <div class="pano-stat-divider" aria-hidden="true"></div>
+
+          <div class="pano-stat-col">
+            <span class="pano-stat-num">01</span>
+            <div class="pano-stat-meta">
+              <strong class="pano-stat-title">National Accord</strong>
+              <span class="pano-stat-desc">Unified sovereign platform for Malaysia</span>
             </div>
           </div>
         </div>
 
+        <!-- Call to Action Group -->
+        <div class="hwed-pano-actions">
+          <a href="#architecture" class="btn btn-primary btn-pano-cta">
+            <span>EXPLORE 6 CONNECTED DOMAINS</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+          </a>
+          <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill">
+            <span>VIEW 40 EXCELLENCE AWARDS</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
       </div>
 
       <!-- Minimal Subtle Scroll Indicator -->
