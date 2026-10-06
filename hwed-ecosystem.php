@@ -8,47 +8,43 @@ require_once __DIR__ . '/includes/nav.php';
   <main>
     <!-- ==========================================================================
          HERO: EDITORIAL SOVEREIGN ECOSYSTEM BLUEPRINT
-         Deep Obsidian & Champagne Gold Prestige Theme
-         Left: Sovereign Architecture Manifesto & 3-Tier Blueprint
-         Right: Framed Editorial Showcase with Gilded Accord Plaque
+         Deep Obsidian & Champagne Gold Prestige Attention-Grabber
          ========================================================================== -->
     <section class="page-editorial-hero hero-ecosystem-spread" aria-label="HWED National Ecosystem Accord">
       <div class="hero-ecosystem-container">
         
-        <!-- Left: Sovereign Architecture Manifesto & 3-Tier Blueprint -->
+        <!-- Left: Sovereign Architecture Manifesto & Luxury Ribbon -->
         <div class="hero-ecosystem-content">
           <div class="hero-ecosystem-eyebrow">
-            <span class="pulse-dot" aria-hidden="true"></span>
-            <span>SOVEREIGN ARCHITECTURE &amp; FRAMEWORK</span>
+            <span class="eyebrow-accent-gem" aria-hidden="true">♦</span>
+            <span>MALAYSIA SOVEREIGN ECOSYSTEM ACCORD</span>
+            <span class="eyebrow-accent-gem" aria-hidden="true">♦</span>
           </div>
 
           <h1 class="hero-ecosystem-title">
             HEALTHCARE &amp; WELLNESS<br>
-            <span class="text-gold-glow">ECONOMY DEVELOPMENT</span>
+            <span class="text-gold-luxury">ECONOMY DEVELOPMENT</span>
           </h1>
 
           <p class="hero-ecosystem-lead">
-            Under the patronage of the INTECARE Excellence Framework, HWED establishes Malaysia's sovereign multi-sector platform unifying foundational research, institutional capital, transformative enterprise, and healthcare excellence across the complete human lifecycle.
+            Under the patronage of the INTECARE Excellence Framework, HWED unifies foundational research, institutional capital, transformative enterprise, and healthcare excellence across the complete human lifecycle.
           </p>
 
-          <!-- 3-Tier Sovereign Blueprint Grid -->
-          <div class="ecosystem-hero-tiers">
-            <div class="ecosystem-tier-card">
-              <span class="tier-tag">TIER I</span>
-              <strong class="tier-name">Capital &amp; Policy</strong>
-              <p class="tier-desc">Foundational science, sovereign investment facilities &amp; PPP accords</p>
+          <!-- Luxury Ribbon: 3 Strategic Pillars At-A-Glance -->
+          <div class="ecosystem-luxury-stat-strip" aria-label="Key Ecosystem Highlights">
+            <div class="lux-stat-unit">
+              <span class="lux-stat-num">06</span>
+              <span class="lux-stat-label">Connected Domains</span>
             </div>
-
-            <div class="ecosystem-tier-card">
-              <span class="tier-tag">TIER II</span>
-              <strong class="tier-name">Innovation Engine</strong>
-              <p class="tier-desc">Clinical AI, MedTech translation &amp; enterprise scaling</p>
+            <span class="lux-stat-divider" aria-hidden="true">♦</span>
+            <div class="lux-stat-unit">
+              <span class="lux-stat-num">04</span>
+              <span class="lux-stat-label">Lifecycle Pathways</span>
             </div>
-
-            <div class="ecosystem-tier-card">
-              <span class="tier-tag">TIER III</span>
-              <strong class="tier-name">Lifecycle Delivery</strong>
-              <p class="tier-desc">Stay, Get, Recover &amp; Age Well frontline outcomes</p>
+            <span class="lux-stat-divider" aria-hidden="true">♦</span>
+            <div class="lux-stat-unit">
+              <span class="lux-stat-num">01</span>
+              <span class="lux-stat-label">Unified Platform</span>
             </div>
           </div>
 
@@ -65,26 +61,36 @@ require_once __DIR__ . '/includes/nav.php';
           </div>
         </div>
 
-        <!-- Right: Stately Framed Editorial Visual Showcase -->
+        <!-- Right: Stately Framed Editorial Visual Showcase with Ambient Halo -->
         <div class="hero-ecosystem-visual" aria-hidden="true">
-          <div class="hero-ecosystem-img-frame">
-            <picture>
-              <source srcset="<?= $basePath ?>/assets/images/medical-innovation.webp" type="image/webp">
-              <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
-                alt="INTECARE HWED Sovereign Ecosystem"
-                class="hero-ecosystem-img"
-                width="720"
-                height="540"
-                loading="eager">
-            </picture>
-            <div class="hero-ecosystem-img-overlay"></div>
+          <div class="hero-ecosystem-stage-wrap">
+            <div class="hero-ecosystem-ambient-glow"></div>
+            
+            <div class="hero-ecosystem-img-frame">
+              <picture>
+                <source srcset="<?= $basePath ?>/assets/images/medical-innovation.webp" type="image/webp">
+                <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
+                  alt="INTECARE HWED Sovereign Ecosystem"
+                  class="hero-ecosystem-img"
+                  width="720"
+                  height="540"
+                  loading="eager">
+              </picture>
+              <div class="hero-ecosystem-img-overlay"></div>
 
-            <!-- Gilded Accord Plaque -->
-            <div class="hero-ecosystem-plaque">
-              <span class="plaque-pin">✦</span>
-              <div>
-                <strong class="plaque-title">THE NATIONAL ACCORD</strong>
-                <span class="plaque-sub">6 Connected Domains • 4 Lifecycle Pathways</span>
+              <!-- Gilded Floating Seal -->
+              <div class="hero-ecosystem-seal">
+                <span class="seal-icon">✦</span>
+                <span class="seal-text">SOVEREIGN BLUEPRINT</span>
+              </div>
+
+              <!-- Gilded Accord Plaque -->
+              <div class="hero-ecosystem-plaque">
+                <span class="plaque-pin">♦</span>
+                <div>
+                  <strong class="plaque-title">THE NATIONAL ACCORD</strong>
+                  <span class="plaque-sub">6 Connected Domains • 4 Lifecycle Pathways</span>
+                </div>
               </div>
             </div>
           </div>
