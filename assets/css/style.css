@@ -525,10 +525,9 @@ textarea {
   width: 95%;
   max-width: 1680px;
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
-  gap: clamp(1.5rem, 2.5vw, 3.5rem);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   z-index: 2;
 }
@@ -538,6 +537,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   z-index: 2;
+  max-width: 860px;
   padding-left: clamp(0.5rem, 1.5vw, 2rem);
 }
 
