@@ -27,13 +27,6 @@ require_once __DIR__ . '/includes/nav.php';
       </div>
 
       <div class="hwed-pano-container">
-        <!-- Stately Eyebrow Tag -->
-        <div class="hwed-pano-eyebrow">
-          <span class="pano-gem" aria-hidden="true">✦</span>
-          <span>MALAYSIA SOVEREIGN HEALTH &amp; WELLNESS FRAMEWORK</span>
-          <span class="pano-gem" aria-hidden="true">✦</span>
-        </div>
-
         <!-- Monumental Hero Heading -->
         <h1 class="hwed-pano-title">
           THE SOVEREIGN<br>
@@ -81,13 +74,9 @@ require_once __DIR__ . '/includes/nav.php';
 
         <!-- Call to Action Group -->
         <div class="hwed-pano-actions">
-          <a href="#architecture" class="btn btn-primary btn-pano-cta">
-            <span>EXPLORE 6 CONNECTED DOMAINS</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-          </a>
-          <a href="<?= $basePath ?>/awards.php" class="btn btn-outline-pill">
+          <a href="<?= $basePath ?>/awards.php" class="btn btn-primary btn-pano-cta">
             <span>VIEW 40 EXCELLENCE AWARDS</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
       </div>
