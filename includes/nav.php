@@ -310,10 +310,10 @@ $ogImage = $protocol . $host . $basePath . '/assets/images/logo-intecare3.png';
         <button type="button" class="btn btn-nav-track open-tracking-btn" aria-label="Track Nomination Status">
           <span>TRACK STATUS</span>
         </button>
-        <button type="button" class="btn btn-nav-cta open-nomination-btn">
-          <span>SUBMIT NOMINATION</span>
-          <span class="btn-arrow" aria-hidden="true">→</span>
-        </button>
+        <a href="<?= $basePath ?>/assets/downloads/INTECARE_2026_Nomination_Form.pdf" download="INTECARE_2026_Nomination_Form.pdf" class="btn btn-nav-cta" aria-label="Download Nomination Form">
+          <span>DOWNLOAD FORM</span>
+          <span class="btn-arrow" aria-hidden="true">↓</span>
+        </a>
         <button type="button" class="mobile-toggle" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation menu">
           <span></span>
           <span></span>

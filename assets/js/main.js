@@ -2497,4 +2497,67 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+// ==========================================================================
+// REALESTATEPILLARS FORMAT INTERACTIVITY (FAQ Accordion & Category Modal)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. FAQ Accordion Click Handler
+  document.addEventListener('click', (e) => {
+    const titleBtn = e.target.closest('.accordion-section-title');
+    if (!titleBtn) return;
+    const currentSection = titleBtn.closest('.accordion-section');
+    if (!currentSection) return;
+
+    const parentAccordion = currentSection.closest('.accordion');
+    const wasActive = currentSection.classList.contains('is-active');
+
+    // Optional single-item expand behavior
+    if (parentAccordion) {
+      parentAccordion.querySelectorAll('.accordion-section').forEach(sec => {
+        if (sec !== currentSection) sec.classList.remove('is-active');
+      });
+    }
+
+    currentSection.classList.toggle('is-active', !wasActive);
+  });
+
+  // 2. Category Card Click -> Open Detail Modal
+  const catModal = document.getElementById('categoryModal');
+  const catModalTitle = document.getElementById('modalTitle');
+  const catModalText = document.getElementById('modalText');
+  const catCloseBtn = document.querySelector('#categoryModal .close-btn');
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.category-card, .card-modal');
+    if (!card) return;
+
+    const title = card.dataset.title || card.querySelector('.category-heading')?.textContent || 'Award Category';
+    const text = card.dataset.text || 'Nominate outstanding individuals and organisations pioneering healthcare excellence, clinical innovation, and community wellbeing.';
+
+    if (catModal && catModalTitle && catModalText) {
+      catModalTitle.textContent = title;
+      catModalText.innerHTML = text;
+      catModal.style.display = 'flex';
+      catModal.classList.add('is-open');
+    }
+  });
+
+  if (catCloseBtn && catModal) {
+    catCloseBtn.addEventListener('click', () => {
+      catModal.style.display = 'none';
+      catModal.classList.remove('is-open');
+    });
+  }
+
+  if (catModal) {
+    window.addEventListener('click', (e) => {
+      if (e.target === catModal) {
+        catModal.style.display = 'none';
+        catModal.classList.remove('is-open');
+      }
+    });
+  }
+});
+
+
 

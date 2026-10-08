@@ -86,7 +86,7 @@ require_once __DIR__ . '/includes/nav.php';
           <div class="purpose-photo-card card-tint-teal">
             <picture>
               <source srcset="<?= $basePath ?>/assets/images/hero/hero-healthcare-innovation.webp" type="image/webp">
-              <img src="<?= $basePath ?>/assets/images/hero/hero-healthcare-innovation.jpg"
+              <img src="<?= $basePath ?>/assets/images/medical-innovation.jpg"
                 alt="Healthcare collaboration and clinical research innovation"
                 class="card-photo-bg"
                 width="400"
